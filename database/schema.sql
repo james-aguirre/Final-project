@@ -13,6 +13,7 @@ create schema "public";
 	"price" real NOT NULL,
 	"categoryId" int NOT NULL,
 	"imageUrl" TEXT NOT NULL,
+  "description" TEXT NOT NULL,
 	CONSTRAINT "products_pk" PRIMARY KEY ("productId")
 ) WITH (
   OIDS=FALSE
