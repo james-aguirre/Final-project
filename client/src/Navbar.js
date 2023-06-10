@@ -1,41 +1,20 @@
-import './Navbar.css';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 export default function NavBar({ onNavigate }) {
   return (
-    <header className="header purple-background">
-      <div className="container">
-        <div className="row">
-          <div className="column-full d-flex align-center">
-            <h1 className="white-text">Code Journal</h1>
-            <h3>
-              <button
-                type="button"
-                onClick={() => onNavigate('journal')}
-                className="entries-link white-text">
-                Entries
-              </button>
-              <button
-                type="button"
-                onClick={() => onNavigate('register')}
-                className="entries-link white-text">
-                Register
-              </button>
-              <button
-                type="button"
-                onClick={() => onNavigate('sign-in')}
-                className="entries-link white-text">
-                Sign In
-              </button>
-              <button
-                type="button"
-                onClick={() => onNavigate('sign-out')}
-                className="entries-link white-text">
-                Sign Out
-              </button>
-            </h3>
-          </div>
-        </div>
-      </div>
-    </header>
+    <>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="/">ValTrade</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="catalog">Catalog</Nav.Link>
+            <Nav.Link href="sign-in">Sign in</Nav.Link>
+            <Nav.Link href="register">Pricing</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+    </>
   );
 }
