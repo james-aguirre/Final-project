@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './Navbar';
-import SignInForm from './SignInForm';
 import RegistrationForm from './RegisterForm';
 import './layout.css';
 import './App.css';
@@ -37,9 +36,6 @@ function App() {
       <NavBar onNavigate={handleNavigate} />
       <p>{serverData}</p>
       <RegistrationForm />
-      {page === 'sign-in' && (
-        <SignInForm onSignIn={() => handleNavigate('catalog')} />
-      )}
     </>
   );
 }
