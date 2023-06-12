@@ -25,7 +25,7 @@ CREATE TABLE "customers" (
 	"customerId" serial NOT NULL,
 	"username" TEXT NOT NULL,
 	"hashedPassword" TEXT NOT NULL,
-	"createdAt" TIMESTAMP NOT NULL,
+	"createdAt" TIMESTAMP,
 	CONSTRAINT "customers_pk" PRIMARY KEY ("customerId")
 ) WITH (
   OIDS=FALSE

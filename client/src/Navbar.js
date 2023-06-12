@@ -11,7 +11,7 @@ export default function NavBar({ onNavigate }) {
           <Nav className="me-auto">
             <Nav.Link href="catalog">Catalog</Nav.Link>
             <Nav.Link href="sign-in">Sign in</Nav.Link>
-            <Nav.Link href="register">Pricing</Nav.Link>
+            <Nav.Link href="register">Register</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
