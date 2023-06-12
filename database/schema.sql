@@ -23,7 +23,7 @@ create schema "public";
 
 CREATE TABLE "customers" (
 	"customerId" serial NOT NULL,
-	"username" TEXT NOT NULL,
+	"username" TEXT NOT NULL UNIQUE,
 	"hashedPassword" TEXT NOT NULL,
 	"createdAt" TIMESTAMP,
 	CONSTRAINT "customers_pk" PRIMARY KEY ("customerId")
