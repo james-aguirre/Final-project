@@ -27,22 +27,6 @@ app.get('/api/hello', (req, res) => {
   res.json({ message: 'Hello, World!' });
 });
 
-// app.post('/api/customer', async (req, res, next) => {
-//   try {
-//     const { username, password } = req.body;
-//     if (!username || !password) {
-//       throw new ClientError(400, 'username and password are required fields');
-//     }
-//     const hashedPassword = await argon2.hash(password);
-//     const sql = `insert into "users" ("username", "hashedPassword")
-//     values ($1, $2)
-//     returning
-//       "userId",
-//     "username",
-//     "createdAt"
-//   ;
-//     `;
-
 /**
  * Serves React's index.html if no api route matches.
  *
