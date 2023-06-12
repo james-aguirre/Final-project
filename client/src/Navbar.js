@@ -1,7 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Outlet } from 'react-router-dom';
 
 export default function NavBar({ onNavigate }) {
   return (
@@ -13,9 +12,9 @@ export default function NavBar({ onNavigate }) {
             <Nav.Link href="catalog">Catalog</Nav.Link>
             <Nav.Link href="sign-in">Sign in</Nav.Link>
             <Nav.Link href="register">Register</Nav.Link>
+            <Nav.Link href="sign-out">Sign out</Nav.Link>
           </Nav>
         </Container>
-        <Outlet />
       </Navbar>
     </>
   );

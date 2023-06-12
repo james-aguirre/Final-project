@@ -1,8 +1,5 @@
 import { useState } from 'react';
 
-/**
- * Form that signs in a user.
- */
 export default function SignInForm({ onSignIn }) {
   const [isLoading, setIsLoading] = useState(false);
 

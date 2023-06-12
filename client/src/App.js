@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './Navbar';
 import RegistrationForm from './RegisterForm';
+import SignInForm from './SignInForm';
 import './layout.css';
 import './App.css';
 
@@ -33,10 +34,13 @@ function App() {
 
   return (
     <>
+      <NavBar onNavigate={handleNavigate} />
       <Routes>
-        <Route path="/" element={<NavBar onNavigate={handleNavigate} />}>
-          <Route path="register" element={<RegistrationForm />} />
-        </Route>
+        <Route path="register" element={<RegistrationForm />} />
+        <Route
+          path="sign-in"
+          element={<SignInForm onSignIn={() => handleNavigate('catalog')} />}
+        />
       </Routes>
       <p>{serverData}</p>
     </>

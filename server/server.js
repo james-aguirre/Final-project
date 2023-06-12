@@ -59,11 +59,8 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     if (!username || !password) {
       throw new ClientError(401, 'invalid login');
     }
-
-    /* your code starts here */
-
     const sql = ` select *
-    from "users"
+    from "customers"
     where "username" = $1
     ;
     `;
@@ -87,6 +84,7 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     next(err);
   }
 });
+
 /**
  * Serves React's index.html if no api route matches.
  *
