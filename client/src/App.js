@@ -33,9 +33,12 @@ function App() {
 
   return (
     <>
-      <NavBar onNavigate={handleNavigate} />
+      <Routes>
+        <Route path="/" element={<NavBar onNavigate={handleNavigate} />}>
+          <Route path="register" element={<RegistrationForm />} />
+        </Route>
+      </Routes>
       <p>{serverData}</p>
-      <RegistrationForm />
     </>
   );
 }
