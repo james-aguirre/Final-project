@@ -36,7 +36,7 @@ function App() {
     <>
       <NavBar onNavigate={handleNavigate} />
       <p>{serverData}</p>
-      {page === 'register' && <RegistrationForm />}
+      <RegistrationForm />
       {page === 'sign-in' && (
         <SignInForm onSignIn={() => handleNavigate('catalog')} />
       )}
