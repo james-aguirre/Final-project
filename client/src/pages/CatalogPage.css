@@ -1,0 +1,7 @@
+.card-wrapper {
+  display: flex;
+  flex-basis: 25%;
+  height: 10rem;
+  width: 100%;
+  justify-content: center;
+}

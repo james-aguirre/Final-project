@@ -35,6 +35,24 @@ export async function signUpOrIn(action, username, password) {
   };
   const res = await fetch(`/api/auth/${action}`, req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
-  console.log('hi', await res.json());
-  return await res;
+  return await res.json();
+}
+/**
+ * Fetches all products from the API
+ * @returns Promise that resolves to an array of products
+ */
+export async function fetchCatalog() {
+  const res = await fetch('api/products');
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
+
+/** Fetch a single product from API
+ * @param {number} productId of selected item
+ * @returns Promise that resolves to the product
+ */
+export async function fetchProduct(productId) {
+  const res = await fetch(`/api/products/${productId}`);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
 }

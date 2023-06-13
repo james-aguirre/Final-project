@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars -- Remove me */
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
 import AppContext from '../components/AppContext';

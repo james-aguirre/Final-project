@@ -79,6 +79,22 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     next(err);
   }
 });
+
+app.get('/api/products', async (req, res, next) => {
+  try {
+    const sql = `
+    select "productId",
+    "productName",
+    "price",
+    "imageUrl",
+    "description"
+    from "products"`;
+    const result = await db.query(sql);
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
 /**
  * Serves React's index.html if no api route matches.
  *

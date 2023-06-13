@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import AppContext from './components/AppContext';
 import Auth from './pages/AuthPage';
+import NotFound from './pages/NotFoundPage';
+import CatalogPage from './pages/CatalogPage';
 import './layout.css';
 import './App.css';
 
@@ -45,6 +47,8 @@ function App() {
         <Routes>
           <Route path="sign-in" element={<Auth action="sign-in" />} />
           <Route path="sign-up" element={<Auth action="sign-up" />} />
+          <Route path="catalog" element={<CatalogPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AppContext.Provider>
     </>
