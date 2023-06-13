@@ -12,13 +12,13 @@ export default function NavBar({ onNavigate }) {
         <Container>
           <Navbar.Brand href="/">ValTrade</Navbar.Brand>
           <Nav className="me-auto">
+            <Nav.Link href="catalog">Catalog</Nav.Link>
             {user && (
               <Nav.Link href="sign-out" onClick={handleSignOut}>
                 Sign out
               </Nav.Link>
             )}
             {!user && <Nav.Link href="sign-in">Sign in</Nav.Link>}
-            <Nav.Link href="catalog">Catalog</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

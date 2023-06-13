@@ -30,12 +30,20 @@ export default function Catalog() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error Loading Catalog: {error.message}</div>;
   return (
-    <Container fluid>
-      <h1>Skins Catalog</h1>
+    <Container fluid className="catalog-container">
+      <div className="banner-container">
+        <img
+          className="img-banner"
+          src="https://static1-us.millenium.gg/articles/7/18/53/7/@/184821-valorant-art-4-orig-2-article_cover_bd-1.jpeg"
+          alt="phoenix jett val banner"
+        />
+      </div>
+      <h1 className="catalog-header">Skins Catalog</h1>
       <Row xs="auto">
         {products?.map((product) => (
           <Col xs={6} md={4} className="card-wrapper">
             <Image
+              className="img-thumbnail"
               key={product.productId}
               src={product.imageUrl}
               alt={product.productName}

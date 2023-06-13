@@ -45,9 +45,9 @@ function App() {
       <AppContext.Provider value={contextValue}>
         <NavBar />
         <Routes>
+          <Route path="catalog" element={<CatalogPage />} />
           <Route path="sign-in" element={<Auth action="sign-in" />} />
           <Route path="sign-up" element={<Auth action="sign-up" />} />
-          <Route path="catalog" element={<CatalogPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AppContext.Provider>
