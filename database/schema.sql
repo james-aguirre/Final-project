@@ -9,7 +9,7 @@ create schema "public";
 
  CREATE TABLE "products" (
 	"productName" TEXT NOT NULL,
-	"productId" int NOT NULL,
+	"productId" serial NOT NULL,
 	"price" real NOT NULL,
 	"categoryId" int NOT NULL,
 	"imageUrl" TEXT NOT NULL,
@@ -22,10 +22,10 @@ create schema "public";
 
 
 CREATE TABLE "customers" (
-	"customerId" int NOT NULL,
-	"username" TEXT NOT NULL,
-	"password" TEXT NOT NULL,
-	"createdAt" TIMESTAMP NOT NULL,
+	"customerId" serial NOT NULL,
+	"username" TEXT NOT NULL UNIQUE,
+	"hashedPassword" TEXT NOT NULL,
+	"createdAt" TIMESTAMP,
 	CONSTRAINT "customers_pk" PRIMARY KEY ("customerId")
 ) WITH (
   OIDS=FALSE
@@ -35,7 +35,7 @@ CREATE TABLE "customers" (
 
 CREATE TABLE "shoppingCart" (
 	"productId" int NOT NULL,
-	"customerId" int NOT NULL,
+	"customerId" serial NOT NULL,
 	"cartId" int NOT NULL,
 	CONSTRAINT "shoppingCart_pk" PRIMARY KEY ("cartId")
 ) WITH (
@@ -45,7 +45,7 @@ CREATE TABLE "shoppingCart" (
 
 
 CREATE TABLE "orders" (
-	"orderId" int NOT NULL,
+	"orderId" serial NOT NULL,
 	"cartId" int NOT NULL,
 	"placedAt" TIMESTAMP,
 	"productName" TEXT NOT NULL,

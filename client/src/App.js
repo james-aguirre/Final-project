@@ -1,30 +1,57 @@
-import { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { useEffect, useState, createContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import NavBar from './components/Navbar';
+import AppContext from './components/AppContext';
+import Auth from './pages/AuthPage';
+import NotFound from './pages/NotFoundPage';
+import CatalogPage from './pages/CatalogPage';
+import './layout.css';
 import './App.css';
 
+const tokenKey = 'react-context-jwt';
+
 function App() {
-  const [serverData, setServerData] = useState('');
+  const [user, setUser] = useState();
+  const [token, setToken] = useState();
+  const [isAuthorizing, setIsAuthorizing] = useState(true);
 
+  //authorize if previusly logged in / page refreshed
   useEffect(() => {
-    async function readServerData() {
-      const resp = await fetch('/api/hello');
-      const data = await resp.json();
-
-      console.log('Data from server:', data);
-
-      setServerData(data.message);
+    const auth = localStorage.getItem(tokenKey);
+    if (auth) {
+      const a = JSON.parse(auth);
+      setUser(a.user);
+      setToken(a.token);
     }
-
-    readServerData();
+    setIsAuthorizing(false);
   }, []);
 
+  if (isAuthorizing) return null;
+  function handleSignIn(auth) {
+    localStorage.setItem(tokenKey, JSON.stringify(auth));
+    setUser(auth.user);
+    setToken(auth.token);
+  }
+  function handleSignOut() {
+    localStorage.removeItem(tokenKey);
+    setUser(undefined);
+    setToken(undefined);
+  }
+
+  const contextValue = { user, token, handleSignIn, handleSignOut };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>{serverData}</h1>
-      </header>
-    </div>
+    <>
+      <AppContext.Provider value={contextValue}>
+        <NavBar />
+        <Routes>
+          <Route path="sign-in" element={<Auth action="sign-in" />} />
+          <Route path="sign-up" element={<Auth action="sign-up" />} />
+          <Route path="catalog" element={<CatalogPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AppContext.Provider>
+    </>
   );
 }
 
