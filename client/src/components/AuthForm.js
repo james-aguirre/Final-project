@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signUpOrIn } from '../lib';
+import { signUpOrIn } from './api';
 
 export default function AuthForm({ action, onSignIn }) {
   const navigate = useNavigate();

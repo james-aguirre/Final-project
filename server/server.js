@@ -59,32 +59,30 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     if (!username || !password) {
       throw new ClientError(401, 'invalid login');
     }
-    const sql = ` select *
-    from "customers"
-    where "username" = $1
-    ;
+    const sql = `
+      select "customerId",
+            "hashedPassword"
+        from "customers"
+        where "username" = $1
     `;
     const params = [username];
     const result = await db.query(sql, params);
-    if (result.rows === []) {
-      throw new Error(401, 'invalid username');
+    const [user] = result.rows;
+    if (!user) {
+      throw new ClientError(401, 'invalid login');
     }
-    const hashedPw = result.rows[0].hashedPassword;
-    const isMatchingPw = await argon2.verify(hashedPw, password);
-    if (!isMatchingPw) throw new Error(401, 'invalid password');
-    if (isMatchingPw) {
-      const payload = {
-        userId: result.rows[0].userId,
-        username: result.rows[0].username,
-      };
-      const token = jwt.sign(payload, process.env.TOKEN_SECRET);
-      res.status(200).json({ token, payload });
+    const { userId, hashedPassword } = user;
+    const isMatching = await argon2.verify(hashedPassword, password);
+    if (!isMatching) {
+      throw new ClientError(401, 'invalid login');
     }
+    const payload = { userId, username };
+    const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+    res.json({ token, user: payload });
   } catch (err) {
     next(err);
   }
 });
-
 /**
  * Serves React's index.html if no api route matches.
  *

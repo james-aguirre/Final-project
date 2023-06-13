@@ -1,16 +1,14 @@
 import { useEffect, useState, createContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import NavBar from './componenets/Navbar';
-import AppContext from './components/NavBar';
-import RegistrationForm from './RegisterForm';
-import SignInForm from './SignInForm';
+import NavBar from './components/Navbar';
+import AppContext from './components/AppContext';
+import Auth from './pages/AuthPage';
 import './layout.css';
 import './App.css';
 
 const tokenKey = 'react-context-jwt';
 
 function App() {
-  const [serverData, setServerData] = useState('');
   const [user, setUser] = useState();
   const [token, setToken] = useState();
   const [isAuthorizing, setIsAuthorizing] = useState(true);
@@ -53,11 +51,8 @@ function App() {
       <AppContext.Provider value={contextValue}>
         <NavBar onNavigate={handleNavigate} />
         <Routes>
-          <Route path="register" element={<RegistrationForm />} />
-          <Route
-            path="sign-in"
-            element={<SignInForm onSignIn={() => handleNavigate('catalog')} />}
-          />
+          <Route path="sign-in" element={<Auth action="sign-in" />} />
+          <Route path="sign-up" element={<Auth action="sign-up" />} />
         </Routes>
       </AppContext.Provider>
     </>
