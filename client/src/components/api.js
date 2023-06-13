@@ -35,7 +35,6 @@ export async function signUpOrIn(action, username, password) {
   };
   const res = await fetch(`/api/auth/${action}`, req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
-  console.log('hi');
-  console.log(await res.json());
-  return await res.json();
+  console.log('hi', await res.json());
+  return await res;
 }

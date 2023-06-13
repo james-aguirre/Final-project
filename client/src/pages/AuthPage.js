@@ -10,7 +10,7 @@ export default function AuthPage({ action }) {
   const { user, handleSignIn } = useContext(AppContext);
 
   useEffect(() => {
-    if (user) navigate('catalog');
+    if (user) navigate('/');
   }, [user, navigate]);
 
   const welcomeMessage =

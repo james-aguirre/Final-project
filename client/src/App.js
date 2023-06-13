@@ -12,8 +12,8 @@ function App() {
   const [user, setUser] = useState();
   const [token, setToken] = useState();
   const [isAuthorizing, setIsAuthorizing] = useState(true);
-  const [page, setPage] = useState('sign-in');
 
+  //authorize if previusly logged in / page refreshed
   useEffect(() => {
     const auth = localStorage.getItem(tokenKey);
     if (auth) {
@@ -37,19 +37,11 @@ function App() {
   }
 
   const contextValue = { user, token, handleSignIn, handleSignOut };
-  // onclick function for navigating to different pages on the site
-  function handleNavigate(page) {
-    setPage(page);
-    if (page === 'sign-out') {
-      sessionStorage.removeItem('token');
-      setPage('sign-in');
-    }
-  }
 
   return (
     <>
       <AppContext.Provider value={contextValue}>
-        <NavBar onNavigate={handleNavigate} />
+        <NavBar />
         <Routes>
           <Route path="sign-in" element={<Auth action="sign-in" />} />
           <Route path="sign-up" element={<Auth action="sign-up" />} />
