@@ -4,14 +4,15 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchCatalog } from '../components/api';
+import { fetchCatalog } from '../lib/api';
 import './CatalogPage.css';
-import Card from 'react-bootstrap/Card';
+import ProductDetails from './ProductDetailsPage';
 
-export default function Catalog() {
+export default function Catalog({ product }) {
   const [products, setProducts] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
     async function loadCatalog() {
@@ -29,6 +30,7 @@ export default function Catalog() {
   }, []);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error Loading Catalog: {error.message}</div>;
+
   return (
     <Container fluid className="catalog-container">
       <div className="banner-container">
@@ -42,12 +44,19 @@ export default function Catalog() {
       <Row xs="auto">
         {products?.map((product) => (
           <Col xs={6} md={4} className="card-wrapper">
+            {/* <Link to={`/catalog/${product.productName}`}> */}
             <Image
+              onClick={() => setModalShow(true)}
               className="img-thumbnail"
               key={product.productId}
               src={product.imageUrl}
               alt={product.productName}
               thumbnail
+            />
+            {/* </Link> */}
+            <ProductDetails
+              onClick={modalShow}
+              onHide={() => setModalShow(false)}
             />
           </Col>
         ))}
@@ -55,12 +64,3 @@ export default function Catalog() {
     </Container>
   );
 }
-
-// function Product({ product }) {
-//   const { productId, name, price, imageUrl, description } = products;
-//   return (
-//     <Col xs={6} md={4}>
-//       <Image src={imageUrl} />
-//     </Col>
-//   );
-// }
