@@ -63,13 +63,13 @@ export async function fetchCartItems(cartId) {
   return await res.json();
 }
 
-export async function addToCart(itemId) {
+export async function addToCart(productId) {
   const req = {
     method: 'POST',
     headers: { 'Content-Type': 'applications/json' },
-    body: JSON.stringify(itemId),
+    body: JSON.stringify(productId),
   };
-  const res = await fetch('/api/todos', req);
+  const res = await fetch(`/api/details/${productId}`, req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
