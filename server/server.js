@@ -123,12 +123,23 @@ app.get('/api/products/:productId', async (req, res, next) => {
   }
 });
 
-// app.post('/api/shoppingCart', async (req, res, next) => {
-//   try {
-//     const sql = `
-//     insert into "shoppingCart" ("productId")`
-//   }
-// })
+app.get('/api/shoppingCart/:cartId', async (req, res, next) => {
+  const cartId = req.params.cartId;
+  try {
+    const sql = `
+    select "cartId",
+    "productId",
+    "customerId"
+    from "shoppingCart"
+    where "cartId" = $1
+    `;
+    const params = [cartId];
+    const result = await db.query(sql, params);
+    res.json(result.rows);
+  } catch (err) {
+    next(err);
+  }
+});
 /**
  * Serves React's index.html if no api route matches.
  *

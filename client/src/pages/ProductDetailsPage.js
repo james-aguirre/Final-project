@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { fetchProduct } from '../lib/api';
 import { useParams } from 'react-router-dom';
-
+import AppContext from '../components/AppContext';
+import { useContext } from '../components/AppContext';
 import './ProductDetails.css';
 
 export default function ProductDetails() {
@@ -12,6 +13,7 @@ export default function ProductDetails() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
+  const { handleAddToCart } = useContext(AppContext);
   // const [cart, setCart] = useState();
 
   useEffect(() => {
@@ -60,7 +62,9 @@ export default function ProductDetails() {
         </div>
         <div className="row card-footer">
           <div className="description-text column-half left">{description}</div>
-          <Button className="btn">Add to cart</Button>
+          <Button className="btn" onClick={handleAddToCart}>
+            Add to cart
+          </Button>
         </div>
       </div>
     </Container>
