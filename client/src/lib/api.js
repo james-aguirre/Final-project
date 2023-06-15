@@ -42,7 +42,7 @@ export async function signUpOrIn(action, username, password) {
  * @returns Promise that resolves to an array of products
  */
 export async function fetchCatalog() {
-  const res = await fetch('api/products');
+  const res = await fetch('/api/products');
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
@@ -56,3 +56,13 @@ export async function fetchProduct(productId) {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+// export async function addToCart(productId) {
+//   const req {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body
+//   }
+// }

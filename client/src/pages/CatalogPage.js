@@ -3,12 +3,11 @@ import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import { useEffect, useState } from 'react';
+import { fetchCatalog } from '../lib/api';
 import { Link } from 'react-router-dom';
-import { fetchCatalog } from '../components/api';
 import './CatalogPage.css';
-import Card from 'react-bootstrap/Card';
 
-export default function Catalog() {
+export default function Catalog({ product }) {
   const [products, setProducts] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
@@ -17,6 +16,7 @@ export default function Catalog() {
     async function loadCatalog() {
       try {
         const products = await fetchCatalog();
+        console.log(products);
         setProducts(products);
       } catch (err) {
         setError(err);
@@ -29,26 +29,21 @@ export default function Catalog() {
   }, []);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error Loading Catalog: {error.message}</div>;
+
   return (
     <Container fluid className="catalog-container">
       <div className="banner-container">
         <img
           className="img-banner"
           src="https://static1-us.millenium.gg/articles/7/18/53/7/@/184821-valorant-art-4-orig-2-article_cover_bd-1.jpeg"
-          alt="phoenix jett val banner"
+          alt="phoenix jett valorant banner"
         />
       </div>
       <h1 className="catalog-header">Skins Catalog</h1>
       <Row xs="auto">
         {products?.map((product) => (
-          <Col xs={6} md={4} className="card-wrapper">
-            <Image
-              className="img-thumbnail"
-              key={product.productId}
-              src={product.imageUrl}
-              alt={product.productName}
-              thumbnail
-            />
+          <Col xs={6} md={4} className="card-wrapper" key={product.productId}>
+            <Product product={product} />
           </Col>
         ))}
       </Row>
@@ -56,11 +51,17 @@ export default function Catalog() {
   );
 }
 
-// function Product({ product }) {
-//   const { productId, name, price, imageUrl, description } = products;
-//   return (
-//     <Col xs={6} md={4}>
-//       <Image src={imageUrl} />
-//     </Col>
-//   );
-// }
+function Product({ product }) {
+  const { productId, productName, imageUrl } = product;
+  return (
+    <Link to={`/details/${productId}`}>
+      <Image
+        className="img-thumbnail"
+        src={imageUrl}
+        alt={productName}
+        thumbnail
+      />
+      />
+    </Link>
+  );
+}

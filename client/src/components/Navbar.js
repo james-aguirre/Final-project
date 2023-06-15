@@ -19,6 +19,7 @@ export default function NavBar({ onNavigate }) {
               </Nav.Link>
             )}
             {!user && <Nav.Link href="sign-in">Sign in</Nav.Link>}
+            <Nav.Link href="cart">Cart</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

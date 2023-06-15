@@ -1,0 +1,64 @@
+.details-container {
+  background-image: url('https://www.ggrecon.com/media/tl1nixi0/valorant-banner-art-cropped.jpg');
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+  height: 100vh;
+  margin: auto;
+}
+
+.details-card-wrapper {
+  background-color: #0b1219ad;
+  border-radius: 1.5rem;
+  margin-top: 4.5rem;
+  margin-bottom: 2rem;
+  width: 45vw;
+  height: 30vw;
+  justify-content: center;
+}
+
+.details-img {
+  background-color: transparent;
+  width: 70%;
+  margin-top: 5rem;
+  margin-left: 5rem;
+}
+
+.details-text {
+  color: white;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+}
+
+.row {
+  display: flex;
+}
+
+.column-half {
+  flex-basis: 50%;
+  justify-content: space-between;
+}
+
+.description-text {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.align-right {
+  text-align: end;
+  padding-right: 2rem;
+}
+
+.card-footer {
+  padding-top: 2rem;
+  justify-content: space-between;
+}
+
+.btn {
+  width: 7rem;
+  margin-right: 2rem;
+}
+
+.left {
+  padding-left: 2rem;
+}

@@ -19,6 +19,16 @@
   background-color: #161d22;
   border-color: #d3d1cb;
   border-style: groove;
+  height: 100%;
+  width: 25rem;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+img.img-thumbnail:hover {
+  cursor: pointer;
 }
 
 .catalog-header {

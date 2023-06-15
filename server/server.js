@@ -95,6 +95,40 @@ app.get('/api/products', async (req, res, next) => {
     next(err);
   }
 });
+
+app.get('/api/products/:productId', async (req, res, next) => {
+  try {
+    const productId = Number(req.params.productId);
+    if (!productId) {
+      throw new ClientError(400, 'productId must be a positive integer');
+    }
+    const sql = `
+    select "productId",
+    "productName",
+    "price",
+    "imageUrl",
+    "description"
+    from "products"
+    where "productId" = $1`;
+    const params = [productId];
+    const result = await db.query(sql, params);
+    if (!result.rows[0])
+      throw new ClientError(
+        404,
+        `cannot find product with productId ${productId}`
+      );
+    res.json(result.rows[0]);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// app.post('/api/shoppingCart', async (req, res, next) => {
+//   try {
+//     const sql = `
+//     insert into "shoppingCart" ("productId")`
+//   }
+// })
 /**
  * Serves React's index.html if no api route matches.
  *
