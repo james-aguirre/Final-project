@@ -16,10 +16,9 @@ export default function Catalog({ product }) {
     async function loadCatalog() {
       try {
         const products = await fetchCatalog();
-        console.log(products);
         setProducts(products);
-      } catch (err) {
-        setError(err);
+      } catch (e) {
+        setError(e);
       } finally {
         setIsLoading(false);
       }

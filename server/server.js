@@ -86,9 +86,7 @@ app.post('/api/shoppingCartItems', async (req, res, next) => {
     if (!productId || !quantity)
       throw new ClientError(400, 'please select a valid product and quantity');
     const sql = `
-    insert into "shoppingCartItems",
-    "productId",
-    "quantity"
+    insert into "shoppingCartItems" ("productId", "quantity")
     `;
     const params = [productId, quantity];
     const result = await db.query(sql, params);

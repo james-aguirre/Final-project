@@ -15,13 +15,12 @@ export default function AuthForm({ action, onSignIn }) {
       if (action === 'sign-up') {
         navigate('/sign-in');
       } else if (result.user && result.token) {
-        console.log('log');
         onSignIn(result);
         navigate('catalog');
         formData.reset();
       }
-    } catch (err) {
-      setError(err);
+    } catch (e) {
+      setError(e);
     }
   }
 
