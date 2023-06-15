@@ -106,7 +106,7 @@ app.get('/api/products/:productId', async (req, res, next) => {
     select "productId",
     "productName",
     "price",
-    "imageUrl"
+    "imageUrl",
     "description"
     from "products"
     where "productId" = $1`;
@@ -122,6 +122,13 @@ app.get('/api/products/:productId', async (req, res, next) => {
     next(err);
   }
 });
+
+// app.post('/api/shoppingCart', async (req, res, next) => {
+//   try {
+//     const sql = `
+//     insert into "shoppingCart" ("productId")`
+//   }
+// })
 /**
  * Serves React's index.html if no api route matches.
  *

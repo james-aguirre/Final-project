@@ -1,8 +1,10 @@
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { fetchProduct } from '../lib/api';
 import { useParams } from 'react-router-dom';
+
 import './ProductDetails.css';
 
 export default function ProductDetails() {
@@ -10,6 +12,7 @@ export default function ProductDetails() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
+  // const [cart, setCart] = useState();
 
   useEffect(() => {
     async function loadProduct(productId) {
@@ -26,6 +29,10 @@ export default function ProductDetails() {
     setIsLoading(true);
     loadProduct(productId);
   }, [productId, setProduct]);
+
+  // function addToCart() {
+  //   setCart(product);
+  // }
   if (isLoading) return <div>Loading...</div>;
   if (error) {
     return (
@@ -35,18 +42,25 @@ export default function ProductDetails() {
     );
   }
   if (!product) return null;
-  const { productName, imageUrl, price, description } = product;
+  const { productName, price, imageUrl, description } = product;
 
   return (
     <Container fluid className="details-container">
       <div className="details-card-wrapper">
-        <div className="row space-around">
+        <div className="row">
           <div className="column-full">
-            <Image src={description} className="details-img"></Image>
+            <Image src={imageUrl} className="details-img"></Image>
           </div>
-          <div className="details-text">
-            {productName} ${price}
+        </div>
+        <div className="row card-header">
+          <div className="details-text column-half left">{productName}</div>
+          <div className="details-text column-half details-text align-right">
+            ${price}
           </div>
+        </div>
+        <div className="row card-footer">
+          <div className="description-text column-half left">{description}</div>
+          <Button className="btn">Add to cart</Button>
         </div>
       </div>
     </Container>

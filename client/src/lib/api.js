@@ -56,3 +56,13 @@ export async function fetchProduct(productId) {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+// export async function addToCart(productId) {
+//   const req {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body
+//   }
+// }
