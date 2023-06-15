@@ -4,16 +4,14 @@ import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { fetchProduct } from '../lib/api';
 import { useParams } from 'react-router-dom';
-import AppContext from '../components/AppContext';
-import { useContext } from '../components/AppContext';
 import './ProductDetails.css';
 
-export default function ProductDetails() {
+export default function ProductDetails({ item }) {
   const { productId } = useParams();
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
-  const { handleAddToCart } = useContext(AppContext);
+  const [cartItems, setCartItems] = useState();
   // const [cart, setCart] = useState();
 
   useEffect(() => {
@@ -21,7 +19,6 @@ export default function ProductDetails() {
       try {
         const product = await fetchProduct(productId);
         setProduct(product);
-        console.log(product);
       } catch (err) {
         setError(err);
       } finally {
@@ -31,10 +28,9 @@ export default function ProductDetails() {
     setIsLoading(true);
     loadProduct(productId);
   }, [productId, setProduct]);
-
-  // function addToCart() {
-  //   setCart(product);
-  // }
+  function addToCart() {
+    setCartItems([product]);
+  }
   if (isLoading) return <div>Loading...</div>;
   if (error) {
     return (
@@ -62,7 +58,7 @@ export default function ProductDetails() {
         </div>
         <div className="row card-footer">
           <div className="description-text column-half left">{description}</div>
-          <Button className="btn" onClick={handleAddToCart}>
+          <Button className="btn" onClick={addToCart}>
             Add to cart
           </Button>
         </div>

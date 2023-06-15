@@ -14,7 +14,6 @@ const tokenKey = 'react-context-jwt';
 function App() {
   const [user, setUser] = useState();
   const [token, setToken] = useState();
-  const [cart, setCart] = useState();
   const [isAuthorizing, setIsAuthorizing] = useState(true);
 
   //authorize if previusly logged in / page refreshed
@@ -40,13 +39,11 @@ function App() {
     setToken(undefined);
   }
 
-  function handleAddToCart(productId) {}
   const contextValue = {
     user,
     token,
     handleSignIn,
     handleSignOut,
-    handleAddToCart,
   };
 
   return (
