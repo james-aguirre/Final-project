@@ -18,6 +18,14 @@ values
 (3, 'operator'),
 (4, 'sheriff');
 
+insert into "customers" ("customerId", "username", "hashedPassword", "createdAt")
+ VALUES
+ (1, 'shrek', 'hashedPass', null);
+
+insert into "shoppingCart" ("cartId", "customerId")
+values
+(1, 1);
+
 insert into "products" ( "productName", "price", "categoryId", "imageUrl", "description")
 values
 ( 'blastX Knife', 9.99, 1, 'https://cx.valorbuff.com/blob/BRcfB9CUanCZK+h7l1pOKnsblVHqBtxJKVvShXlN56sbl+c0hVCZ5axNhX-Gva0E?w=900', 'base level variant'),

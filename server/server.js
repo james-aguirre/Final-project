@@ -80,13 +80,13 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
   }
 });
 
-app.post('/api/shoppingCartItems', async (req, res, next) => {
+app.post('/api/cart/:cartId', async (req, res, next) => {
   try {
     const { productId, quantity } = req.body;
     if (!productId || !quantity)
       throw new ClientError(400, 'please select a valid product and quantity');
     const sql = `
-    insert into "shoppingCartItems" ("productId", "quantity")
+    insert into "shoppingCartItems" ("productId", "quantity", "cartId")
     `;
     const params = [productId, quantity];
     const result = await db.query(sql, params);
@@ -139,7 +139,7 @@ app.get('/api/products/:productId', async (req, res, next) => {
 });
 
 app.get('/api/shoppingCart/:cartId', async (req, res, next) => {
-  const cartId = req.params.cartId;
+  const cartId = Number(req.params.cartId);
   try {
     const sql = `
     select "cartId",

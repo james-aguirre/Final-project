@@ -58,18 +58,20 @@ export async function fetchProduct(productId) {
 }
 
 export async function fetchCartItems(cartId) {
-  const res = await fetch('/api/shoppingCart');
+  const res = await fetch(`/api/shoppingCart/${cartId}`);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
 
-export async function addToCart(productId) {
+export async function addToCart(productId, quantity, cartId) {
+  console.log('hi');
+  if (!cartId) cartId = 1;
   const req = {
     method: 'POST',
     headers: { 'Content-Type': 'applications/json' },
-    body: JSON.stringify(productId),
+    body: JSON.stringify({ productId, quantity }),
   };
-  const res = await fetch(`/api/details/${productId}`, req);
+  const res = await fetch(`/api/cart/${cartId}`, req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
