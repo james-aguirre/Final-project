@@ -44,8 +44,8 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
     const result = await db.query(sql, params);
     const [user] = result.rows;
     res.status(201).json(user);
-  } catch (err) {
-    next(err);
+  } catch (e) {
+    next(e);
   }
 });
 
@@ -75,11 +75,28 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     const payload = { userId, username };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);
     res.json({ token, user: payload });
-  } catch (err) {
-    next(err);
+  } catch (e) {
+    next(e);
   }
 });
 
+app.post('/api/shoppingCartItems', async (req, res, next) => {
+  try {
+    const { productId, quantity } = req.body;
+    if (!productId || !quantity)
+      throw new ClientError(400, 'please select a valid product and quantity');
+    const sql = `
+    insert into "shoppingCartItems",
+    "productId",
+    "quantity"
+    `;
+    const params = [productId, quantity];
+    const result = await db.query(sql, params);
+    res.json(result.rows);
+  } catch (e) {
+    next(e);
+  }
+});
 app.get('/api/products', async (req, res, next) => {
   try {
     const sql = `
@@ -91,8 +108,8 @@ app.get('/api/products', async (req, res, next) => {
     from "products"`;
     const result = await db.query(sql);
     res.json(result.rows);
-  } catch (err) {
-    next(err);
+  } catch (e) {
+    next(e);
   }
 });
 
@@ -118,8 +135,8 @@ app.get('/api/products/:productId', async (req, res, next) => {
         `cannot find product with productId ${productId}`
       );
     res.json(result.rows[0]);
-  } catch (err) {
-    next(err);
+  } catch (e) {
+    next(e);
   }
 });
 
@@ -136,10 +153,11 @@ app.get('/api/shoppingCart/:cartId', async (req, res, next) => {
     const params = [cartId];
     const result = await db.query(sql, params);
     res.json(result.rows);
-  } catch (err) {
-    next(err);
+  } catch (e) {
+    next(e);
   }
 });
+
 /**
  * Serves React's index.html if no api route matches.
  *
