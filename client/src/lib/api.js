@@ -62,3 +62,14 @@ export async function fetchCartItems(cartId) {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+export async function addToCart(itemId) {
+  const req = {
+    method: 'POST',
+    headers: { 'Content-Type': 'applications/json' },
+    body: JSON.stringify(itemId),
+  };
+  const res = await fetch('/api/todos', req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
