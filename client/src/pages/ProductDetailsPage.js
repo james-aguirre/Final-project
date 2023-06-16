@@ -38,8 +38,7 @@ export default function ProductDetails() {
   const { productName, price, imageUrl, description } = product;
   async function handleAddToCart() {
     try {
-      await fetch;
-      await addToCart(productId, 1);
+      await addToCart(productId, 1, 1);
     } catch (e) {
       setError(e);
     }

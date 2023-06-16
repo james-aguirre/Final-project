@@ -57,7 +57,7 @@ export async function fetchProduct(productId) {
   return await res.json();
 }
 
-export async function fetchCartItems(cartId) {
+export async function fetchCart(cartId) {
   const res = await fetch(`/api/shoppingCart/${cartId}`);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
@@ -65,11 +65,10 @@ export async function fetchCartItems(cartId) {
 
 export async function addToCart(productId, quantity, cartId) {
   console.log('hi');
-  if (!cartId) cartId = 1;
   const req = {
     method: 'POST',
-    headers: { 'Content-Type': 'applications/json' },
-    body: JSON.stringify({ productId, quantity }),
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ productId, quantity, cartId }),
   };
   const res = await fetch(`/api/cart/${cartId}`, req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
