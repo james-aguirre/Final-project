@@ -25,9 +25,11 @@ app.use(express.static(reactStaticDir));
 app.use(express.static(uploadsStaticDir));
 app.use(express.json());
 
+// relates to sign up server call
 app.post('/api/auth/sign-up', async (req, res, next) => {
   try {
     const { username, password } = req.body;
+    console.log(req.body);
     if (!username || !password) {
       throw new ClientError(400, 'username and password are required fields');
     }
@@ -37,18 +39,26 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
     returning
       "customerId",
     "username",
-    "createdAt"
-  ;
+    "createdAt";
     `;
-    const params = [username, hashedPassword];
-    const result = await db.query(sql, params);
-    const [user] = result.rows;
+    const userParams = [username, hashedPassword];
+    const userResult = await db.query(sql, userParams);
+    const [user] = userResult.rows;
+    console.log(user);
+    const cartSql = `insert into "shoppingCart" ("customerId", "cartId")
+    values($1, $1);
+    `;
+    const cartParams = [userResult.rows[0].customerId];
+    await db.query(cartSql, cartParams);
+    // const [cart] = cartResult.rows;
+    // console.log(cart);
     res.status(201).json(user);
   } catch (e) {
     next(e);
   }
 });
 
+// relates to sign in server call
 app.post('/api/auth/sign-in', async (req, res, next) => {
   try {
     const { username, password } = req.body;
@@ -80,21 +90,26 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
   }
 });
 
+// relates to addToCart server call
 app.post('/api/cart/:cartId', async (req, res, next) => {
   try {
-    const { productId, quantity } = req.body;
-    if (!productId || !quantity)
+    console.log(req.body);
+    const { productId, quantity, cartId } = req.body;
+    if (!productId || !quantity || !cartId)
       throw new ClientError(400, 'please select a valid product and quantity');
     const sql = `
     insert into "shoppingCartItems" ("productId", "quantity", "cartId")
+    values ($1, $2, $3)
     `;
-    const params = [productId, quantity];
+    const params = [productId, quantity, cartId];
     const result = await db.query(sql, params);
     res.json(result.rows);
   } catch (e) {
     next(e);
   }
 });
+
+// relates to fetchProducts server call
 app.get('/api/products', async (req, res, next) => {
   try {
     const sql = `
@@ -111,6 +126,7 @@ app.get('/api/products', async (req, res, next) => {
   }
 });
 
+// relates to fetchProduct server call
 app.get('/api/products/:productId', async (req, res, next) => {
   try {
     const productId = Number(req.params.productId);
@@ -138,12 +154,12 @@ app.get('/api/products/:productId', async (req, res, next) => {
   }
 });
 
+// relates to fetchCart function
 app.get('/api/shoppingCart/:cartId', async (req, res, next) => {
-  const cartId = Number(req.params.cartId);
+  const cartId = req.params.cartId;
   try {
     const sql = `
     select "cartId",
-    "productId",
     "customerId"
     from "shoppingCart"
     where "cartId" = $1
@@ -156,6 +172,20 @@ app.get('/api/shoppingCart/:cartId', async (req, res, next) => {
   }
 });
 
+app.get('/api/cartItems/:cartId', async (req, res, next) => {
+  const cart = req.params.cartId;
+  try {
+    const sql = `
+    select *
+    from "shoppingCartItems"
+    where "cartId" = $1`;
+    const params = [cart];
+    const result = await db.query(sql, params);
+    res.json(result.rows);
+  } catch (e) {
+    next(e);
+  }
+});
 /**
  * Serves React's index.html if no api route matches.
  *
