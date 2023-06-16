@@ -6,6 +6,8 @@ import Auth from './pages/AuthPage';
 import NotFound from './pages/NotFoundPage';
 import CatalogPage from './pages/CatalogPage';
 import ProductDetails from './pages/ProductDetailsPage';
+import SplashPage from './pages/SplashPage';
+import Cart from './pages/CartPage';
 import './layout.css';
 import './App.css';
 
@@ -52,9 +54,11 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="catalog" element={<CatalogPage />} />
+          <Route path="/" element={<SplashPage />} />
           <Route path="details/:productId" element={<ProductDetails />} />
           <Route path="sign-in" element={<Auth action="sign-in" />} />
           <Route path="sign-up" element={<Auth action="sign-up" />} />
+          <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AppContext.Provider>
