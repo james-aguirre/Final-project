@@ -63,8 +63,12 @@ export async function fetchCart(cartId) {
   return await res.json();
 }
 
+/** Add a product to customers shopping cart
+ * @param {number} productId of item
+ * @param {quantity} quantity of items in cart
+ * @param {cartId} cartId of each individual customer
+ */
 export async function addToCart(productId, quantity, cartId) {
-  console.log('hi');
   const req = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
