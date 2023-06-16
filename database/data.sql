@@ -17,13 +17,7 @@ values
 (3, 'operator'),
 (4, 'sheriff');
 
--- insert into "customers" ("customerId", "username", "hashedPassword", "createdAt")
---  VALUES
---  (1, 'shrek', 'hashedPass', null);
 
--- insert into "shoppingCart" ("cartId", "customerId")
--- values
--- (1, 1);
 
 insert into "products" ( "productName", "price", "categoryId", "imageUrl", "description")
 values
