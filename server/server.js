@@ -50,8 +50,6 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
     `;
     const cartParams = [userResult.rows[0].customerId];
     await db.query(cartSql, cartParams);
-    // const [cart] = cartResult.rows;
-    // console.log(cart);
     res.status(201).json(user);
   } catch (e) {
     next(e);
@@ -187,6 +185,7 @@ app.get('/api/cartItems/:cartId', async (req, res, next) => {
     next(e);
   }
 });
+
 /**
  * Serves React's index.html if no api route matches.
  *
