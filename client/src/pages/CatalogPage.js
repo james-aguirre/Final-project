@@ -53,7 +53,7 @@ export default function Catalog({ product }) {
 function Product({ product }) {
   const { productId, productName, imageUrl } = product;
   return (
-    <Link to={`/details/${productId}`}>
+    <Link to={`/${productId}`}>
       <Image
         className="img-thumbnail"
         src={imageUrl}
