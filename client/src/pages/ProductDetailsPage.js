@@ -2,9 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
-import { fetchProduct } from '../lib/api';
+import { fetchProduct, addToCart } from '../lib/api';
 import { useParams } from 'react-router-dom';
-
 import './ProductDetails.css';
 
 export default function ProductDetails() {
@@ -12,14 +11,12 @@ export default function ProductDetails() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
-  // const [cart, setCart] = useState();
 
   useEffect(() => {
     async function loadProduct(productId) {
       try {
         const product = await fetchProduct(productId);
         setProduct(product);
-        console.log(product);
       } catch (err) {
         setError(err);
       } finally {
@@ -29,10 +26,6 @@ export default function ProductDetails() {
     setIsLoading(true);
     loadProduct(productId);
   }, [productId, setProduct]);
-
-  // function addToCart() {
-  //   setCart(product);
-  // }
   if (isLoading) return <div>Loading...</div>;
   if (error) {
     return (
@@ -43,7 +36,13 @@ export default function ProductDetails() {
   }
   if (!product) return null;
   const { productName, price, imageUrl, description } = product;
-
+  async function handleAddToCart() {
+    try {
+      await addToCart(productId, 1, 1);
+    } catch (e) {
+      setError(e);
+    }
+  }
   return (
     <Container fluid className="details-container">
       <div className="details-card-wrapper">
@@ -60,7 +59,9 @@ export default function ProductDetails() {
         </div>
         <div className="row card-footer">
           <div className="description-text column-half left">{description}</div>
-          <Button className="btn">Add to cart</Button>
+          <Button className="btn" onClick={handleAddToCart}>
+            Add to cart
+          </Button>
         </div>
       </div>
     </Container>

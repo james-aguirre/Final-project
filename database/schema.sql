@@ -9,11 +9,11 @@ create schema "public";
 
  CREATE TABLE "products" (
 	"productName" TEXT NOT NULL,
-	"productId" serial NOT NULL,
 	"price" real NOT NULL,
 	"categoryId" int NOT NULL,
 	"imageUrl" TEXT NOT NULL,
-  "description" TEXT NOT NULL,
+	"description" TEXT NOT NULL,
+	"productId" serial NOT NULL,
 	CONSTRAINT "products_pk" PRIMARY KEY ("productId")
 ) WITH (
   OIDS=FALSE
@@ -34,9 +34,8 @@ CREATE TABLE "customers" (
 
 
 CREATE TABLE "shoppingCart" (
-	"productId" int NOT NULL,
-	"customerId" serial NOT NULL,
-	"cartId" int NOT NULL,
+	"customerId" int NOT NULL,
+	"cartId" serial NOT NULL,
 	CONSTRAINT "shoppingCart_pk" PRIMARY KEY ("cartId")
 ) WITH (
   OIDS=FALSE
@@ -47,9 +46,6 @@ CREATE TABLE "shoppingCart" (
 CREATE TABLE "orders" (
 	"orderId" serial NOT NULL,
 	"cartId" int NOT NULL,
-	"placedAt" TIMESTAMP,
-	"productName" TEXT NOT NULL,
-	"price" real NOT NULL,
 	CONSTRAINT "orders_pk" PRIMARY KEY ("orderId")
 ) WITH (
   OIDS=FALSE
@@ -67,10 +63,38 @@ CREATE TABLE "categories" (
 
 
 
+CREATE TABLE "shoppingCartItems" (
+	"quantity" int NOT NULL,
+	"productId" int NOT NULL,
+	"cartId" int NOT NULL,
+	CONSTRAINT "shoppingCartItems_pk" PRIMARY KEY ("productId","cartId")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "orderItems" (
+	"productName" TEXT NOT NULL,
+	"price" real NOT NULL,
+	"description" real NOT NULL,
+	"categoryName" real NOT NULL,
+	"orderId" int NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
 ALTER TABLE "products" ADD CONSTRAINT "products_fk0" FOREIGN KEY ("categoryId") REFERENCES "categories"("categoryId");
 
 
-ALTER TABLE "shoppingCart" ADD CONSTRAINT "shoppingCart_fk0" FOREIGN KEY ("productId") REFERENCES "products"("productId");
-ALTER TABLE "shoppingCart" ADD CONSTRAINT "shoppingCart_fk1" FOREIGN KEY ("customerId") REFERENCES "customers"("customerId");
+ALTER TABLE "shoppingCart" ADD CONSTRAINT "shoppingCart_fk0" FOREIGN KEY ("customerId") REFERENCES "customers"("customerId");
 
 ALTER TABLE "orders" ADD CONSTRAINT "orders_fk0" FOREIGN KEY ("cartId") REFERENCES "shoppingCart"("cartId");
+
+
+ALTER TABLE "shoppingCartItems" ADD CONSTRAINT "shoppingCartItems_fk0" FOREIGN KEY ("productId") REFERENCES "products"("productId");
+ALTER TABLE "shoppingCartItems" ADD CONSTRAINT "shoppingCartItems_fk1" FOREIGN KEY ("cartId") REFERENCES "shoppingCart"("cartId");
+
+ALTER TABLE "orderItems" ADD CONSTRAINT "orderItems_fk0" FOREIGN KEY ("orderId") REFERENCES "orders"("orderId");

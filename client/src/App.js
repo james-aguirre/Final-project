@@ -39,7 +39,12 @@ function App() {
     setToken(undefined);
   }
 
-  const contextValue = { user, token, handleSignIn, handleSignOut };
+  const contextValue = {
+    user,
+    token,
+    handleSignIn,
+    handleSignOut,
+  };
 
   return (
     <>
