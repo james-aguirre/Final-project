@@ -44,7 +44,6 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
     const userParams = [username, hashedPassword];
     const userResult = await db.query(sql, userParams);
     const [user] = userResult.rows;
-    console.log(user);
     const cartSql = `insert into "shoppingCart" ("customerId", "cartId")
     values($1, $1);
     `;
@@ -91,7 +90,6 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 // relates to addToCart server call
 app.post('/api/cart/:cartId', async (req, res, next) => {
   try {
-    console.log(req.body);
     const { productId, quantity, cartId } = req.body;
     if (!productId || !quantity || !cartId)
       throw new ClientError(400, 'please select a valid product and quantity');
