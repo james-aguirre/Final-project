@@ -172,6 +172,7 @@ app.get('/api/shoppingCart/:cartId', async (req, res, next) => {
   }
 });
 
+// relates to cartItems server call
 app.get('/api/cartItems/:cartId', async (req, res, next) => {
   const cart = req.params.cartId;
   try {
