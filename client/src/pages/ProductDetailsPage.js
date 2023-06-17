@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { fetchProduct, addToCart } from '../lib/api';
 import { useParams } from 'react-router-dom';
 import './ProductDetails.css';
+import Loading from './LoadingPage';
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -26,7 +27,7 @@ export default function ProductDetails() {
     setIsLoading(true);
     loadProduct(productId);
   }, [productId, setProduct]);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
   if (error) {
     return (
       <div>

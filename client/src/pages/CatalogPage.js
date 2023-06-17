@@ -31,9 +31,6 @@ export default function Catalog({ product }) {
   }, []);
   if (isLoading) return <Loading />;
   if (error) return <div>Error Loading Catalog: {error.message}</div>;
-  const selector = {
-    knife: () => setFilter('knife'),
-  };
 
   let filteredProducts = products.filter((p) =>
     p.productName.toLowerCase().includes(filter)
