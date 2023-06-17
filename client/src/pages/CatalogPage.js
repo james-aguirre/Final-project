@@ -2,9 +2,10 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchCatalog } from '../lib/api';
 import { Link } from 'react-router-dom';
+import Loading from './LoadingPage';
 import './CatalogPage.css';
 
 export default function Catalog({ product }) {
@@ -13,13 +14,11 @@ export default function Catalog({ product }) {
   const [error, setError] = useState();
   const [filter, setFilter] = useState('');
 
-  // const searchFilter = useCallback(() => {
-  //   return products.filter((p) => p.name.includes(filter));
-  // }, [products, filter]);
   useEffect(() => {
     async function loadCatalog() {
       try {
         const products = await fetchCatalog();
+        console.log();
         setProducts(products);
       } catch (e) {
         setError(e);
@@ -30,20 +29,11 @@ export default function Catalog({ product }) {
     setIsLoading(true);
     loadCatalog();
   }, []);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
   if (error) return <div>Error Loading Catalog: {error.message}</div>;
-
-  function Filter({ filter, onChange }) {
-    return (
-      <input
-        type="text"
-        value={filter}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder="Search me!"
-      />
-    );
-  }
-
+  const filteredProducts = products.filter((p) =>
+    p.productName.toLowerCase().includes(filter)
+  );
   return (
     <Container fluid className="catalog-container">
       <div className="banner-container">
@@ -75,7 +65,7 @@ export default function Catalog({ product }) {
         {/* <h1 className="catalog-header">Skins Catalog</h1> */}
       </Row>
       <Row xs="auto">
-        {products?.map((product) => (
+        {filteredProducts?.map((product) => (
           <Col xs={6} md={4} className="card-wrapper" key={product.productId}>
             <Product product={product} />
           </Col>
@@ -97,5 +87,17 @@ function Product({ product }) {
       />
       />
     </Link>
+  );
+}
+
+function Filter({ filter, onChange }) {
+  return (
+    <input
+      type="text"
+      value={filter}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder="Search me!"
+      className="search-filter"
+    />
   );
 }
