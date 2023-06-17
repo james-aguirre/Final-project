@@ -34,7 +34,6 @@ function App() {
     localStorage.setItem(tokenKey, JSON.stringify(auth));
     setUser(auth.user);
     setToken(auth.token);
-    console.log(auth.user);
   }
   function handleSignOut() {
     localStorage.removeItem(tokenKey);

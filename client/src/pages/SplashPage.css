@@ -3,6 +3,8 @@
   padding: 0;
   box-sizing: border-box;
   background-image: url('https://www.ggrecon.com/media/tl1nixi0/valorant-banner-art-cropped.jpg');
+  height: 100vh;
+  width: 100vw;
 }
 
 .row-splash {
@@ -11,20 +13,12 @@
   justify-content: center;
 }
 
-.carousel {
-  width: 65rem;
-  height: 50rem;
-}
-
 img {
   border-radius: 1rem;
 }
 
 h2 {
   text-align: center;
-}
-
-.carousel-indicators {
-  position: absolute;
-  top: 22rem;
+  color: white;
+  font-size: 3rem;
 }
