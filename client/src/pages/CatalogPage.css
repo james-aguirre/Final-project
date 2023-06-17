@@ -72,3 +72,7 @@ select {
   margin-left: 3rem;
   width: 20rem;
 }
+
+a {
+  color: transparent;
+}
