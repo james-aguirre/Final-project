@@ -38,7 +38,6 @@ export default function Catalog({ product }) {
   let filteredProducts = products.filter((p) =>
     p.productName.toLowerCase().includes(filter)
   );
-
   return (
     <Container fluid className="catalog-container">
       <div className="banner-container">
@@ -50,33 +49,7 @@ export default function Catalog({ product }) {
       </div>
       <div className="items-container">
         <Row>
-          <form>
-            <div className="row">
-              <div className="col-third">
-                <select aria-label="small" className="mb-3">
-                  <option>Filter by weapon</option>
-                  <option value="">Select Weapon Type</option>
-                  <option value="knife" onSelect={selector.knife}>
-                    Knife
-                  </option>
-                  <option value="vandal">Vandal</option>
-                  <option value="operator">Operator</option>
-                  <option value="sheriff">Sheriff</option>
-                  <option value="judge">Judge</option>
-                </select>
-              </div>
-              <div className="col-third">
-                <h1 className="catalog-header">Skins Catalog</h1>
-              </div>
-              <div className="col-third">
-                <Filter
-                  value={filter}
-                  onChange={setFilter}
-                  onSelect={setFilter}
-                />
-              </div>
-            </div>
-          </form>
+          <Filter value={filter} onChange={setFilter} />
         </Row>
         <Row xs="auto">
           {filteredProducts?.map((product) => (
@@ -105,15 +78,38 @@ function Product({ product }) {
   );
 }
 
-function Filter({ filter, onChange, onSelect }) {
+function Filter({ filter, onChange }) {
   return (
-    <input
-      type="text"
-      value={filter}
-      onChange={(e) => onChange(e.target.value)}
-      placeholder="Search me!"
-      className="search-filter"
-      onSelect={(e) => onSelect(e.target.textContent)}
-    />
+    <form>
+      <div className="row">
+        <div className="col-third">
+          <select
+            aria-label="small"
+            className="mb-3"
+            onChange={(e) => {
+              onChange(e.target.value);
+            }}>
+            <option value="">Filter by weapon</option>
+            <option value="knife">Knife</option>
+            <option value="vandal">Vandal</option>
+            <option value="operator">Operator</option>
+            <option value="sheriff">Sheriff</option>
+            <option value="judge">Judge</option>
+          </select>
+        </div>
+        <div className="col-third">
+          <h1 className="catalog-header">Skins Catalog</h1>
+        </div>
+        <input
+          type="text"
+          value={filter}
+          onChange={(e) => {
+            onChange(e.target.value);
+          }}
+          placeholder="Search me!"
+          className="search-filter"
+        />
+      </div>
+    </form>
   );
 }
