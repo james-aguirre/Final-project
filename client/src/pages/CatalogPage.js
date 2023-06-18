@@ -5,17 +5,20 @@ import Row from 'react-bootstrap/Row';
 import { useEffect, useState } from 'react';
 import { fetchCatalog } from '../lib/api';
 import { Link } from 'react-router-dom';
+import Loading from './LoadingPage';
 import './CatalogPage.css';
 
 export default function Catalog({ product }) {
   const [products, setProducts] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     async function loadCatalog() {
       try {
         const products = await fetchCatalog();
+        console.log();
         setProducts(products);
       } catch (e) {
         setError(e);
@@ -26,9 +29,12 @@ export default function Catalog({ product }) {
     setIsLoading(true);
     loadCatalog();
   }, []);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
   if (error) return <div>Error Loading Catalog: {error.message}</div>;
 
+  let filteredProducts = products.filter((p) =>
+    p.productName.toLowerCase().includes(filter)
+  );
   return (
     <Container fluid className="catalog-container">
       <div className="banner-container">
@@ -38,14 +44,18 @@ export default function Catalog({ product }) {
           alt="phoenix jett valorant banner"
         />
       </div>
-      <h1 className="catalog-header">Skins Catalog</h1>
-      <Row xs="auto">
-        {products?.map((product) => (
-          <Col xs={6} md={4} className="card-wrapper" key={product.productId}>
-            <Product product={product} />
-          </Col>
-        ))}
-      </Row>
+      <div className="items-container">
+        <Row>
+          <Filter value={filter} onChange={setFilter} />
+        </Row>
+        <Row xs="auto">
+          {filteredProducts?.map((product) => (
+            <Col xs={6} md={4} className="card-wrapper" key={product.productId}>
+              <Product product={product} />
+            </Col>
+          ))}
+        </Row>
+      </div>
     </Container>
   );
 }
@@ -53,7 +63,7 @@ export default function Catalog({ product }) {
 function Product({ product }) {
   const { productId, productName, imageUrl } = product;
   return (
-    <Link to={`/details/${productId}`}>
+    <Link to={`/${productId}`}>
       <Image
         className="img-thumbnail"
         src={imageUrl}
@@ -62,5 +72,41 @@ function Product({ product }) {
       />
       />
     </Link>
+  );
+}
+
+function Filter({ filter, onChange }) {
+  return (
+    <form>
+      <div className="row">
+        <div className="col-third">
+          <select
+            aria-label="small"
+            className="mb-3"
+            onChange={(e) => {
+              onChange(e.target.value);
+            }}>
+            <option value="">Filter by weapon</option>
+            <option value="knife">Knife</option>
+            <option value="vandal">Vandal</option>
+            <option value="operator">Operator</option>
+            <option value="sheriff">Sheriff</option>
+            <option value="judge">Judge</option>
+          </select>
+        </div>
+        <div className="col-third">
+          <h1 className="catalog-header">Skins Catalog</h1>
+        </div>
+        <input
+          type="text"
+          value={filter}
+          onChange={(e) => {
+            onChange(e.target.value);
+          }}
+          placeholder="Search me!"
+          className="search-filter"
+        />
+      </div>
+    </form>
   );
 }

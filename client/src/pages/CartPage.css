@@ -1,0 +1,35 @@
+body {
+  box-sizing: border-box;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.container-cart {
+  max-width: 100vw;
+  max-height: 100vh;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  background-color: #d9ecf7;
+  padding-top: 2rem;
+  padding-left: 5rem;
+  padding-bottom: 1rem;
+}
+
+h2 {
+  text-align: left;
+}
+
+.continue-shopping-btn {
+  width: 25rem;
+  height: 3rem;
+}
+
+.product-details {
+  margin-top: 3rem;
+  padding-left: 5rem;
+}

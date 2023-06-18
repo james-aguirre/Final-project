@@ -44,14 +44,11 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
     const userParams = [username, hashedPassword];
     const userResult = await db.query(sql, userParams);
     const [user] = userResult.rows;
-    console.log(user);
     const cartSql = `insert into "shoppingCart" ("customerId", "cartId")
     values($1, $1);
     `;
     const cartParams = [userResult.rows[0].customerId];
     await db.query(cartSql, cartParams);
-    // const [cart] = cartResult.rows;
-    // console.log(cart);
     res.status(201).json(user);
   } catch (e) {
     next(e);
@@ -93,7 +90,6 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
 // relates to addToCart server call
 app.post('/api/cart/:cartId', async (req, res, next) => {
   try {
-    console.log(req.body);
     const { productId, quantity, cartId } = req.body;
     if (!productId || !quantity || !cartId)
       throw new ClientError(400, 'please select a valid product and quantity');
@@ -187,6 +183,7 @@ app.get('/api/cartItems/:cartId', async (req, res, next) => {
     next(e);
   }
 });
+
 /**
  * Serves React's index.html if no api route matches.
  *
