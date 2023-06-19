@@ -56,17 +56,24 @@ export default function Cart() {
         <Col>Quantity</Col>
         <Col>Subtotal</Col>
       </Row>
-      <Row className="product-details">
-        <Col xs={6} className="justify-space-between">
-          <Image className="img preview" src={imageUrl} thumbnail />
-          <h3>{productName}</h3>
-        </Col>
-        <Col className="price">{price}</Col>
-        <Col>
-          <div>1</div>
-        </Col>
-        <Col />
-      </Row>
+
+      {cart?.map((product) => {
+        return (
+          <Row className="product-details" key={product.productName}>
+            <Col xs={6} className="justify-space-between">
+              <Image className="img preview" src={imageUrl} thumbnail />
+              <h3>{productName}</h3>
+            </Col>
+
+            <Col className="price">{price}</Col>
+
+            <Col>
+              <div>1</div>
+            </Col>
+          </Row>
+        );
+      })}
+
       <Row className="flex-end">
         <Col className="flex-end">
           <p>Subtotal</p>
