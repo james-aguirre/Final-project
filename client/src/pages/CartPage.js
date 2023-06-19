@@ -4,28 +4,40 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
+import AppContext from '../components/AppContext';
+import { useContext } from 'react';
 import { fetchCartItems } from '../lib/api';
 import { useEffect, useState } from 'react';
+import Loading from './LoadingPage';
 // import { Link } from 'react-router-dom';
 
-export default function Cart({ cartId }) {
+export default function Cart() {
+  const { user } = useContext(AppContext);
   const [cart, setCart] = useState();
   const [error, setError] = useState();
-  const [loading, setIsLoading] = useState();
-  // useEffect(() => {
-  //   async function loadCart(cartId) {
-  //     try {
-  //       const cart = await fetchCartItems(cartId);
-  //       setCart(cart);
-  //     } catch (e) {
-  //       setError(e);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   }
-  //   setIsLoading(true);
-  //   loadCart(cartId);
-  // }, [cartId]);
+  const [isLoading, setIsLoading] = useState();
+  const cartId = user.customerId;
+  useEffect(() => {
+    async function loadCart(cartId) {
+      try {
+        const cart = await fetchCartItems(cartId);
+        setCart(cart);
+      } catch (e) {
+        setError(e);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    setIsLoading(true);
+    loadCart(cartId);
+  }, [cartId]);
+  if (isLoading) return <Loading />;
+  if (error) {
+    return <div>`Error Loading Cart: ${error.message}`</div>;
+  }
+  if (!cart) return null;
+  const { productName, price, imageUrl } = cart;
+  console.log(cart);
   return (
     <Container className="container-cart" fluid>
       <Row className="header justify-space-between row-cart">
@@ -46,14 +58,14 @@ export default function Cart({ cartId }) {
       </Row>
       <Row className="product-details">
         <Col xs={6} className="justify-space-between">
-          <Image className="img preview" thumbnail />
-          <h1>Product Name</h1>
+          <Image className="img preview" src={imageUrl} thumbnail />
+          <h3>{productName}</h3>
         </Col>
-        <Col className="price">$25</Col>
+        <Col className="price">{price}</Col>
         <Col>
           <div>1</div>
         </Col>
-        <Col>50$</Col>
+        <Col />
       </Row>
       <Row className="flex-end">
         <Col className="flex-end">

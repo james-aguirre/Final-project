@@ -39,6 +39,7 @@ export default function ProductDetails() {
     );
   }
   if (!product) return null;
+  console.log(product);
   const { productName, price, imageUrl, description } = product;
   async function handleAddToCart() {
     try {
