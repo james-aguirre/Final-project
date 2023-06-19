@@ -166,7 +166,8 @@ app.get('/api/customers/:username', async (req, res, next) => {
     next(e);
   }
 });
-// relates to fetchCart function
+
+// relates to fetchCart function,
 app.get('/api/shoppingCartItems/:cartId', async (req, res, next) => {
   const cartId = req.params.cartId;
   try {
@@ -178,6 +179,7 @@ app.get('/api/shoppingCartItems/:cartId', async (req, res, next) => {
     const params = [cartId];
     const result = await db.query(sql, params);
     const product = result.rows[0].productId;
+    console.log(result.rows);
     const itemsSql = `select
     "productName",
     "price",
@@ -187,6 +189,7 @@ app.get('/api/shoppingCartItems/:cartId', async (req, res, next) => {
     `;
     const itemsParams = [product];
     const itemsResult = await db.query(itemsSql, itemsParams);
+    console.log(itemsResult.rows);
     res.status(200).json(itemsResult.rows[0]);
   } catch (e) {
     next(e);
