@@ -34,7 +34,13 @@ export default function Cart() {
         <Col>
           <div>1</div>
         </Col>
-        <Col className="margin-right">50$</Col>
+        <Col>50$</Col>
+      </Row>
+      <Row className="flex-end">
+        <Col className="flex-end">
+          <p>Subtotal</p>
+        </Col>
+        <Button>Checkout</Button>
       </Row>
     </Container>
   );

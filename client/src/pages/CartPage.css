@@ -40,3 +40,11 @@ h2 {
 .img-preview {
   display: inline-block;
 }
+
+.cart-items-header {
+  font-size: 2rem;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}

@@ -57,8 +57,8 @@ export async function fetchProduct(productId) {
   return await res.json();
 }
 
-export async function fetchCart(cartId) {
-  const res = await fetch(`/api/shoppingCart/${cartId}`);
+export async function fetchCartItems(cartId) {
+  const res = await fetch(`/api/shoppingCartItems/${cartId}`);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
