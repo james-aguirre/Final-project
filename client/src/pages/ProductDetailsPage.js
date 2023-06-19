@@ -66,9 +66,18 @@ export default function ProductDetails() {
         </div>
         <div className="row card-footer">
           <div className="description-text column-half left">{description}</div>
-          <Button className="btn" onClick={handleAddToCart}>
-            Add to cart
-          </Button>
+          <div className="column-half right">
+            <p className="qty-limit-txt">Limit 3 per customer</p>
+            <select>
+              <option value="">Quantity</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            <Button className="btn" onClick={handleAddToCart}>
+              Add to cart
+            </Button>
+          </div>
         </div>
       </div>
     </Container>
