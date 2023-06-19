@@ -52,7 +52,7 @@ export default function ProductDetails() {
         </Link>
         <div className="row">
           <div className="column-full">
-            <Image src={imageUrl} className="details-img"></Image>
+            <Image src={imageUrl} className="details-img" />
           </div>
         </div>
         <div className="row card-header">

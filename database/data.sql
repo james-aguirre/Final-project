@@ -29,11 +29,6 @@ values
 ( 'Avalanche Marshall', 19.99, 'sniper', 'https://cx.valorbuff.com/blob/BRcfB9CUanC0KXWni+K2h6sYi+UZBtc7KXJShtxqlIbXKrKOKaUOiX9VhNhGva0E?w=900', 'limited edition'),
 ( 'Couture Marshall', 19.99, 'sniper', 'https://cx.valorbuff.com/blob/BRcfB9CUanCritQnhVc2l6b351vVBtc7lVJShNxnhnsrK+h2K1W3l1UYlNhGva0E?w=900', 'limited edition'),
 ( 'Sovereign Marshall', 19.99, 'sniper', 'https://cx.valorbuff.com/blob/BRcfB9CUanCOKrK0ith056bni+hsBtc7K+KS51p0lIb3KtJVK1Jbh+c25+cGva0E?w=900', 'limited edition'),
-
-
-
-
-
 ( 'Singularity Sheriff', 19.99, 'sidearm', 'https://cx.valorbuff.com/blob/BRcfB9CUan3XK+K2lax3iIs7lthOBtxNKtpS51CsinssK1Cb5thOK1cZlNhGva0E?w=900', 'level 7 variant'),
 ( 'Reaver Sheriff', 19.99, 'sidearm', 'https://cx.valorbuff.com/blob/BRcfB9CUanC0KXJVltUVi6ssK1K2BtcZKXcS51CrKnbXhrK0lapVhr-2K1hGva0E?w=900', 'level 6 variant'),
 ( 'Peacekeeper Sheriff', 14.99, 'sidearm', 'https://cx.valorbuff.com/blob/BRcfB9CUanCbltDN5tv256sOl192BtcYlVcSh+Ksinsrit3nlVC051UYitcGva0E?w=900', 'base level variant'),
