@@ -18,8 +18,8 @@ export default function ProductDetails() {
       try {
         const product = await fetchProduct(productId);
         setProduct(product);
-      } catch (err) {
-        setError(err);
+      } catch (e) {
+        setError(e);
       } finally {
         setIsLoading(false);
       }
