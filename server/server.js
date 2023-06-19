@@ -81,7 +81,7 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     }
     const payload = { userId, username };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);
-    res.json({ token, user: payload });
+    res.status(201).json({ token, user: payload });
   } catch (e) {
     next(e);
   }
@@ -99,7 +99,7 @@ app.post('/api/cart/:cartId', async (req, res, next) => {
     `;
     const params = [productId, quantity, cartId];
     const result = await db.query(sql, params);
-    res.json(result.rows);
+    res.status(201).json(result.rows);
   } catch (e) {
     next(e);
   }
@@ -117,7 +117,7 @@ app.get('/api/products', async (req, res, next) => {
     "category"
     from "products"`;
     const result = await db.query(sql);
-    res.json(result.rows);
+    res.status(200).json(result.rows);
   } catch (e) {
     next(e);
   }
@@ -145,7 +145,7 @@ app.get('/api/products/:productId', async (req, res, next) => {
         404,
         `cannot find product with productId ${productId}`
       );
-    res.json(result.rows[0]);
+    res.status(200).json(result.rows[0]);
   } catch (e) {
     next(e);
   }
@@ -161,7 +161,7 @@ app.get('/api/customers/:username', async (req, res, next) => {
     where "username" = $1;`;
     const params = [user];
     const result = await db.query(sql, params);
-    res.json(result.rows[0]);
+    res.status(200).json(result.rows[0]);
   } catch (e) {
     next(e);
   }
@@ -177,7 +177,17 @@ app.get('/api/shoppingCartItems/:cartId', async (req, res, next) => {
     `;
     const params = [cartId];
     const result = await db.query(sql, params);
-    res.json(result.rows);
+    const product = result.rows[0].productId;
+    const itemsSql = `select
+    "productName",
+    "price",
+    "imageUrl"
+    from "products"
+    where "productId" = $1
+    `;
+    const itemsParams = [product];
+    const itemsResult = await db.query(itemsSql, itemsParams);
+    res.status(200).json(itemsResult.rows[0]);
   } catch (e) {
     next(e);
   }
@@ -193,7 +203,7 @@ app.get('/api/cartItems/:cartId', async (req, res, next) => {
     where "cartId" = $1`;
     const params = [cart];
     const result = await db.query(sql, params);
-    res.json(result.rows);
+    res.status(200).json(result.rows);
   } catch (e) {
     next(e);
   }
