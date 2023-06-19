@@ -15,7 +15,6 @@ export default function ProductDetails() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   const { user } = useContext(AppContext);
-  console.log(user);
 
   useEffect(() => {
     async function loadProduct(productId) {
@@ -43,7 +42,7 @@ export default function ProductDetails() {
   const { productName, price, imageUrl, description } = product;
   async function handleAddToCart() {
     try {
-      await addToCart(productId, 1, 1);
+      await addToCart(productId, 1, user.customerId);
     } catch (e) {
       setError(e);
     }
