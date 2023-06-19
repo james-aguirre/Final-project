@@ -113,7 +113,8 @@ app.get('/api/products', async (req, res, next) => {
     "productName",
     "price",
     "imageUrl",
-    "description"
+    "description",
+    "categoryId"
     from "products"`;
     const result = await db.query(sql);
     res.json(result.rows);
