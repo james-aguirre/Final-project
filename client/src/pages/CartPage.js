@@ -4,9 +4,28 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
+import { fetchCartItems } from '../lib/api';
+import { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 
-export default function Cart() {
+export default function Cart({ cartId }) {
+  const [cart, setCart] = useState();
+  const [error, setError] = useState();
+  const [loading, setIsLoading] = useState();
+  // useEffect(() => {
+  //   async function loadCart(cartId) {
+  //     try {
+  //       const cart = await fetchCartItems(cartId);
+  //       setCart(cart);
+  //     } catch (e) {
+  //       setError(e);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   }
+  //   setIsLoading(true);
+  //   loadCart(cartId);
+  // }, [cartId]);
   return (
     <Container className="container-cart" fluid>
       <Row className="header justify-space-between row-cart">

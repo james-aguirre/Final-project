@@ -151,6 +151,21 @@ app.get('/api/products/:productId', async (req, res, next) => {
   }
 });
 
+app.get('/api/customers/:username', async (req, res, next) => {
+  const user = req.params.username;
+  try {
+    const sql = `
+    select "customerId",
+    "username"
+    from "customers"
+    where "username" = $1;`;
+    const params = [user];
+    const result = await db.query(sql, params);
+    res.json(result.rows[0]);
+  } catch (e) {
+    next(e);
+  }
+});
 // relates to fetchCart function
 app.get('/api/shoppingCartItems/:cartId', async (req, res, next) => {
   const cartId = req.params.cartId;

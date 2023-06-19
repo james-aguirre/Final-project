@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { fetchProduct, addToCart } from '../lib/api';
 import { useParams, Link } from 'react-router-dom';
+import AppContext from '../components/AppContext';
+import { useContext } from 'react';
 import './ProductDetails.css';
 import Loading from './LoadingPage';
 
@@ -12,6 +14,8 @@ export default function ProductDetails() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
+  const { user } = useContext(AppContext);
+  console.log(user);
 
   useEffect(() => {
     async function loadProduct(productId) {

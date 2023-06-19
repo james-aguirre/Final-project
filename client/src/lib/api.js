@@ -57,6 +57,12 @@ export async function fetchProduct(productId) {
   return await res.json();
 }
 
+export async function fetchUser(username) {
+  const res = await fetch(`/api/customers/${username}`);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
+
 export async function fetchCartItems(cartId) {
   const res = await fetch(`/api/shoppingCartItems/${cartId}`);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);

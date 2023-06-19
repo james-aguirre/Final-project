@@ -8,6 +8,7 @@ import CatalogPage from './pages/CatalogPage';
 import ProductDetails from './pages/ProductDetailsPage';
 import SplashPage from './pages/SplashPage';
 import Cart from './pages/CartPage';
+import { fetchUser } from './lib/api';
 import './layout.css';
 import './App.css';
 
@@ -17,18 +18,22 @@ function App() {
   const [user, setUser] = useState();
   const [token, setToken] = useState();
   const [isAuthorizing, setIsAuthorizing] = useState(true);
+  // const [cart, setCart] = useState;
 
   //authorize if previously logged in.
   useEffect(() => {
-    const auth = localStorage.getItem(tokenKey);
-    if (auth) {
-      const a = JSON.parse(auth);
-      setUser(a.user);
-      setToken(a.token);
+    async function setCustomer() {
+      const auth = localStorage.getItem(tokenKey);
+      if (auth) {
+        const a = JSON.parse(auth);
+        const customer = await fetchUser(a.user.username);
+        setUser(customer);
+        setToken(a.token);
+      }
+      setIsAuthorizing(false);
     }
-    setIsAuthorizing(false);
+    setCustomer();
   }, []);
-
   if (isAuthorizing) return null;
   function handleSignIn(auth) {
     localStorage.setItem(tokenKey, JSON.stringify(auth));
