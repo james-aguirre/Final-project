@@ -3,7 +3,7 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { fetchProduct, addToCart } from '../lib/api';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './ProductDetails.css';
 import Loading from './LoadingPage';
 
@@ -47,6 +47,9 @@ export default function ProductDetails() {
   return (
     <Container fluid className="details-container">
       <div className="details-card-wrapper">
+        <Link to="/catalog">
+          <Button className="back-to-catalog-btn"> Back To Shop</Button>
+        </Link>
         <div className="row">
           <div className="column-full">
             <Image src={imageUrl} className="details-img"></Image>

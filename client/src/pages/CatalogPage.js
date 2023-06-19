@@ -18,7 +18,7 @@ export default function Catalog({ product }) {
     async function loadCatalog() {
       try {
         const products = await fetchCatalog();
-        console.log();
+        console.log(products);
         setProducts(products);
       } catch (e) {
         setError(e);
@@ -86,7 +86,7 @@ function Filter({ filter, onChange }) {
             onChange={(e) => {
               onChange(e.target.value);
             }}>
-            <option value="">Filter by weapon</option>
+            <option value="">Weapon type</option>
             <option value="knife">Knife</option>
             <option value="vandal">Vandal</option>
             <option value="operator">Operator</option>

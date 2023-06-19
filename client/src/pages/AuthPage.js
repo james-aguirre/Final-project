@@ -3,6 +3,7 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
 import AppContext from '../components/AppContext';
+import './AuthPage.css';
 
 export default function AuthPage({ action }) {
   const navigate = useNavigate();

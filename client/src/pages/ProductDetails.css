@@ -57,9 +57,16 @@
 
 .btn {
   width: 7rem;
-  margin-right: 2rem;
+  margin-right: 1.8rem;
+  margin-bottom: 0.5rem;
 }
 
 .left {
   padding-left: 2rem;
+}
+
+.back-to-catalog-btn {
+  margin: 1rem;
+  width: 10rem;
+  height: 3rem;
 }

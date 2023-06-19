@@ -18,7 +18,7 @@ function App() {
   const [token, setToken] = useState();
   const [isAuthorizing, setIsAuthorizing] = useState(true);
 
-  //authorize if previusly logged in / page refreshed
+  //authorize if previously logged in.
   useEffect(() => {
     const auth = localStorage.getItem(tokenKey);
     if (auth) {
