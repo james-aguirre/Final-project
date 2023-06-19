@@ -32,8 +32,10 @@ export default function Catalog({ product }) {
   if (isLoading) return <Loading />;
   if (error) return <div>Error Loading Catalog: {error.message}</div>;
 
-  let filteredProducts = products.filter((p) =>
-    p.productName.toLowerCase().includes(filter)
+  let filteredProducts = products.filter(
+    (p) =>
+      p.productName.toLowerCase().includes(filter) ||
+      p.category.toLowerCase().includes(filter)
   );
   return (
     <Container fluid className="catalog-container">
@@ -87,11 +89,11 @@ function Filter({ filter, onChange }) {
               onChange(e.target.value);
             }}>
             <option value="">Weapon type</option>
-            <option value="knife">Knife</option>
-            <option value="vandal">Vandal</option>
-            <option value="operator">Operator</option>
-            <option value="sheriff">Sheriff</option>
-            <option value="judge">Judge</option>
+            <option value="melee">Melee</option>
+            <option value="rifle">Rifle</option>
+            <option value="sniper">Sniper</option>
+            <option value="sidearm">Sidearm</option>
+            <option value="shotgun">Shotgun</option>
           </select>
         </div>
         <div className="col-third">
