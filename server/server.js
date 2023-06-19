@@ -152,13 +152,12 @@ app.get('/api/products/:productId', async (req, res, next) => {
 });
 
 // relates to fetchCart function
-app.get('/api/shoppingCart/:cartId', async (req, res, next) => {
+app.get('/api/shoppingCartItems/:cartId', async (req, res, next) => {
   const cartId = req.params.cartId;
   try {
     const sql = `
-    select "cartId",
-    "customerId"
-    from "shoppingCart"
+    select *
+    from "shoppingCartItems"
     where "cartId" = $1
     `;
     const params = [cartId];
