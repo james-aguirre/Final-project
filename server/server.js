@@ -167,44 +167,16 @@ app.get('/api/customers/:username', async (req, res, next) => {
   }
 });
 
-// relates to fetchCart function,
-app.get('/api/shoppingCartItems/:cartId', async (req, res, next) => {
-  const cartId = req.params.cartId;
-  try {
-    const sql = `
-    select *
-    from "shoppingCartItems"
-    where "cartId" = $1
-    `;
-    const params = [cartId];
-    const result = await db.query(sql, params);
-    const product = result.rows[0].productId;
-    console.log(result.rows);
-    const itemsSql = `select
-    "productName",
-    "price",
-    "imageUrl"
-    from "products"
-    where "productId" = $1
-    `;
-    const itemsParams = [product];
-    const itemsResult = await db.query(itemsSql, itemsParams);
-    console.log(itemsResult.rows);
-    res.status(200).json(itemsResult.rows[0]);
-  } catch (e) {
-    next(e);
-  }
-});
-
 // relates to cartItems server call
-app.get('/api/cartItems/:cartId', async (req, res, next) => {
+app.get('/api/shoppingCartItems/:cartId', async (req, res, next) => {
   const cart = req.params.cartId;
   try {
     const sql = `
     select *
-    from "shoppingCartItems"
+    from "products"
+    join "shoppingCartItems" using ("productId")
     where "cartId" = $1`;
-    const params = [cart];
+    const params = [...cart];
     const result = await db.query(sql, params);
     res.status(200).json(result.rows);
   } catch (e) {
