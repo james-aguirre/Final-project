@@ -9,7 +9,7 @@ import { useContext } from 'react';
 import { fetchCartItems } from '../lib/api';
 import { useEffect, useState } from 'react';
 import Loading from './LoadingPage';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function CartPage() {
   const { user } = useContext(AppContext);

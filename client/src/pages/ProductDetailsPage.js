@@ -39,7 +39,6 @@ export default function ProductDetails() {
     );
   }
   if (!product) return null;
-  console.log(product);
   const { productName, price, imageUrl, description } = product;
   async function handleAddToCart() {
     try {
@@ -68,7 +67,6 @@ export default function ProductDetails() {
         <div className="row card-footer">
           <div className="description-text column-half left">{description}</div>
           <div className="column-half right">
-            <p className="qty-limit-txt">Limit 3 per customer</p>
             <select>
               <option value="">Quantity</option>
               <option value="1">1</option>

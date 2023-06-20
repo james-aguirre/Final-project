@@ -7,8 +7,9 @@ body {
 }
 
 .container-cart {
-  max-width: 100vw;
-  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  background-color: lightblue;
 }
 
 .header {
@@ -32,7 +33,13 @@ body {
 
 .product-details {
   margin-top: 1rem;
-  padding-left: 5rem;
+
+  /* padding-left: 5rem; */
+  background-color: lightgray;
+  border-radius: 2;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
 }
 
 .price {
