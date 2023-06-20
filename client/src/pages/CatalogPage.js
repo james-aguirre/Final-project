@@ -87,17 +87,17 @@ function Filter({ filter, onChange }) {
             onChange={(e) => {
               onChange(e.target.value);
             }}>
-            <option value="">Weapon type</option>
-            <option value="melee">Melee</option>
-            <option value="rifle">Rifle</option>
-            <option value="sniper">Sniper</option>
-            <option value="sidearm">Sidearm</option>
-            <option value="shotgun">Shotgun</option>
+            <option value="">WEAPON TYPE</option>
+            <option value="melee">MELEE</option>
+            <option value="rifle">RIFLE</option>
+            <option value="sniper">SNIPER</option>
+            <option value="sidearm">SIDEARM</option>
+            <option value="shotgun">SHOTGUN</option>
           </select>
         </div>
-        <div className="col-third">
-          <h1 className="catalog-header">Skins Catalog</h1>
-        </div>
+        <Col xs={4}>
+          <h1 className="catalog-header">SKINS CATALOG</h1>
+        </Col>
         <input
           type="text"
           value={filter}

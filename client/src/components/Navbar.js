@@ -8,7 +8,7 @@ export default function NavBar({ onNavigate }) {
   const { user, handleSignOut } = useContext(AppContext);
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" className="val-font">
         <Container>
           <Navbar.Brand href="/">ValTrade</Navbar.Brand>
           <Nav className="me-auto">

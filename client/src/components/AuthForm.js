@@ -30,7 +30,7 @@ export default function AuthForm({ action, onSignIn }) {
   const submitButtonText = action === 'sign-up' ? 'Register' : 'Log In';
   return (
     <form className="w-100" onSubmit={handleSubmit}>
-      <div className="mb-3">
+      <div>
         <label className="form-label">
           Username:
           <input
@@ -42,7 +42,7 @@ export default function AuthForm({ action, onSignIn }) {
           />
         </label>
       </div>
-      <div className="mb-3">
+      <div>
         <label className="form-label">
           Password:
           <input

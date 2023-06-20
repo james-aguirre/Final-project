@@ -6,8 +6,8 @@ import './SplashPage.css';
 export default function SplashPage() {
   return (
     <div className="splash-container">
-      <div className="row-splash Header">
-        <h2>Start Trading Now!</h2>
+      <div className="row-splash splash-header val-font">
+        <h2>START TRADING NOW!</h2>
       </div>
       <div className="row-splash">
         <Image
