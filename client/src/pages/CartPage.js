@@ -37,12 +37,11 @@ export default function CartPage() {
     return <div>`Error Loading Cart: ${error.message}`</div>;
   }
   if (!cart) return null;
-  const { productName, price, imageUrl } = cart;
   return (
     <Container className="container-cart" fluid>
       <Row className="header justify-space-between row-cart">
         <Col sm={8}>
-          <h2>Your Cart</h2>
+          <h2 className="cart-header">Your Cart</h2>
         </Col>
         <Col>
           <Button className="continue-shopping-btn" sm={4}>
@@ -57,22 +56,22 @@ export default function CartPage() {
         <Col>Quantity</Col>
       </Row>
 
-      {/* {cart?.map((product) => {
-        return ( */}
-      <Row className="product-details">
-        <Col xs={6} className="justify-space-between">
-          <Image className="img preview" src={imageUrl} thumbnail />
-          <h3>{productName}</h3>
-        </Col>
+      {cart?.map((product) => {
+        return (
+          <Row className="product-details" key={product.productId}>
+            <Col xs={6} className="justify-space-between">
+              <Image className="img-preview" src={product.imageUrl} thumbnail />
+              <h3 className="product-name">{product.productName}</h3>
+            </Col>
 
-        <Col className="price">{price}</Col>
+            <Col className="price">{product.price}</Col>
 
-        <Col>
-          <div>1</div>
-        </Col>
-      </Row>
-      {/* );
-      })} */}
+            <Col>
+              <div>{product.quantity}</div>
+            </Col>
+          </Row>
+        );
+      })}
 
       <Row className="flex-end">
         <Button>Checkout</Button>

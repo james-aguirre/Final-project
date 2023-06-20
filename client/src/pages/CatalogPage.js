@@ -96,7 +96,7 @@ function Filter({ filter, onChange }) {
           </select>
         </div>
         <Col xs={4}>
-          <h1 className="catalog-header">SKINS CATALOG</h1>
+          <h1 className="catalog-header">SKINS CATaLOG</h1>
         </Col>
         <input
           type="text"
