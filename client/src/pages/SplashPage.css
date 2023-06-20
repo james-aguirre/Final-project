@@ -19,6 +19,13 @@ img {
 
 h2 {
   text-align: center;
-  color: white;
-  font-size: 3rem;
+  font-size: 4rem;
+}
+
+.splash-header {
+  padding-top: 1rem;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+  color: #fe4654;
+  text-align: center;
 }

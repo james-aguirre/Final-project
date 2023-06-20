@@ -10,7 +10,7 @@ create schema "public";
  CREATE TABLE "products" (
 	"productName" TEXT NOT NULL,
 	"price" real NOT NULL,
-	"categoryId" int NOT NULL,
+	"category" TEXT NOT NULL,
 	"imageUrl" TEXT NOT NULL,
 	"description" TEXT NOT NULL,
 	"productId" serial NOT NULL,
@@ -53,16 +53,6 @@ CREATE TABLE "orders" (
 
 
 
-CREATE TABLE "categories" (
-	"categoryId" int NOT NULL,
-	"name" TEXT NOT NULL,
-	CONSTRAINT "categories_pk" PRIMARY KEY ("categoryId")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
 CREATE TABLE "shoppingCartItems" (
 	"quantity" int NOT NULL,
 	"productId" int NOT NULL,
@@ -86,7 +76,6 @@ CREATE TABLE "orderItems" (
 
 
 
-ALTER TABLE "products" ADD CONSTRAINT "products_fk0" FOREIGN KEY ("categoryId") REFERENCES "categories"("categoryId");
 
 
 ALTER TABLE "shoppingCart" ADD CONSTRAINT "shoppingCart_fk0" FOREIGN KEY ("customerId") REFERENCES "customers"("customerId");

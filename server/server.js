@@ -81,7 +81,7 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     }
     const payload = { userId, username };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);
-    res.json({ token, user: payload });
+    res.status(201).json({ token, user: payload });
   } catch (e) {
     next(e);
   }
@@ -99,7 +99,7 @@ app.post('/api/cart/:cartId', async (req, res, next) => {
     `;
     const params = [productId, quantity, cartId];
     const result = await db.query(sql, params);
-    res.json(result.rows);
+    res.status(201).json(result.rows);
   } catch (e) {
     next(e);
   }
@@ -113,10 +113,11 @@ app.get('/api/products', async (req, res, next) => {
     "productName",
     "price",
     "imageUrl",
-    "description"
+    "description",
+    "category"
     from "products"`;
     const result = await db.query(sql);
-    res.json(result.rows);
+    res.status(200).json(result.rows);
   } catch (e) {
     next(e);
   }
@@ -144,41 +145,41 @@ app.get('/api/products/:productId', async (req, res, next) => {
         404,
         `cannot find product with productId ${productId}`
       );
-    res.json(result.rows[0]);
+    res.status(200).json(result.rows[0]);
   } catch (e) {
     next(e);
   }
 });
 
-// relates to fetchCart function
-app.get('/api/shoppingCart/:cartId', async (req, res, next) => {
-  const cartId = req.params.cartId;
+app.get('/api/customers/:username', async (req, res, next) => {
+  const user = req.params.username;
+  if (!user) throw new ClientError(400, 'user not found');
   try {
     const sql = `
-    select "cartId",
-    "customerId"
-    from "shoppingCart"
-    where "cartId" = $1
-    `;
-    const params = [cartId];
+    select "customerId",
+    "username"
+    from "customers"
+    where "username" = $1;`;
+    const params = [user];
     const result = await db.query(sql, params);
-    res.json(result.rows);
+    res.status(200).json(result.rows[0]);
   } catch (e) {
     next(e);
   }
 });
 
 // relates to cartItems server call
-app.get('/api/cartItems/:cartId', async (req, res, next) => {
+app.get('/api/shoppingCartItems/:cartId', async (req, res, next) => {
   const cart = req.params.cartId;
   try {
     const sql = `
     select *
-    from "shoppingCartItems"
+    from "products"
+    join "shoppingCartItems" using ("productId")
     where "cartId" = $1`;
-    const params = [cart];
+    const params = [...cart];
     const result = await db.query(sql, params);
-    res.json(result.rows);
+    res.status(200).json(result.rows);
   } catch (e) {
     next(e);
   }

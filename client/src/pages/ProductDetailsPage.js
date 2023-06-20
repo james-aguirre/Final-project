@@ -3,7 +3,9 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { fetchProduct, addToCart } from '../lib/api';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import AppContext from '../components/AppContext';
+import { useContext } from 'react';
 import './ProductDetails.css';
 import Loading from './LoadingPage';
 
@@ -12,14 +14,15 @@ export default function ProductDetails() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
+  const { user } = useContext(AppContext);
 
   useEffect(() => {
     async function loadProduct(productId) {
       try {
         const product = await fetchProduct(productId);
         setProduct(product);
-      } catch (err) {
-        setError(err);
+      } catch (e) {
+        setError(e);
       } finally {
         setIsLoading(false);
       }
@@ -39,7 +42,7 @@ export default function ProductDetails() {
   const { productName, price, imageUrl, description } = product;
   async function handleAddToCart() {
     try {
-      await addToCart(productId, 1, 1);
+      await addToCart(productId, 1, user.customerId);
     } catch (e) {
       setError(e);
     }
@@ -47,9 +50,12 @@ export default function ProductDetails() {
   return (
     <Container fluid className="details-container">
       <div className="details-card-wrapper">
+        <Link to="/catalog">
+          <Button className="back-to-catalog-btn"> Back To Shop</Button>
+        </Link>
         <div className="row">
           <div className="column-full">
-            <Image src={imageUrl} className="details-img"></Image>
+            <Image src={imageUrl} className="details-img" />
           </div>
         </div>
         <div className="row card-header">
@@ -60,9 +66,17 @@ export default function ProductDetails() {
         </div>
         <div className="row card-footer">
           <div className="description-text column-half left">{description}</div>
-          <Button className="btn" onClick={handleAddToCart}>
-            Add to cart
-          </Button>
+          <div className="column-half right">
+            <select>
+              <option value="">Quantity</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            <Button className="btn" onClick={handleAddToCart}>
+              Add to cart
+            </Button>
+          </div>
         </div>
       </div>
     </Container>

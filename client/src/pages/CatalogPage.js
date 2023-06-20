@@ -18,7 +18,6 @@ export default function Catalog({ product }) {
     async function loadCatalog() {
       try {
         const products = await fetchCatalog();
-        console.log();
         setProducts(products);
       } catch (e) {
         setError(e);
@@ -32,8 +31,10 @@ export default function Catalog({ product }) {
   if (isLoading) return <Loading />;
   if (error) return <div>Error Loading Catalog: {error.message}</div>;
 
-  let filteredProducts = products.filter((p) =>
-    p.productName.toLowerCase().includes(filter)
+  let filteredProducts = products.filter(
+    (p) =>
+      p.productName.toLowerCase().includes(filter) ||
+      p.category.toLowerCase().includes(filter)
   );
   return (
     <Container fluid className="catalog-container">
@@ -70,7 +71,7 @@ function Product({ product }) {
         alt={productName}
         thumbnail
       />
-      />
+      <p className="thumbnail-text">{productName}</p>
     </Link>
   );
 }
@@ -86,17 +87,17 @@ function Filter({ filter, onChange }) {
             onChange={(e) => {
               onChange(e.target.value);
             }}>
-            <option value="">Filter by weapon</option>
-            <option value="knife">Knife</option>
-            <option value="vandal">Vandal</option>
-            <option value="operator">Operator</option>
-            <option value="sheriff">Sheriff</option>
-            <option value="judge">Judge</option>
+            <option value="">WEAPON TYPE</option>
+            <option value="melee">MELEE</option>
+            <option value="rifle">RIFLE</option>
+            <option value="sniper">SNIPER</option>
+            <option value="sidearm">SIDEARM</option>
+            <option value="shotgun">SHOTGUN</option>
           </select>
         </div>
-        <div className="col-third">
-          <h1 className="catalog-header">Skins Catalog</h1>
-        </div>
+        <Col xs={4}>
+          <h1 className="catalog-header">SKINS CATaLOG</h1>
+        </Col>
         <input
           type="text"
           value={filter}
