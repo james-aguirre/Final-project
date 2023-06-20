@@ -153,6 +153,7 @@ app.get('/api/products/:productId', async (req, res, next) => {
 
 app.get('/api/customers/:username', async (req, res, next) => {
   const user = req.params.username;
+  if (!user) throw new ClientError(400, 'user not found');
   try {
     const sql = `
     select "customerId",
