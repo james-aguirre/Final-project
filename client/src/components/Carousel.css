@@ -2,13 +2,8 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  background-color: rgb(245, 236, 236);
-}
-
 svg {
-  color: rgb(1 159 239);
+  color: rgb(234, 243, 247);
   font-size: 3rem;
 }
 
@@ -21,6 +16,9 @@ svg {
   display: flex;
   max-width: 900px;
   margin: 2rem auto;
+  border-style: none;
+  bottom: 8rem;
+  right: 1rem;
 }
 
 .carousel-control {
@@ -28,24 +26,26 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .carousel-image {
-  width: 100%;
+  width: 50rem;
   height: 550px;
   object-fit: contain;
   object-position: center;
+  margin-bottom: 10rem;
 }
 
 .carousel-image-container {
-  width: 90%;
+  width: 100%;
   padding: 2.5rem 1rem;
-  border: 1px solid rgb(128, 128, 128);
-  border-radius: 0.5rem;
-  background-color: white;
+  background-color: transparent;
+  border-style: none;
+  margin-bottom: 2rem;
 }
 
-.carousel-progress > i:hover,
+i:hover,
 .carousel-control .next:hover,
 .carousel-control .previous:hover {
   cursor: pointer;
