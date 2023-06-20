@@ -71,7 +71,7 @@ function Product({ product }) {
         alt={productName}
         thumbnail
       />
-      />
+      <p className="thumbnail-text">{productName}</p>
     </Link>
   );
 }

@@ -1,4 +1,8 @@
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
 import './SplashPage.css';
+
 export default function SplashPage() {
   return (
     <div className="splash-container">
@@ -6,11 +10,16 @@ export default function SplashPage() {
         <h2>Start Trading Now!</h2>
       </div>
       <div className="row-splash">
-        <img
+        <Image
           src="https://www.icegif.com/wp-content/uploads/2023/04/icegif-671.gif"
           alt="valorant gif"
         />
       </div>
+      <Row>
+        <Col></Col>
+        <Col></Col>
+        <Col></Col>
+      </Row>
     </div>
   );
 }

@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import Loading from './LoadingPage';
 // import { Link } from 'react-router-dom';
 
-export default function Cart() {
+export default function CartPage() {
   const { user } = useContext(AppContext);
   const [cart, setCart] = useState();
   const [error, setError] = useState();
@@ -22,6 +22,7 @@ export default function Cart() {
       try {
         const cart = await fetchCartItems(cartId);
         setCart(cart);
+        console.log(cart);
       } catch (e) {
         setError(e);
       } finally {
@@ -37,7 +38,6 @@ export default function Cart() {
   }
   if (!cart) return null;
   const { productName, price, imageUrl } = cart;
-  console.log(cart);
   return (
     <Container className="container-cart" fluid>
       <Row className="header justify-space-between row-cart">
@@ -52,32 +52,29 @@ export default function Cart() {
       </Row>
       <Row className="cart-items-header product-details">
         <Col xs={6}>Cart Items</Col>
+
         <Col>Price</Col>
         <Col>Quantity</Col>
-        <Col>Subtotal</Col>
       </Row>
 
-      {cart?.map((product) => {
-        return (
-          <Row className="product-details" key={product.productName}>
-            <Col xs={6} className="justify-space-between">
-              <Image className="img preview" src={imageUrl} thumbnail />
-              <h3>{productName}</h3>
-            </Col>
+      {/* {cart?.map((product) => {
+        return ( */}
+      <Row className="product-details">
+        <Col xs={6} className="justify-space-between">
+          <Image className="img preview" src={imageUrl} thumbnail />
+          <h3>{productName}</h3>
+        </Col>
 
-            <Col className="price">{price}</Col>
+        <Col className="price">{price}</Col>
 
-            <Col>
-              <div>1</div>
-            </Col>
-          </Row>
-        );
-      })}
+        <Col>
+          <div>1</div>
+        </Col>
+      </Row>
+      {/* );
+      })} */}
 
       <Row className="flex-end">
-        <Col className="flex-end">
-          <p>Subtotal</p>
-        </Col>
         <Button>Checkout</Button>
       </Row>
     </Container>

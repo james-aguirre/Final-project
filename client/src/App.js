@@ -7,7 +7,7 @@ import NotFound from './pages/NotFoundPage';
 import CatalogPage from './pages/CatalogPage';
 import ProductDetails from './pages/ProductDetailsPage';
 import SplashPage from './pages/SplashPage';
-import Cart from './pages/CartPage';
+import CartPage from './pages/CartPage';
 import { fetchUser } from './lib/api';
 import './layout.css';
 import './App.css';
@@ -18,7 +18,7 @@ function App() {
   const [user, setUser] = useState();
   const [token, setToken] = useState();
   const [isAuthorizing, setIsAuthorizing] = useState(true);
-  // const [cart, setCart] = useState;
+  const [cart, setCart] = useState();
 
   //authorize if previously logged in.
   useEffect(() => {
@@ -51,6 +51,8 @@ function App() {
     token,
     handleSignIn,
     handleSignOut,
+    cart,
+    setCart,
   };
 
   return (
@@ -63,7 +65,7 @@ function App() {
           <Route path="/:productId" element={<ProductDetails />} />
           <Route path="sign-in" element={<Auth action="sign-in" />} />
           <Route path="sign-up" element={<Auth action="sign-up" />} />
-          <Route path="cart" element={<Cart />} />
+          <Route path="cart" element={<CartPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AppContext.Provider>

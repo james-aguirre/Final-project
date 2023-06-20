@@ -49,8 +49,12 @@ img.img-thumbnail:hover {
   padding-top: 2rem;
 }
 
-.select {
-  width: 3rem;
+.mb-3 {
+  width: 8rem;
+  height: 2rem;
+  background-color: #212529;
+  color: white;
+  border-radius: 0.2rem;
 }
 
 .col-third {
@@ -75,4 +79,11 @@ select {
 
 a {
   color: transparent;
+}
+
+.thumbnail-text {
+  color: white;
+  position: relative;
+  bottom: 1.5rem;
+  left: 6px;
 }
