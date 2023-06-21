@@ -26,45 +26,17 @@ export default function Carousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((activeIndex + 1) % images.length);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [activeIndex, images.length]);
 
-  function handleNextClick() {
-    setIndex((activeIndex + 1) % images.length);
-  }
-  function handlePreviousClick() {
-    setIndex((activeIndex - 1 + images.length) % images.length);
-  }
   return (
     <>
-      <div className="carousel-container">
-        <PrevButton onCustomClick={handlePreviousClick} />
-        <div className="carousel-image-container">
-          <img
-            src={images[activeIndex].src}
-            className="carousel-image"
-            alt="pokemon"
-          />
-        </div>
-        <NextButton onCustomClick={handleNextClick} />
-      </div>
+      <img
+        src={images[activeIndex].src}
+        className="carousel-image"
+        alt="pokemon"
+      />
     </>
-  );
-}
-
-function NextButton({ onCustomClick }) {
-  return (
-    <div className="carousel-control">
-      <FaChevronRight onClick={onCustomClick} />
-    </div>
-  );
-}
-
-function PrevButton({ onCustomClick }) {
-  return (
-    <div className="carousel-control">
-      <FaChevronLeft onClick={onCustomClick} />
-    </div>
   );
 }
