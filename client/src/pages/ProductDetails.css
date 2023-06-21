@@ -73,3 +73,22 @@
 .qty-limit-txt {
   color: red;
 }
+
+.count {
+  color: white;
+}
+
+.justify-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.counter-btn {
+  background-color: #0c6dfd;
+  width: 1.5rem;
+  height: 2rem;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  border-style: none;
+}
