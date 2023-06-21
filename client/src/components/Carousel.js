@@ -35,7 +35,7 @@ export default function Carousel() {
       <img
         src={images[activeIndex].src}
         className="carousel-image"
-        alt="pokemon"
+        alt="valorant-skin-packages"
       />
     </>
   );
