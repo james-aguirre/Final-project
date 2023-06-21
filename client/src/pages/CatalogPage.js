@@ -34,7 +34,8 @@ export default function Catalog({ product }) {
   let filteredProducts = products.filter(
     (p) =>
       p.productName.toLowerCase().includes(filter) ||
-      p.category.toLowerCase().includes(filter)
+      p.productName.toUpperCase().includes(filter) ||
+      p.category.includes(filter)
   );
   return (
     <Container fluid className="catalog-container">
@@ -42,7 +43,7 @@ export default function Catalog({ product }) {
         <img
           className="img-banner"
           src="https://static1-us.millenium.gg/articles/7/18/53/7/@/184821-valorant-art-4-orig-2-article_cover_bd-1.jpeg"
-          alt="phoenix jett valorant banner"
+          alt="phoenix jett banner"
         />
       </div>
       <div className="items-container">
@@ -99,7 +100,7 @@ function Filter({ filter, onChange }) {
           onChange={(e) => {
             onChange(e.target.value);
           }}
-          placeholder="Search me!"
+          placeholder="Search"
           className="search-filter"
         />
       </div>

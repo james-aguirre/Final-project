@@ -17,6 +17,7 @@ export default function ProductDetails() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   let [count, setCount] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
   const { cart } = useContext(AppContext);
 
   useEffect(() => {
@@ -100,9 +101,12 @@ export default function ProductDetails() {
               +
             </button>
           </Col>
-          <Button className="btn" onClick={handleAddToCart}>
-            Add to cart
-          </Button>
+          {!isAdded && (
+            <Button className="btn" onClick={handleAddToCart}>
+              Add to cart
+            </Button>
+          )}
+          {isAdded && <Button className="btn">Item added</Button>}
         </Row>
       </div>
     </Container>
