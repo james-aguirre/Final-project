@@ -34,6 +34,7 @@ export default function Catalog({ product }) {
   let filteredProducts = products.filter(
     (p) =>
       p.productName.toLowerCase().includes(filter) ||
+      p.productName.toUpperCase().includes(filter) ||
       p.category.toLowerCase().includes(filter)
   );
   return (
