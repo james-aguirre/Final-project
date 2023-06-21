@@ -127,12 +127,7 @@ app.patch('/api/cart/:cartId', async (req, res, next) => {
 app.get('/api/products', async (req, res, next) => {
   try {
     const sql = `
-    select "productId",
-    "productName",
-    "price",
-    "imageUrl",
-    "description",
-    "category"
+    select *
     from "products"`;
     const result = await db.query(sql);
     res.status(200).json(result.rows);
