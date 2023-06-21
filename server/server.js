@@ -30,9 +30,8 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
   try {
     const { username, password } = req.body;
     console.log(req.body);
-    if (!username || !password) {
+    if (!username || !password)
       throw new ClientError(400, 'username and password are required fields');
-    }
     const hashedPassword = await argon2.hash(password);
     const sql = `insert into "customers" ("username", "hashedPassword")
     values ($1, $2)
@@ -59,9 +58,8 @@ app.post('/api/auth/sign-up', async (req, res, next) => {
 app.post('/api/auth/sign-in', async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    if (!username || !password) {
-      throw new ClientError(401, 'invalid login');
-    }
+    if (!username || !password) throw new ClientError(401, 'invalid login');
+
     const sql = `
       select "customerId",
             "hashedPassword"
@@ -96,6 +94,26 @@ app.post('/api/cart/:cartId', async (req, res, next) => {
     const sql = `
     insert into "shoppingCartItems" ("productId", "quantity", "cartId")
     values ($1, $2, $3)
+    `;
+    const params = [productId, quantity, cartId];
+    const result = await db.query(sql, params);
+    res.status(201).json(result.rows);
+  } catch (e) {
+    next(e);
+  }
+});
+
+// relates to addItemQuantity server call
+app.patch('/api/cart/:cartId', async (req, res, next) => {
+  try {
+    const { cartId, productId, quantity } = req.body;
+    if (!quantity)
+      throw new ClientError(400, 'please select a value between 1 and 3');
+    const sql = `
+    update "shoppingCartItems"
+    set "quantity" = $3
+    where "productId" = $2 and "cartId" = $1
+    ;
     `;
     const params = [productId, quantity, cartId];
     const result = await db.query(sql, params);

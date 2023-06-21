@@ -1,8 +1,10 @@
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
-import { fetchProduct, addToCart } from '../lib/api';
+import { fetchProduct, addToCart, addItemQuantity } from '../lib/api';
 import { useParams, Link } from 'react-router-dom';
 import AppContext from '../components/AppContext';
 import { useContext } from 'react';
@@ -14,7 +16,8 @@ export default function ProductDetails() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
-  const { user } = useContext(AppContext);
+  let [count, setCount] = useState(1);
+  const { cart } = useContext(AppContext);
 
   useEffect(() => {
     async function loadProduct(productId) {
@@ -29,7 +32,18 @@ export default function ProductDetails() {
     }
     setIsLoading(true);
     loadProduct(productId);
-  }, [productId, setProduct]);
+  }, [productId, setProduct, cart]);
+
+  function incrementCount() {
+    count = count + 1;
+    if (count > 3) setCount((count = 3));
+    setCount(count);
+  }
+  function decrementCount() {
+    count = count - 1;
+    if (count < 1) setCount((count = 1));
+    setCount(count);
+  }
   if (isLoading) return <Loading />;
   if (error) {
     return (
@@ -40,9 +54,17 @@ export default function ProductDetails() {
   }
   if (!product) return null;
   const { productName, price, imageUrl, description } = product;
+
+  const cartHasProduct = cart.find(
+    (product) => product.productId === Number(productId)
+  );
+  console.log(product);
+
   async function handleAddToCart() {
     try {
-      await addToCart(productId, 1, user.customerId);
+      if (!cartHasProduct)
+        await addToCart(productId, Number(count), cart[0].cartId);
+      else await addItemQuantity(cart[0].cartId, productId, count);
     } catch (e) {
       setError(e);
     }
@@ -65,19 +87,24 @@ export default function ProductDetails() {
           </div>
         </div>
         <div className="row card-footer">
-          <div className="description-text column-half left">{description}</div>
-          <div className="column-half right">
-            <select>
-              <option value="">Quantity</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-            <Button className="btn" onClick={handleAddToCart}>
-              Add to cart
-            </Button>
-          </div>
+          <div className="description-text left">{description}</div>
         </div>
+        <Row>
+          <Col md={8} className="justify-end">
+            <button className="counter-btn" onClick={decrementCount}>
+              -
+            </button>
+          </Col>
+          <Col className="count">{count}</Col>
+          <Col>
+            <button className="counter-btn" onClick={incrementCount}>
+              +
+            </button>
+          </Col>
+          <Button className="btn" onClick={handleAddToCart}>
+            Add to cart
+          </Button>
+        </Row>
       </div>
     </Container>
   );
