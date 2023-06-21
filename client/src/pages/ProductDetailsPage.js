@@ -17,13 +17,20 @@ export default function ProductDetails() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   let [count, setCount] = useState(0);
-  const { user, cart, setCart } = useContext(AppContext);
+  const { user, cart } = useContext(AppContext);
 
   useEffect(() => {
     async function loadProduct(productId) {
       try {
         const product = await fetchProduct(productId);
         setProduct(product);
+        if (
+          cart.find(
+            (product) =>
+              product.productId === Number(productId) &&
+              setCount(product.quantity)
+          )
+        );
       } catch (e) {
         setError(e);
       } finally {
@@ -32,7 +39,7 @@ export default function ProductDetails() {
     }
     setIsLoading(true);
     loadProduct(productId);
-  }, [productId, setProduct]);
+  }, [productId, setProduct, cart]);
 
   function incrementCount() {
     count = count + 1;
@@ -54,8 +61,13 @@ export default function ProductDetails() {
   }
   if (!product) return null;
   const { productName, price, imageUrl, description } = product;
-  if (cart.find(cart.productId === productId))
-    setCount(cart.productId.quantity);
+  console.log(cart);
+
+  const cartId = cart.find(
+    (product) => product.productId === Number(productId)
+  );
+  console.log(cartId);
+
   async function handleAddToCart() {
     try {
       await addToCart(productId, count, user.customerId);
@@ -63,7 +75,6 @@ export default function ProductDetails() {
       setError(e);
     }
   }
-  console.log(cart[0].quantity);
   return (
     <Container fluid className="details-container">
       <div className="details-card-wrapper">
