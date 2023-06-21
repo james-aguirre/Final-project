@@ -100,7 +100,7 @@ function Filter({ filter, onChange }) {
           onChange={(e) => {
             onChange(e.target.value);
           }}
-          placeholder="Search me!"
+          placeholder="Search"
           className="search-filter"
         />
       </div>
