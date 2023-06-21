@@ -103,22 +103,25 @@ app.post('/api/cart/:cartId', async (req, res, next) => {
   }
 });
 
-// relates to updateCart server call
-// app.patch('/api/cart/:cartId', async (req, res, next) => {
-//   try {
-//     const { productId, quantity, cartId } = req.body;
-//     if (!quantity) throw new ClientError(400, 'please select a value between 1 and 3');
-//     const sql = `
-//     update "shoppingCartItems" ("productId, "quantity", "cartId")
-//     values ($1, $2, $3)
-//     set "quantity" = $2
-//     where "productId", "cartId" = $1, $3
-//     ;
-//     `
-//   }
-//   const params = [productId, quantity, cartId];
-//   const result = await db.query(sql, params);
-// })
+// relates to addItemQuantity server call
+app.patch('/api/cart/:cartId', async (req, res, next) => {
+  try {
+    const { productId, quantity, cartId } = req.body;
+    if (!quantity)
+      throw new ClientError(400, 'please select a value between 1 and 3');
+    const sql = `
+    update "shoppingCartItems"
+    set "quantity" = $2
+    where "productId" = $1 and "cartId" = $3
+    ;
+    `;
+    const params = [productId, quantity, cartId];
+    const result = await db.query(sql, params);
+    res.status(201).json(result.rows);
+  } catch (e) {
+    next(e);
+  }
+});
 
 // relates to fetchProducts server call
 app.get('/api/products', async (req, res, next) => {
