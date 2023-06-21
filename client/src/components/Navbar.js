@@ -10,16 +10,16 @@ export default function NavBar({ onNavigate }) {
     <>
       <Navbar bg="dark" variant="dark" className="val-font navbar">
         <Container>
-          <Navbar.Brand href="/">ValTrade</Navbar.Brand>
+          <Navbar.Brand href="/">VAlTrade</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="catalog">Catalog</Nav.Link>
+            <Nav.Link href="catalog">CAtalog</Nav.Link>
             {user && (
               <Nav.Link href="sign-out" onClick={handleSignOut}>
                 Sign out
               </Nav.Link>
             )}
             {!user && <Nav.Link href="sign-in">Sign in</Nav.Link>}
-            <Nav.Link href="cart">Cart</Nav.Link>
+            <Nav.Link href="cart">CArt</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
