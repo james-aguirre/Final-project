@@ -14,7 +14,7 @@ export default function ProductDetails() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
-  const { user } = useContext(AppContext);
+  const { user, cart } = useContext(AppContext);
 
   useEffect(() => {
     async function loadProduct(productId) {
@@ -40,6 +40,9 @@ export default function ProductDetails() {
   }
   if (!product) return null;
   const { productName, price, imageUrl, description } = product;
+  // if (cart.find(cart.productId === productId)) {
+  //   const qty = cart.quantity;
+  // }
   async function handleAddToCart() {
     try {
       await addToCart(productId, 1, user.customerId);
@@ -47,6 +50,7 @@ export default function ProductDetails() {
       setError(e);
     }
   }
+  console.log(cart[0].quantity);
   return (
     <Container fluid className="details-container">
       <div className="details-card-wrapper">

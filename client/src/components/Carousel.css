@@ -13,6 +13,7 @@ svg {
 
 .carousel-container {
   position: relative;
+  background-color: rgba(0, 0, 0, 0.388);
   display: flex;
   max-width: 900px;
   margin: 2rem auto;

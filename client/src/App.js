@@ -8,7 +8,7 @@ import CatalogPage from './pages/CatalogPage';
 import ProductDetails from './pages/ProductDetailsPage';
 import SplashPage from './pages/SplashPage';
 import CartPage from './pages/CartPage';
-import { fetchUser } from './lib/api';
+import { fetchUser, fetchCartItems } from './lib/api';
 import './layout.css';
 import './App.css';
 
@@ -29,6 +29,8 @@ function App() {
         const customer = await fetchUser(a.user.username);
         setUser(customer);
         setToken(a.token);
+        const cart = await fetchCartItems(customer.customerId);
+        setCart(cart);
       }
       setIsAuthorizing(false);
     }
