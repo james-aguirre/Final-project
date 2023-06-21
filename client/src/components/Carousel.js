@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+// import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import './Carousel.css';
 
 export default function Carousel() {
@@ -15,7 +15,7 @@ export default function Carousel() {
     },
     {
       id: 2,
-      src: 'https://prod.assets.earlygamecdn.com/images/Valorant-Skins-OP_2021-08-05-121610_ogxq.jpg?x=0.5&y=0.5',
+      src: 'https://static.gosunoob.com/img/1/2021/10/Valorant-New-Bundle-Nunca-Olvidados-Skins-Prices.jpg',
     },
     {
       id: 3,
