@@ -106,13 +106,13 @@ app.post('/api/cart/:cartId', async (req, res, next) => {
 // relates to addItemQuantity server call
 app.patch('/api/cart/:cartId', async (req, res, next) => {
   try {
-    const { productId, quantity, cartId } = req.body;
+    const { cartId, productId, quantity } = req.body;
     if (!quantity)
       throw new ClientError(400, 'please select a value between 1 and 3');
     const sql = `
     update "shoppingCartItems"
-    set "quantity" = $2
-    where "productId" = $1 and "cartId" = $3
+    set "quantity" = $3
+    where "productId" = $2 and "cartId" = $1
     ;
     `;
     const params = [productId, quantity, cartId];

@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
-import { fetchProduct, addToCart } from '../lib/api';
+import { fetchProduct, addToCart, addItemQuantity } from '../lib/api';
 import { useParams, Link } from 'react-router-dom';
 import AppContext from '../components/AppContext';
 import { useContext } from 'react';
@@ -16,21 +16,14 @@ export default function ProductDetails() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
-  let [count, setCount] = useState(0);
-  const { user, cart } = useContext(AppContext);
+  let [count, setCount] = useState(1);
+  const { cart } = useContext(AppContext);
 
   useEffect(() => {
     async function loadProduct(productId) {
       try {
         const product = await fetchProduct(productId);
         setProduct(product);
-        if (
-          cart.find(
-            (product) =>
-              product.productId === Number(productId) &&
-              setCount(product.quantity)
-          )
-        );
       } catch (e) {
         setError(e);
       } finally {
@@ -48,7 +41,7 @@ export default function ProductDetails() {
   }
   function decrementCount() {
     count = count - 1;
-    if (count < 0) setCount((count = 0));
+    if (count < 1) setCount((count = 1));
     setCount(count);
   }
   if (isLoading) return <Loading />;
@@ -61,16 +54,17 @@ export default function ProductDetails() {
   }
   if (!product) return null;
   const { productName, price, imageUrl, description } = product;
-  console.log(cart);
 
-  const cartId = cart.find(
+  const cartHasProduct = cart.find(
     (product) => product.productId === Number(productId)
   );
-  console.log(cartId);
+  console.log(product);
 
   async function handleAddToCart() {
     try {
-      await addToCart(productId, count, user.customerId);
+      if (!cartHasProduct)
+        await addToCart(productId, Number(count), cart[0].cartId);
+      else await addItemQuantity(cart[0].cartId, productId, count);
     } catch (e) {
       setError(e);
     }
