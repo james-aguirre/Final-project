@@ -144,11 +144,7 @@ app.get('/api/products/:productId', async (req, res, next) => {
       throw new ClientError(400, 'productId must be a positive integer');
     }
     const sql = `
-    select "productId",
-    "productName",
-    "price",
-    "imageUrl",
-    "description"
+    select *
     from "products"
     where "productId" = $1`;
     const params = [productId];
