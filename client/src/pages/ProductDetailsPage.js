@@ -58,7 +58,6 @@ export default function ProductDetails() {
   const cartHasProduct = cart.find(
     (product) => product.productId === Number(productId)
   );
-  console.log(product);
 
   async function handleAddToCart() {
     try {
