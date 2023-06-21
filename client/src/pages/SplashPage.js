@@ -1,23 +1,20 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import './SplashPage.css';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
 import Carousel from '../components/Carousel';
+
+import './SplashPage.css';
 
 export default function SplashPage() {
   return (
-    <div className="splash-container">
-      <div className="row-splash splash-header val-font">
-        <h2>START TRADING NOW!</h2>
+    <Container className="splash-container" fluid>
+      <h2 className="val-font splash-header">#1 vALORANT SKIN MARKET</h2>
+      <div className="banner-container">
+        <Carousel className="img-banner" />
       </div>
-      <div className="row-splash">
-        <Carousel />
-      </div>
-      <Row>
-        <Col></Col>
-        <Col></Col>
-        <Col></Col>
-      </Row>
-    </div>
+      <Link to="catalog">
+        <Button className="shop-now-btn val-font">Shop Now</Button>
+      </Link>
+    </Container>
   );
 }

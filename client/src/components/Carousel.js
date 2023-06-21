@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+// import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import './Carousel.css';
 
 export default function Carousel() {
@@ -15,7 +15,7 @@ export default function Carousel() {
     },
     {
       id: 2,
-      src: 'https://prod.assets.earlygamecdn.com/images/Valorant-Skins-OP_2021-08-05-121610_ogxq.jpg?x=0.5&y=0.5',
+      src: 'https://static.gosunoob.com/img/1/2021/10/Valorant-New-Bundle-Nunca-Olvidados-Skins-Prices.jpg',
     },
     {
       id: 3,
@@ -26,45 +26,17 @@ export default function Carousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((activeIndex + 1) % images.length);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [activeIndex, images.length]);
 
-  function handleNextClick() {
-    setIndex((activeIndex + 1) % images.length);
-  }
-  function handlePreviousClick() {
-    setIndex((activeIndex - 1 + images.length) % images.length);
-  }
   return (
     <>
-      <div className="carousel-container">
-        <PrevButton onCustomClick={handlePreviousClick} />
-        <div className="carousel-image-container">
-          <img
-            src={images[activeIndex].src}
-            className="carousel-image"
-            alt="pokemon"
-          />
-        </div>
-        <NextButton onCustomClick={handleNextClick} />
-      </div>
+      <img
+        src={images[activeIndex].src}
+        className="carousel-image"
+        alt="pokemon"
+      />
     </>
-  );
-}
-
-function NextButton({ onCustomClick }) {
-  return (
-    <div className="carousel-control">
-      <FaChevronRight onClick={onCustomClick} />
-    </div>
-  );
-}
-
-function PrevButton({ onCustomClick }) {
-  return (
-    <div className="carousel-control">
-      <FaChevronLeft onClick={onCustomClick} />
-    </div>
   );
 }

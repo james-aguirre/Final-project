@@ -11,43 +11,9 @@ svg {
   display: none;
 }
 
-.carousel-container {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.388);
-  display: flex;
-  max-width: 900px;
-  margin: 2rem auto;
-  border-style: none;
-  bottom: 8rem;
-  right: 1rem;
-}
-
-.carousel-control {
-  width: 5%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
 .carousel-image {
   width: 50rem;
-  height: 550px;
+  height: -5rem;
   object-fit: contain;
-  object-position: center;
-  margin-bottom: 10rem;
-}
-
-.carousel-image-container {
-  width: 100%;
-  padding: 2.5rem 1rem;
-  background-color: transparent;
-  border-style: none;
-  margin-bottom: 2rem;
-}
-
-i:hover,
-.carousel-control .next:hover,
-.carousel-control .previous:hover {
-  cursor: pointer;
+  position: relative;
 }
