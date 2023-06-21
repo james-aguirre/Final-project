@@ -35,7 +35,7 @@ export default function Catalog({ product }) {
     (p) =>
       p.productName.toLowerCase().includes(filter) ||
       p.productName.toUpperCase().includes(filter) ||
-      p.category.toLowerCase().includes(filter)
+      p.category.includes(filter)
   );
   return (
     <Container fluid className="catalog-container">
