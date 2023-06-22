@@ -41,10 +41,10 @@ export default function Catalog({ product }) {
   return (
     <Container fluid className="catalog-container">
       <div className="banner-container">
-        <Image
+        <img
           className="img-banner"
           src="https://static1-us.millenium.gg/articles/7/18/53/7/@/184821-valorant-art-4-orig-2-article_cover_bd-1.jpeg"
-          alt="phoenix jett banner"
+          alt="phoenix jett valorant banner"
         />
       </div>
       <div className="items-container">
