@@ -35,12 +35,13 @@ export default function Catalog({ product }) {
     (p) =>
       p.productName.toLowerCase().includes(filter) ||
       p.productName.toUpperCase().includes(filter) ||
+      p.productName.includes(filter) ||
       p.category.includes(filter)
   );
   return (
     <Container fluid className="catalog-container">
       <div className="banner-container">
-        <img
+        <Image
           className="img-banner"
           src="https://static1-us.millenium.gg/articles/7/18/53/7/@/184821-valorant-art-4-orig-2-article_cover_bd-1.jpeg"
           alt="phoenix jett banner"
