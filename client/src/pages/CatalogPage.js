@@ -35,7 +35,6 @@ export default function Catalog({ product }) {
     (p) =>
       p.productName.toLowerCase().includes(filter) ||
       p.productName.toUpperCase().includes(filter) ||
-      p.productName.includes(filter) ||
       p.category.includes(filter)
   );
   return (
