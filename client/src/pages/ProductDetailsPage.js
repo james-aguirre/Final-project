@@ -64,8 +64,8 @@ export default function ProductDetails() {
   async function handleAddToCart() {
     try {
       if (!cartHasProduct)
-        await addToCart(productId, Number(count), user.userId);
-      else await addItemQuantity(cart[0].cartId, productId, count);
+        await addToCart(productId, Number(count), user.customerId);
+      else await addItemQuantity(user.customerId, productId, count);
     } catch (e) {
       setError(e);
     }
