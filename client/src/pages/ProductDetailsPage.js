@@ -20,7 +20,6 @@ export default function ProductDetails() {
   const { cart, user } = useContext(AppContext);
 
   console.log(user);
-
   useEffect(() => {
     async function loadProduct(productId) {
       try {
