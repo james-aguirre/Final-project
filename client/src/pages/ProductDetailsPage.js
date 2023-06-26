@@ -19,7 +19,6 @@ export default function ProductDetails() {
   let [count, setCount] = useState(1);
   const { cart, user } = useContext(AppContext);
 
-  console.log(user);
   useEffect(() => {
     async function loadProduct(productId) {
       try {
