@@ -18,7 +18,7 @@ export default function ProductDetails() {
   const [error, setError] = useState();
   let [count, setCount] = useState(1);
   const { cart, user } = useContext(AppContext);
-  console.log(user);
+
 
   useEffect(() => {
     async function loadProduct(productId) {
@@ -59,7 +59,6 @@ export default function ProductDetails() {
   const cartHasProduct = cart?.find(
     (product) => product.productId === Number(productId)
   );
-  console.log(product);
 
   async function handleAddToCart() {
     try {
@@ -102,6 +101,7 @@ export default function ProductDetails() {
               +
             </button>
           </Col>
+
           <Button className="btn" onClick={handleAddToCart}>
             Add to cart
           </Button>
