@@ -19,7 +19,6 @@ export default function ProductDetails() {
   let [count, setCount] = useState(1);
   const { cart, user } = useContext(AppContext);
 
-
   useEffect(() => {
     async function loadProduct(productId) {
       try {
@@ -62,9 +61,10 @@ export default function ProductDetails() {
 
   async function handleAddToCart() {
     try {
+      if (!user) return window.alert('Please log in to add to cart');
       if (!cartHasProduct)
         await addToCart(productId, Number(count), user.customerId);
-      else await addItemQuantity(user.customerId, productId, count);
+      if (cartHasProduct) addItemQuantity(user.customerId, productId, count);
     } catch (e) {
       setError(e);
     }
