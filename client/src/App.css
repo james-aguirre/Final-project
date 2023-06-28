@@ -1,3 +1,16 @@
 .val-font {
   font-family: VALORANT, sans-serif;
 }
+
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
