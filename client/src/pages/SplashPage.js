@@ -15,7 +15,7 @@ export default function SplashPage() {
         <Carousel className="img-banner" />
       </div>
       <Row>
-        <Col>
+        <Col className="justify-center">
           <Link to="catalog">
             <Button className="shop-now-btn val-font">Shop Now</Button>
           </Link>
