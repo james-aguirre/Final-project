@@ -61,7 +61,7 @@ export default function ProductDetails() {
 
   async function handleAddToCart() {
     try {
-      if (!user) return window.alert('Please log in to add to cart');
+      if (!user) return window.alert('Please log in to add items to cart');
       if (!cartHasProduct)
         await addToCart(productId, Number(count), user.customerId);
       if (cartHasProduct) addItemQuantity(user.customerId, productId, count);
