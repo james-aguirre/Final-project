@@ -36,8 +36,6 @@ img.img-thumbnail:hover {
   font-family: VALORANT, sans-serif;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
-
-  /* color: #fe4654; */
   color: white;
   text-align: center;
   margin-top: 2rem;
@@ -60,8 +58,6 @@ img.img-thumbnail:hover {
   height: 2rem;
   background-color: #212529;
   color: white;
-
-  /* color: #fe4654; */
   border-radius: 0.2rem;
 }
 
