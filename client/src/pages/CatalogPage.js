@@ -75,8 +75,8 @@ function Product({ product }) {
 function Filter({ filter, onChange }) {
   return (
     <form>
-      <div className="row">
-        <div className="col-third">
+      <Row className="row">
+        <Col>
           <select
             aria-label="small"
             className="mb-3"
@@ -90,20 +90,22 @@ function Filter({ filter, onChange }) {
             <option value="sidearm">SIDEARM</option>
             <option value="shotgun">SHOTGUN</option>
           </select>
-        </div>
+        </Col>
         <Col xs={4}>
           <h1 className="catalog-header">SKINS CATaLOG</h1>
         </Col>
-        <input
-          type="text"
-          value={filter}
-          onChange={(e) => {
-            onChange(e.target.value);
-          }}
-          placeholder="Search"
-          className="search-filter"
-        />
-      </div>
+        <Col>
+          <input
+            type="text"
+            value={filter}
+            onChange={(e) => {
+              onChange(e.target.value);
+            }}
+            placeholder="Search"
+            className="search-filter"
+          />
+        </Col>
+      </Row>
     </form>
   );
 }
