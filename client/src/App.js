@@ -9,7 +9,6 @@ import ProductDetails from './pages/ProductDetailsPage';
 import SplashPage from './pages/SplashPage';
 import CartPage from './pages/CartPage';
 import { fetchUser, fetchCartItems } from './lib/api';
-import './layout.css';
 import './App.css';
 
 const tokenKey = 'react-context-jwt';
