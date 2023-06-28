@@ -66,7 +66,7 @@ function Product({ product }) {
   const { productId, productName, imageUrl } = product;
   return (
     <Link to={`/${productId}`}>
-      <Image className="img-thumbnail" src={imageUrl} alt={productName} />
+      <Image className=" img-fluid" src={imageUrl} alt={productName} />
       <p className="thumbnail-text">{productName}</p>
     </Link>
   );

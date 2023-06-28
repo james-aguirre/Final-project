@@ -16,6 +16,7 @@ export default function ProductDetails() {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
+  const [disabled, setDisabled] = useState(false);
   let [count, setCount] = useState(1);
   const { cart, user } = useContext(AppContext);
 
@@ -65,6 +66,7 @@ export default function ProductDetails() {
       if (!cartHasProduct)
         await addToCart(productId, Number(count), user.customerId);
       if (cartHasProduct) addItemQuantity(user.customerId, productId, count);
+      setDisabled(true);
     } catch (e) {
       setError(e);
     }
@@ -102,7 +104,7 @@ export default function ProductDetails() {
             </button>
           </Col>
 
-          <Button className="btn" onClick={handleAddToCart}>
+          <Button className="btn" onClick={handleAddToCart} disabled={disabled}>
             Add to cart
           </Button>
         </Row>
