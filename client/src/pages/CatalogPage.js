@@ -46,7 +46,7 @@ export default function Catalog({ product }) {
           alt="phoenix jett valorant banner"
         />
       </div>
-      <div className="items-container">
+      <div className="items-container test">
         <Row>
           <Filter value={filter} onChange={setFilter} />
         </Row>
@@ -66,7 +66,11 @@ function Product({ product }) {
   const { productId, productName, imageUrl } = product;
   return (
     <Link to={`/${productId}`}>
-      <Image className=" img-fluid" src={imageUrl} alt={productName} />
+      <Image
+        className="img-fluid col-xs-12 col-sm-6 col-md-6"
+        src={imageUrl}
+        alt={productName}
+      />
       <p className="thumbnail-text">{productName}</p>
     </Link>
   );
