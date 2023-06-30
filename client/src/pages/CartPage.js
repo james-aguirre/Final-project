@@ -52,16 +52,36 @@ export default function CartPage() {
           return (
             <Col className="cart-items" key={product.productId}>
               <Image className="img-preview" src={product.imageUrl} thumbnail />
-              <h3 className="product-name">{product.productName}</h3>
-
-              <Col className="price">{product.price}</Col>
+              <Col className="product-name">
+                <h3>{product.productName}</h3>
+              </Col>
+              <Col>
+                <h4>{product.quantity}</h4>
+              </Col>
+              <Col className="prices">
+                <Col className="amount">${product.price}</Col>
+                <Col className="remove">Remove</Col>
+              </Col>
+              {/* <Col className="price">{product.price}</Col>
 
               <Col>
                 <div>{product.quantity}</div>
-              </Col>
+              </Col> */}
             </Col>
           );
         })}
+        <div className="hr">
+          <div className="checkout">
+            <div className="total">
+              <div>
+                <div className="Subtotal">Sub-Total</div>
+                <div className="items">2 items</div>
+              </div>
+              <div className="total-amount">$6.18</div>
+            </div>
+            <button className="button">Checkout</button>
+          </div>
+        </div>
       </Container>
     </Container>
   );
