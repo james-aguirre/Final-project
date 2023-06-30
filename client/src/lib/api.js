@@ -106,3 +106,14 @@ export async function removeAllItems(cartId) {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+export async function removeItem(cartId, productId) {
+  const req = {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ cartId, productId }),
+  };
+  const res = await fetch(`/api/delete/:cartId/:productId`, req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}
