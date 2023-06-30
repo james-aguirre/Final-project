@@ -123,18 +123,17 @@ app.patch('/api/cart/:cartId', async (req, res, next) => {
   }
 });
 
-app.delete('/api/cart/:cartId', async (req, res, next) => {
+app.delete('/api/delete/:cartId', async (req, res, next) => {
   try {
-    const { cartId } = req.params;
+    const { cartId } = req.body;
     const sql = `
-    remove *
-    from "cartItems"
-    where "cartId" = $1;
+    delete
+    from "shoppingCartItems"
+    where "cartId" = $1
     `;
-
     const params = [cartId];
-    const result = await db.query(sql, params);
-    res.status(201).json(result.rows);
+    await db.query(sql, params);
+    res.status(204);
   } catch (e) {
     next(e);
   }
@@ -146,6 +145,9 @@ app.get('/api/products', async (req, res, next) => {
     select *
     from "products"`;
     const result = await db.query(sql);
+    if (result.rows.length === 0) {
+      return res.sendStatus(404, 'No items in cart');
+    }
     res.status(200).json(result.rows);
   } catch (e) {
     next(e);
@@ -201,7 +203,8 @@ app.get('/api/shoppingCartItems/:cartId', async (req, res, next) => {
     select *
     from "products"
     join "shoppingCartItems" using ("productId")
-    where "cartId" = $1`;
+    where "cartId" = $1
+   `;
     const params = [...cart];
     const result = await db.query(sql, params);
     res.status(200).json(result.rows);
