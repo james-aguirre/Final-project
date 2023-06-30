@@ -21,7 +21,6 @@ export default function CartPage() {
       try {
         const cart = await fetchCartItems(cartId);
         setCart(cart);
-        console.log(cart);
       } catch (e) {
         setError(e);
       } finally {
@@ -54,7 +53,6 @@ export default function CartPage() {
         <Col>Price</Col>
         <Col>Quantity</Col>
       </Row>
-
       {cart?.map((product) => {
         return (
           <Row className="product-details" key={product.productId}>
@@ -71,7 +69,6 @@ export default function CartPage() {
           </Row>
         );
       })}
-
       <Row className="flex-end">
         <Button>Checkout</Button>
       </Row>
