@@ -95,3 +95,14 @@ export async function addItemQuantity(productId, quantity, cartId) {
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
+
+export async function removeAllItems(cartId) {
+  const req = {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ cartId }),
+  };
+  const res = await fetch(`/api/cart/${cartId}`, req);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  return await res.json();
+}

@@ -42,12 +42,6 @@ export default function CartPage() {
           <h3 className="cart-h3">My Cart</h3>
           <h5 class="action">Remove all</h5>
         </Col>
-        {/* <Row className="cart-items-header product-details">
-          <Col >Cart Items</Col>
-
-          <Col>Price</Col>
-          <Col>Quantity</Col>
-        </Row> */}
         {cart?.map((product) => {
           return (
             <Col className="cart-items" key={product.productId}>
@@ -62,11 +56,6 @@ export default function CartPage() {
                 <Col className="amount">${product.price}</Col>
                 <Col className="remove">Remove</Col>
               </Col>
-              {/* <Col className="price">{product.price}</Col>
-
-              <Col>
-                <div>{product.quantity}</div>
-              </Col> */}
             </Col>
           );
         })}
