@@ -47,8 +47,7 @@ export default function CartPage() {
   }
   async function handleRemoveItem(cartId, productId) {
     try {
-      console.log(user.customerId, productId);
-      await removeItem(user.customerId, productId);
+      await removeItem(cartId, productId);
     } catch (e) {
       setError(e);
     }
@@ -58,9 +57,6 @@ export default function CartPage() {
       <Container className="cart-container" fluid>
         <Col className="cart-header">
           <h3 className="cart-h3">My Cart</h3>
-          {/* <h5 className="action" onClick={handleRemoveAll}>
-            Remove all
-          </h5> */}
           <Button className="action" onClick={handleRemoveAllItems}>
             Remove all
           </Button>
@@ -68,7 +64,21 @@ export default function CartPage() {
         {cart?.map((product) => {
           return (
             <Col className="cart-items" key={product.productId}>
-              <CartItem product={product} handleRemoveItem={handleRemoveItem} />
+              <CartItem
+                product={product}
+                handleRemoveItem={handleRemoveItem}
+                user={user}
+              />
+              <Col className="prices">
+                <Col className="amount">${product.price}</Col>
+                <Col
+                  className="remove"
+                  onClick={() =>
+                    handleRemoveItem(user.customerId, product.productId)
+                  }>
+                  Remove
+                </Col>
+              </Col>
             </Col>
           );
         })}
@@ -89,8 +99,8 @@ export default function CartPage() {
   );
 }
 
-function CartItem({ product, handleRemoveItem }) {
-  const { productId, productName, quantity, price, imageUrl } = product;
+function CartItem({ product, handleRemoveItem, user }) {
+  const { productName, quantity, imageUrl } = product;
   return (
     <>
       <Image className="img-preview" src={imageUrl} thumbnail />
@@ -99,15 +109,6 @@ function CartItem({ product, handleRemoveItem }) {
       </Col>
       <Col>
         <h4>{quantity}</h4>
-      </Col>
-      <Col className="prices">
-        <Col className="amount">${price}</Col>
-        <Col
-          className="remove"
-          onClick={handleRemoveItem}
-          productId={productId}>
-          Remove
-        </Col>
       </Col>
     </>
   );

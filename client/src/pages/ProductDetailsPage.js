@@ -65,7 +65,7 @@ export default function ProductDetails() {
       if (!user) return window.alert('Please log in to add items to cart');
       if (!cartHasProduct) {
         setDisabled(true);
-        await addToCart(productId, Number(count), user.customerId);
+        await addToCart(productId, count, user.customerId);
       }
       if (cartHasProduct) {
         setDisabled(true);
