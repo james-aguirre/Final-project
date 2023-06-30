@@ -123,6 +123,22 @@ app.patch('/api/cart/:cartId', async (req, res, next) => {
   }
 });
 
+app.delete('/api/cart/:cartId', async (req, res, next) => {
+  try {
+    const { cartId } = req.params;
+    const sql = `
+    remove *
+    from "cartItems"
+    where "cartId" = $1;
+    `;
+
+    const params = [cartId];
+    const result = await db.query(sql, params);
+    res.status(201).json(result.rows);
+  } catch (e) {
+    next(e);
+  }
+});
 // relates to fetchProducts server call
 app.get('/api/products', async (req, res, next) => {
   try {
