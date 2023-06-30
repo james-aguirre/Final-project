@@ -1,7 +1,6 @@
 import './CartPage.css';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import AppContext from '../components/AppContext';
@@ -9,6 +8,7 @@ import { useContext } from 'react';
 import { fetchCartItems } from '../lib/api';
 import { useEffect, useState } from 'react';
 import Loading from './LoadingPage';
+import { removeAllItems } from '../lib/api';
 
 export default function CartPage() {
   const { user } = useContext(AppContext);
@@ -16,13 +16,16 @@ export default function CartPage() {
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState();
   const cartId = user.customerId;
+
   useEffect(() => {
     async function loadCart(cartId) {
       try {
         const cart = await fetchCartItems(cartId);
+        if (!cart) return setCart(null);
         setCart(cart);
         console.log(cart);
       } catch (e) {
+        console.log(e);
         setError(e);
       } finally {
         setIsLoading(false);
@@ -36,15 +39,25 @@ export default function CartPage() {
     return <div>`Error Loading Cart: ${error.message}`</div>;
   }
   if (!cart) return null;
-  function handleRemoveAll() {}
+  async function handleRemoveItem(cartId) {
+    try {
+      setCart(null);
+      await removeAllItems(user.customerId);
+    } catch (e) {
+      setError(e);
+    }
+  }
   return (
     <Container className="body" fluid>
       <Container className="cart-container" fluid>
         <Col className="cart-header">
           <h3 className="cart-h3">My Cart</h3>
-          <h5 className="action" onClick={handleRemoveAll}>
+          {/* <h5 className="action" onClick={handleRemoveAll}>
             Remove all
-          </h5>
+          </h5> */}
+          <Button className="action" onClick={handleRemoveItem}>
+            Remove all
+          </Button>
         </Col>
         {cart?.map((product) => {
           return (
