@@ -123,6 +123,7 @@ app.patch('/api/cart/:cartId', async (req, res, next) => {
   }
 });
 
+// clears every item from cart
 app.delete('/api/delete/:cartId', async (req, res, next) => {
   try {
     const { cartId } = req.body;
@@ -132,6 +133,22 @@ app.delete('/api/delete/:cartId', async (req, res, next) => {
     where "cartId" = $1
     `;
     const params = [cartId];
+    await db.query(sql, params);
+    res.status(204);
+  } catch (e) {
+    next(e);
+  }
+});
+
+// clears a specific item from cart
+app.delete('/api/delete/:cartId/:productId', async (req, res, next) => {
+  try {
+    const { cartId, productId } = req.body;
+    const sql = `
+    delete
+    from "shoppingCartItems"
+    where "cartId" = $1 and "productId" = $2`;
+    const params = [cartId, productId];
     await db.query(sql, params);
     res.status(204);
   } catch (e) {
