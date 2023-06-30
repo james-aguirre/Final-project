@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import { fetchCartItems } from '../lib/api';
 import { useEffect, useState } from 'react';
 import Loading from './LoadingPage';
-import { removeAllItems } from '../lib/api';
+import { removeAllItems, removeItem } from '../lib/api';
 
 export default function CartPage() {
   const { user } = useContext(AppContext);
@@ -23,9 +23,7 @@ export default function CartPage() {
         const cart = await fetchCartItems(cartId);
         if (!cart) return setCart(null);
         setCart(cart);
-        console.log(cart);
       } catch (e) {
-        console.log(e);
         setError(e);
       } finally {
         setIsLoading(false);
@@ -39,10 +37,18 @@ export default function CartPage() {
     return <div>`Error Loading Cart: ${error.message}`</div>;
   }
   if (!cart) return null;
-  async function handleRemoveItem(cartId) {
+  async function handleRemoveAllItems(cartId) {
     try {
       setCart(null);
       await removeAllItems(user.customerId);
+    } catch (e) {
+      setError(e);
+    }
+  }
+  async function handleRemoveItem(cartId, productId) {
+    try {
+      console.log(user.customerId, productId);
+      await removeItem(user.customerId, productId);
     } catch (e) {
       setError(e);
     }
@@ -55,24 +61,14 @@ export default function CartPage() {
           {/* <h5 className="action" onClick={handleRemoveAll}>
             Remove all
           </h5> */}
-          <Button className="action" onClick={handleRemoveItem}>
+          <Button className="action" onClick={handleRemoveAllItems}>
             Remove all
           </Button>
         </Col>
         {cart?.map((product) => {
           return (
             <Col className="cart-items" key={product.productId}>
-              <Image className="img-preview" src={product.imageUrl} thumbnail />
-              <Col className="product-name">
-                <h3>{product.productName}</h3>
-              </Col>
-              <Col>
-                <h4>{product.quantity}</h4>
-              </Col>
-              <Col className="prices">
-                <Col className="amount">${product.price}</Col>
-                <Col className="remove">Remove</Col>
-              </Col>
+              <CartItem product={product} handleRemoveItem={handleRemoveItem} />
             </Col>
           );
         })}
@@ -90,5 +86,29 @@ export default function CartPage() {
         </div>
       </Container>
     </Container>
+  );
+}
+
+function CartItem({ product, handleRemoveItem }) {
+  const { productId, productName, quantity, price, imageUrl } = product;
+  return (
+    <>
+      <Image className="img-preview" src={imageUrl} thumbnail />
+      <Col className="product-name">
+        <h3>{productName}</h3>
+      </Col>
+      <Col>
+        <h4>{quantity}</h4>
+      </Col>
+      <Col className="prices">
+        <Col className="amount">${price}</Col>
+        <Col
+          className="remove"
+          onClick={handleRemoveItem}
+          productId={productId}>
+          Remove
+        </Col>
+      </Col>
+    </>
   );
 }
