@@ -16,7 +16,8 @@ export default function CartPage() {
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState();
   const cartId = user.customerId;
-
+  let total = 0;
+  let items = 0;
   useEffect(() => {
     async function loadCart(cartId) {
       try {
@@ -37,6 +38,12 @@ export default function CartPage() {
     return <div>`Error Loading Cart: ${error.message}`</div>;
   }
   if (!cart) return null;
+
+  cart.map((e) => {
+    total += e.price * e.quantity;
+    items += 1;
+    return total && items;
+  });
   async function handleRemoveAllItems(cartId) {
     try {
       setCart(null);
@@ -48,8 +55,11 @@ export default function CartPage() {
   async function handleRemoveItem(cartId, productId) {
     try {
       await removeItem(cartId, productId);
+      const cart = await fetchCartItems(cartId);
+      setCart(cart);
     } catch (e) {
       setError(e);
+      setIsLoading(false);
     }
   }
   return (
@@ -87,9 +97,9 @@ export default function CartPage() {
             <div className="total">
               <div>
                 <div className="Subtotal">Sub-Total</div>
-                <div className="items">2 items</div>
+                <div className="items">{items} items</div>
               </div>
-              <div className="total-amount">$6.18</div>
+              <div className="total-amount">${total.toFixed(2)}</div>
             </div>
             <button className="button">Checkout</button>
           </div>
