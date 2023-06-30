@@ -47,8 +47,9 @@ body {
 }
 
 .img-preview {
-  width: 30rem;
-  height: 10rem;
+  width: 50%;
+  height: 70%;
+  background-color: transparent;
 }
 
 .cart-items-header {

@@ -1,13 +1,16 @@
 .card-wrapper {
   display: flex;
-  flex-basis: 20%;
-  height: 10rem;
-  width: 25rem;
+  flex-basis: 15%;
+
+  /* height: 10rem;
+  width: 25rem; */
   padding: 0.5rem;
   background-color: #161d22;
   border-color: #d3d1cb;
   border-style: groove;
-  margin: 1.3rem;
+  margin: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* a {
