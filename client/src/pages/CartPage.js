@@ -21,6 +21,7 @@ export default function CartPage() {
       try {
         const cart = await fetchCartItems(cartId);
         setCart(cart);
+        console.log(cart);
       } catch (e) {
         setError(e);
       } finally {
@@ -35,12 +36,15 @@ export default function CartPage() {
     return <div>`Error Loading Cart: ${error.message}`</div>;
   }
   if (!cart) return null;
+  function handleRemoveAll() {}
   return (
     <Container className="body" fluid>
       <Container className="cart-container" fluid>
         <Col className="cart-header">
           <h3 className="cart-h3">My Cart</h3>
-          <h5 class="action">Remove all</h5>
+          <h5 className="action" onClick={handleRemoveAll}>
+            Remove all
+          </h5>
         </Col>
         {cart?.map((product) => {
           return (
