@@ -1,16 +1,12 @@
 .card-wrapper {
   display: flex;
   flex-basis: 15%;
-
-  /* height: 10rem;
-  width: 25rem; */
   padding: 0.5rem;
   background-color: #161d22;
   border-color: #d3d1cb;
   border-style: groove;
   margin: 1rem;
   justify-content: center;
-  align-items: center;
 }
 
 .catalog-container {
@@ -75,4 +71,9 @@ select {
 .thumbnail-text {
   color: white;
   text-align: center;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
 }

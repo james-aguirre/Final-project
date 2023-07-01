@@ -18,6 +18,7 @@ export default function CartPage() {
   const cartId = user.customerId;
   let total = 0;
   let items = 0;
+
   useEffect(() => {
     async function loadCart(cartId) {
       try {
@@ -67,9 +68,9 @@ export default function CartPage() {
       <Container className="cart-container" fluid>
         <Col className="cart-header">
           <h3 className="cart-h3">My Cart</h3>
-          <Button className="action" onClick={handleRemoveAllItems}>
+          <p className="action" onClick={handleRemoveAllItems}>
             Remove all
-          </Button>
+          </p>
         </Col>
         {cart?.map((product) => {
           return (
@@ -101,7 +102,7 @@ export default function CartPage() {
               </div>
               <div className="total-amount">${total.toFixed(2)}</div>
             </div>
-            <button className="button">Checkout</button>
+            <Button className="button">Checkout</Button>
           </div>
         </div>
       </Container>
