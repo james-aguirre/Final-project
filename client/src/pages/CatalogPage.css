@@ -9,8 +9,8 @@
 
 .catalog-container {
   background-image: url('https://www.ggrecon.com/media/tl1nixi0/valorant-banner-art-cropped.jpg');
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
   min-height: 150vh;
   min-width: 100vw;
   max-height: fit-content;
