@@ -1,6 +1,4 @@
 .card-wrapper {
-  /* display: flex;
-  flex-basis: 15%; */
   padding: 0.5rem;
   background-color: #161d22;
   border-color: #d3d1cb;
@@ -13,8 +11,10 @@
   background-image: url('https://www.ggrecon.com/media/tl1nixi0/valorant-banner-art-cropped.jpg');
   padding-left: 5rem;
   padding-right: 5rem;
-  height: 300vh;
-  width: 100vw;
+  min-height: 150vh;
+  min-width: 100vw;
+  max-height: fit-content;
+  max-width: fit-content;
 }
 
 img.img-thumbnail:hover {
