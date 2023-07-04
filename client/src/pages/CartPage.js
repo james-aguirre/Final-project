@@ -73,11 +73,7 @@ export default function CartPage() {
         {cart?.map((product) => {
           return (
             <Col className="cart-items" key={product.productId}>
-              <CartItem
-                product={product}
-                handleRemoveItem={handleRemoveItem}
-                user={user}
-              />
+              <CartItem product={product} />
               <Col className="prices">
                 <Col className="amount">${product.price}</Col>
                 <Col
@@ -108,7 +104,7 @@ export default function CartPage() {
   );
 }
 
-function CartItem({ product, handleRemoveItem, user }) {
+function CartItem({ product }) {
   const { productName, quantity, imageUrl } = product;
   return (
     <>
