@@ -11,7 +11,7 @@
   background-color: #0b1219ad;
   border-radius: 1.5rem;
   margin-top: 3rem;
-  width: 45vw;
+  width: fit-content;
   height: fit-content;
   justify-content: center;
 }
