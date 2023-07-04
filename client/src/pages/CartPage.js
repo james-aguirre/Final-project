@@ -39,7 +39,6 @@ export default function CartPage() {
     return <div>`Error Loading Cart: ${error.message}`</div>;
   }
   if (!cart) return null;
-
   cart.map((e) => {
     total += e.price * e.quantity;
     items += 1;
@@ -47,8 +46,7 @@ export default function CartPage() {
   });
   async function handleRemoveAllItems(cartId) {
     try {
-      setCart(null);
-      await removeAllItems(user.customerId);
+      setCart(await removeAllItems(user.customerId));
     } catch (e) {
       setError(e);
     }
