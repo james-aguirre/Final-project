@@ -81,11 +81,11 @@ export default function ProductDetails() {
         <Link to="/catalog">
           <Button className="back-to-catalog-btn"> Back To Shop</Button>
         </Link>
-        <div className="row">
-          <div className="column-full">
+        <Row className="row">
+          <Col xs={12} className="column-full">
             <Image src={imageUrl} className="details-img" />
-          </div>
-        </div>
+          </Col>
+        </Row>
         <div className="row card-header">
           <div className="details-text column-half left">{productName}</div>
           <div className="details-text column-half details-text align-right">
