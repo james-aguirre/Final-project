@@ -51,9 +51,13 @@ export default function Catalog({ product }) {
         <Row>
           <Filter value={filter} onChange={setFilter} />
         </Row>
-        <Row xs="auto">
+        <Row>
           {filteredProducts?.map((product) => (
-            <Col xs={6} md={4} className="card-wrapper" key={product.productId}>
+            <Col
+              xs={12}
+              md={2}
+              className="card-wrapper"
+              key={product.productId}>
               <Product product={product} />
             </Col>
           ))}
