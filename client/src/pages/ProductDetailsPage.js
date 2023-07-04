@@ -107,7 +107,6 @@ export default function ProductDetails() {
               +
             </button>
           </Col>
-
           <Button className="btn" onClick={handleAddToCart} disabled={disabled}>
             Add to cart
           </Button>
