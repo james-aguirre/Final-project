@@ -46,20 +46,14 @@ export default function ProductDetails() {
     setCount(count);
   }
   if (isLoading) return <Loading />;
-  if (error) {
-    return (
-      <div>
-        `Error Loading Product ${productId}: ${error.message}`
-      </div>
-    );
-  }
   if (!product) return null;
   const { productName, price, imageUrl, description } = product;
 
+  // check the users cart in case they already have the same productId in their cart
+  // so we adjust the item quantity instead of trying to duplicate a unique key
   const cartHasProduct = cart?.find(
     (product) => product.productId === Number(productId)
   );
-
   async function handleAddToCart() {
     try {
       if (!user) return window.alert('Please log in to add items to cart');
