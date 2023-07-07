@@ -101,9 +101,15 @@ export default function ProductDetails() {
               +
             </button>
           </Col>
-          <Button className="btn" onClick={handleAddToCart} disabled={disabled}>
-            Add to cart
-          </Button>
+          {!disabled && (
+            <Button
+              className="btn"
+              onClick={handleAddToCart}
+              disabled={disabled}>
+              Add to cart
+            </Button>
+          )}
+          {disabled && <Button className="btn">Go to cart</Button>}
         </Row>
       </div>
     </Container>
