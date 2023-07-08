@@ -58,12 +58,13 @@ img.img-thumbnail:hover {
 select {
   margin-top: 3rem;
   font-family: VALORANT, sans-serif;
+  width: 40%;
 }
 
 .search-filter {
   margin-top: 2.8rem;
   margin-left: 3rem;
-  width: 20rem;
+  width: 60%;
   font-family: VALORANT, sans-serif;
   border-radius: 0.4rem;
 }
