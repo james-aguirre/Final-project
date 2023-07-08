@@ -35,6 +35,9 @@ export default function ProductDetails() {
     loadProduct(productId);
   }, [productId, setProduct, cart]);
 
+  if (error) {
+    return <div>`Error Loading Cart: ${error.message}`</div>;
+  }
   function incrementCount() {
     count = count + 1;
     if (count > 3) setCount((count = 3));
