@@ -17,7 +17,7 @@
   max-width: fit-content;
 }
 
-img-thumbnail {
+.img-thumbnail {
   cursor: pointer;
 }
 
@@ -32,8 +32,8 @@ img-thumbnail {
 }
 
 .img-banner {
-  height: 25rem;
-  width: 50rem;
+  width: 60%;
+  margin: 1rem;
 }
 
 .banner-container {
@@ -43,7 +43,7 @@ img-thumbnail {
 }
 
 .mb-3 {
-  width: 10rem;
+  width: fit-content;
   height: 2rem;
   background-color: #212529;
   color: white;
