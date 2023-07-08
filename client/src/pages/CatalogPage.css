@@ -17,7 +17,7 @@
   max-width: fit-content;
 }
 
-img.img-thumbnail:hover {
+img-thumbnail:hover {
   cursor: pointer;
 }
 
