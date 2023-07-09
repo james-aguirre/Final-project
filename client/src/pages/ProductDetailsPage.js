@@ -62,12 +62,10 @@ export default function ProductDetails() {
       if (!user) return window.alert('Please log in to add items to cart');
       if (!cartHasProduct) {
         setDisabled(true);
-        await addToCart(productId, count, user.customerId);
+        return await addToCart(productId, count, user.customerId);
       }
-      if (cartHasProduct) {
-        setDisabled(true);
-        addItemQuantity(user.customerId, productId, count);
-      }
+      setDisabled(true);
+      addItemQuantity(user.customerId, productId, count);
     } catch (e) {
       setError(e);
     }
@@ -94,15 +92,15 @@ export default function ProductDetails() {
         </div>
         <Row>
           <Col md={8} className="justify-end">
-            <button className="counter-btn" onClick={decrementCount}>
+            <Button className="counter-btn" onClick={decrementCount}>
               -
-            </button>
+            </Button>
           </Col>
           <Col className="count">{count}</Col>
           <Col>
-            <button className="counter-btn" onClick={incrementCount}>
+            <Button className="counter-btn" onClick={incrementCount}>
               +
-            </button>
+            </Button>
           </Col>
           {!disabled && (
             <Button
