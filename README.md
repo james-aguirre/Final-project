@@ -4,18 +4,19 @@ A full stack JavaScript application for teachers who want to manage course recor
 
 ## Why I Built This
 
-As a former teacher, I wanted to build an application that I wish I had back when I had to record my students' grades.
+To test my ability in building a full stack e-commerce application.
 
 ## Technologies Used
 
 - React.js
 - Webpack
-- Bootstrap 5
+- Bootstrap React
 - Node.js
-- MongoDB
+- Express.js
+- PostgreSql
 - HTML5
 - CSS3
-- Heroku
+- Azure
 
 ## Live Demo
 
@@ -23,10 +24,11 @@ Try the application live at [https://student-grade-table.lfz.com](https://studen
 
 ## Features
 
-- Teachers can view a list of recorded grades.
-- Teachers can view the average grade.
-- Teachers can add a grade to the table.
-- Teachers can delete a grade from the table.
+- Fully functional shopping cart the customer can add items, remove items and view items
+- Customer can browse the catalog and click items to view a product details page
+- Customer can type search the catalog, or search with a dropdown menu
+- Customer can create an account and sign in
+- Responsive UI for customers to shop on both mobile and desktop
 
 ## Preview
 
@@ -36,17 +38,16 @@ Try the application live at [https://student-grade-table.lfz.com](https://studen
 
 ### System Requirements
 
-- Node.js 10 or higher
-- NPM 6 or higher
-- MongoDB 4 or higher
+- Node.js
+- NPM
+- PostgreSql
 
 ### Getting Started
 
 1. Clone the repository.
 
    ```shell
-   git clone https://github.com/Learning-Fuze/sgt-react
-   cd sgt-react
+   git clone https://github.com/James-Aguirre/ValTrade
    ```
 
 1. Install all dependencies with NPM.
@@ -55,10 +56,10 @@ Try the application live at [https://student-grade-table.lfz.com](https://studen
    npm install
    ```
 
-1. Import the example database to MongoDB.
+1. Import the example database to pgweb.
 
    ```shell
-   mongoimport --db sgt-react database/dump.json
+   npm run db:import
    ```
 
 1. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
@@ -66,3 +67,5 @@ Try the application live at [https://student-grade-table.lfz.com](https://studen
    ```shell
    npm run dev
    ```
+
+1. View database at localhost:8081
