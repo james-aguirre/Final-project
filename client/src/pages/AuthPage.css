@@ -79,3 +79,7 @@
   font-size: 2rem;
   color: white !important;
 }
+
+.val-font {
+  font-family: VALORANT, sans-serif;
+}
