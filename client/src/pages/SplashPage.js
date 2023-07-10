@@ -2,8 +2,8 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
 import { Link } from 'react-router-dom';
-import Carousel from '../components/Carousel';
 
 import './SplashPage.css';
 
@@ -12,7 +12,12 @@ export default function SplashPage() {
     <Container className="splash-container" fluid>
       <h2 className="val-font splash-header">#1 vALORANT SKIN MARKET</h2>
       <div className="banner-container">
-        <Carousel className="img-banner" />
+        <Image
+          className="img-banner"
+          src="https://static1-us.millenium.gg/articles/7/18/53/7/@/184821-valorant-art-4-orig-2-article_cover_bd-1.jpeg"
+          alt="phoenix jett valorant banner"
+          fluid
+        />
       </div>
       <Row>
         <Col className="justify-center">

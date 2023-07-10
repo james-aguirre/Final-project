@@ -49,6 +49,13 @@ h2 {
   justify-content: center;
 }
 
+.img-banner {
+  width: 60%;
+  margin: 1rem;
+}
+
 .banner-container {
-  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 2rem;
 }
