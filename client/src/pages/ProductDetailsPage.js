@@ -90,16 +90,17 @@ export default function ProductDetails() {
           <div className="description-text left">{description}</div>
         </div>
         <Row>
-          <Col md={8} className="justify-end">
+          <Col className="justify-end">
             <Button className="counter-btn" onClick={decrementCount}>
               -
             </Button>
-          </Col>
-          <Col className="count">{count}</Col>
-          <Col>
-            <Button className="counter-btn" onClick={incrementCount}>
-              +
-            </Button>
+
+            <div className="count">{count}</div>
+            <div>
+              <Button className="counter-btn" onClick={incrementCount}>
+                +
+              </Button>
+            </div>
           </Col>
           {!disabled && (
             <Button
