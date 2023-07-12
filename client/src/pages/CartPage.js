@@ -15,6 +15,7 @@ export default function CartPage() {
   const [cart, setCart] = useState();
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState();
+  const [isRemoved, setIsRemoved] = useState(false);
   const cartId = user.customerId;
   let total = 0;
   let items = 0;
@@ -39,16 +40,17 @@ export default function CartPage() {
     return <div>`Error Loading Cart: ${error.message}`</div>;
   }
   if (!cart) return null;
-
   // loops through the cart array to calculate the customers subtotal && quantity of items
   cart.map((e) => {
     total += e.price * e.quantity;
-    items += 1;
+    items += 1 * e.quantity;
     return total && items;
   });
   async function handleRemoveAllItems(cartId) {
     try {
-      setCart(await removeAllItems(user.customerId));
+      await removeAllItems(cartId);
+      setCart(await fetchCartItems(cartId));
+      setIsRemoved(true);
     } catch (e) {
       setError(e);
     }
@@ -56,11 +58,10 @@ export default function CartPage() {
   async function handleRemoveItem(cartId, productId) {
     try {
       await removeItem(cartId, productId);
-      const cart = await fetchCartItems(cartId);
-      setCart(cart);
+      setCart(await fetchCartItems(cartId));
+      setIsRemoved(true);
     } catch (e) {
       setError(e);
-      setIsLoading(false);
     }
   }
   return (
@@ -68,9 +69,11 @@ export default function CartPage() {
       <Container className="cart-container" fluid>
         <Col className="cart-header">
           <h3 className="cart-h3">My Cart</h3>
-          <p className="action" onClick={handleRemoveAllItems}>
-            Remove all
-          </p>
+          {cart[0] && (
+            <p className="action" onClick={handleRemoveAllItems}>
+              Remove all
+            </p>
+          )}
         </Col>
         {cart?.map((product) => {
           return (
@@ -78,13 +81,15 @@ export default function CartPage() {
               <CartItem product={product} />
               <Col className="prices">
                 <Col className="amount">${product.price}</Col>
-                <Col
-                  className="remove"
-                  onClick={() =>
-                    handleRemoveItem(user.customerId, product.productId)
-                  }>
-                  Remove
-                </Col>
+                {!isRemoved && (
+                  <Col
+                    className="remove"
+                    onClick={() =>
+                      handleRemoveItem(user.customerId, product.productId)
+                    }>
+                    Remove
+                  </Col>
+                )}
               </Col>
             </Col>
           );
