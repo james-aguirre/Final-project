@@ -111,7 +111,9 @@ export default function ProductDetails() {
           )}
           {disabled && (
             <Link to="/cart">
-              <Button className="btn btn-success">Go to cart</Button>
+              <Button className="btn" variant="success">
+                Go to cart
+              </Button>
             </Link>
           )}
         </Row>
