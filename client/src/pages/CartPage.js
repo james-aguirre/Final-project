@@ -48,7 +48,7 @@ export default function CartPage() {
   });
   async function handleRemoveAllItems(cartId) {
     try {
-      await removeAllItems(cartId);
+      await removeAllItems(user.customerId);
       setCart(await fetchCartItems(cartId));
       setIsRemoved(true);
     } catch (e) {
