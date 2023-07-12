@@ -9,12 +9,14 @@
 
 .catalog-container {
   background-image: url('https://www.ggrecon.com/media/tl1nixi0/valorant-banner-art-cropped.jpg');
-  padding-left: 4rem;
-  padding-right: 4rem;
   min-height: 150vh;
   min-width: 100vw;
   max-height: fit-content;
   max-width: fit-content;
+}
+
+.items-container {
+  padding: 3%;
 }
 
 .img-thumbnail {
@@ -27,19 +29,7 @@
   -webkit-text-stroke-color: black;
   color: white;
   text-align: center;
-  margin-top: 2rem;
   font-size: 2.5rem;
-}
-
-.img-banner {
-  width: 60%;
-  margin: 1rem;
-}
-
-.banner-container {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 2rem;
 }
 
 .mb-3 {
@@ -56,14 +46,11 @@
 }
 
 select {
-  margin-top: 3rem;
   font-family: VALORANT, sans-serif;
   width: 40%;
 }
 
 .search-filter {
-  margin-top: 2.8rem;
-  margin-left: 3rem;
   width: 60%;
   font-family: VALORANT, sans-serif;
   border-radius: 0.4rem;

@@ -109,7 +109,11 @@ export default function ProductDetails() {
               Add to cart
             </Button>
           )}
-          {disabled && <Button className="btn">Go to cart</Button>}
+          {disabled && (
+            <Link to="/cart">
+              <Button className="btn btn-success">Go to cart</Button>
+            </Link>
+          )}
         </Row>
       </div>
     </Container>
