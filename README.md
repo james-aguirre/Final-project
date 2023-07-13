@@ -9,11 +9,11 @@ To test my ability in building a full stack e-commerce application.
 ## Technologies Used
 
 - React.js
-- Webpack
-- Bootstrap React
+- Bootstrap
 - Node.js
 - Express.js
 - PostgreSql
+- - Webpack
 - HTML5
 - CSS3
 - Azure
