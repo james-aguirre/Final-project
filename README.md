@@ -1,6 +1,6 @@
 # ValTrade
 
-A full stack JavaScript application for teachers who want to manage course records.
+A full stack JavaScript application for gamers who want to buy in game accessories.
 
 ## Why I Built This
 
