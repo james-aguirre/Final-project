@@ -15,7 +15,7 @@ export default function CartPage() {
   const [cart, setCart] = useState();
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState();
-  const [isRemoved, setIsRemoved] = useState(false);
+  const [isClicked, setIsClicked] = useState;
   const cartId = user.customerId;
   let total = 0;
   let items = 0;
@@ -50,7 +50,6 @@ export default function CartPage() {
     try {
       await removeAllItems(user.customerId);
       await setCart(await fetchCartItems(cartId));
-      setIsRemoved(true);
     } catch (e) {
       setError(e);
     }
@@ -58,8 +57,9 @@ export default function CartPage() {
   async function handleRemoveItem(cartId, productId) {
     try {
       await removeItem(cartId, productId);
-      await setCart(await fetchCartItems(cartId));
-      setIsRemoved(true);
+      await setCart((prev) =>
+        prev.filter((cartedItems) => cartedItems.productId !== productId)
+      );
     } catch (e) {
       setError(e);
     }
@@ -81,7 +81,8 @@ export default function CartPage() {
               <CartItem product={product} />
               <Col className="prices">
                 <Col className="amount">${product.price}</Col>
-                {!isRemoved && (
+
+                {!isClicked && (
                   <Col
                     className="remove"
                     onClick={() =>
