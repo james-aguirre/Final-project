@@ -6,7 +6,7 @@ import Image from 'react-bootstrap/Image';
 import AppContext from '../components/AppContext';
 import { useContext } from 'react';
 import { fetchCartItems } from '../lib/api';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import Loading from './LoadingPage';
 import { removeAllItems, removeItem } from '../lib/api';
 
