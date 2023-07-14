@@ -101,18 +101,21 @@ export default function CartPage() {
             </Col>
           );
         })}
-        <div className="hr">
-          <div className="checkout">
-            <div className="total">
-              <div>
-                <div className="Subtotal">Sub-Total</div>
-                <div className="items">{items} items</div>
+        {/*   Checks if there's any items in the cart and conditionally renders the checkout section      */}
+        {cart[0] && (
+          <div className="hr">
+            <div className="checkout">
+              <div className="total">
+                <div>
+                  <div className="Subtotal">Sub-Total</div>
+                  <div className="items">{items} items</div>
+                </div>
+                <div className="total-amount">${total.toFixed(2)}</div>
               </div>
-              <div className="total-amount">${total.toFixed(2)}</div>
+              <Button className="button">Checkout</Button>
             </div>
-            <Button className="button">Checkout</Button>
           </div>
-        </div>
+        )}
       </Container>
     </Container>
   );
