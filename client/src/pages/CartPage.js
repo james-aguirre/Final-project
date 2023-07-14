@@ -15,7 +15,7 @@ export default function CartPage() {
   const [cart, setCart] = useState();
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState();
-  const [isClicked, setIsClicked] = useState;
+  const [isClicked, setIsClicked] = useState(false);
   const cartId = user.customerId;
   let total = 0;
   let items = 0;
@@ -57,6 +57,7 @@ export default function CartPage() {
   async function handleRemoveItem(cartId, productId) {
     try {
       await removeItem(cartId, productId);
+      setIsClicked(true);
       await setCart((prev) =>
         prev.filter((cartedItems) => cartedItems.productId !== productId)
       );
