@@ -6,7 +6,7 @@ import Image from 'react-bootstrap/Image';
 import AppContext from '../components/AppContext';
 import { useContext } from 'react';
 import { fetchCartItems } from '../lib/api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Loading from './LoadingPage';
 import { removeAllItems, removeItem } from '../lib/api';
 
@@ -19,35 +19,21 @@ export default function CartPage() {
   let total = 0;
   let items = 0;
 
-  // useEffect(() => {
-  //   async function loadCart(cartId) {
-  //     try {
-  //       const cart = await fetchCartItems(cartId);
-  //       if (!cart) return setCart(null);
-  //       setCart(cart);
-  //     } catch (e) {
-  //       setError(e);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   }
-  //   setIsLoading(true);
-  //   loadCart(cartId);
-  // }, [cartId]);
-
-  // We dont use useEffect here because we need the cart to re render upon removing items
-  async function loadCart(cartId) {
-    try {
-      const cart = await fetchCartItems(cartId);
-      if (!cart) return setCart(null);
-      setCart(cart);
-    } catch (e) {
-      setError(e);
-    } finally {
-      setIsLoading(false);
+  useEffect(() => {
+    async function loadCart() {
+      try {
+        const cart = await fetchCartItems(cartId);
+        if (!cart) return setCart(null);
+        setCart(cart);
+      } catch (e) {
+        setError(e);
+      } finally {
+        setIsLoading(false);
+      }
     }
-  }
-  loadCart(cartId);
+    loadCart();
+  }, [cartId, cart]);
+
   if (isLoading) return <Loading />;
   if (error) {
     return <div>`Error Loading Cart: ${error.message}`</div>;
