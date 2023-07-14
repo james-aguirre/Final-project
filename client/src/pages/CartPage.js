@@ -15,26 +15,39 @@ export default function CartPage() {
   const [cart, setCart] = useState();
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState();
-  const [isClicked, setIsClicked] = useState(false);
   const cartId = user.customerId;
   let total = 0;
   let items = 0;
 
-  useEffect(() => {
-    async function loadCart(cartId) {
-      try {
-        const cart = await fetchCartItems(cartId);
-        if (!cart) return setCart(null);
-        setCart(cart);
-      } catch (e) {
-        setError(e);
-      } finally {
-        setIsLoading(false);
-      }
+  // useEffect(() => {
+  //   async function loadCart(cartId) {
+  //     try {
+  //       const cart = await fetchCartItems(cartId);
+  //       if (!cart) return setCart(null);
+  //       setCart(cart);
+  //     } catch (e) {
+  //       setError(e);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   }
+  //   setIsLoading(true);
+  //   loadCart(cartId);
+  // }, [cartId]);
+
+  // We dont use useEffect here because we need the cart to re render upon removing items
+  async function loadCart(cartId) {
+    try {
+      const cart = await fetchCartItems(cartId);
+      if (!cart) return setCart(null);
+      setCart(cart);
+    } catch (e) {
+      setError(e);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(true);
-    loadCart(cartId);
-  }, [cartId]);
+  }
+  loadCart(cartId);
   if (isLoading) return <Loading />;
   if (error) {
     return <div>`Error Loading Cart: ${error.message}`</div>;
@@ -49,7 +62,6 @@ export default function CartPage() {
   async function handleRemoveAllItems(cartId) {
     try {
       await removeAllItems(user.customerId);
-      await setCart(await fetchCartItems(cartId));
     } catch (e) {
       setError(e);
     }
@@ -57,10 +69,6 @@ export default function CartPage() {
   async function handleRemoveItem(cartId, productId) {
     try {
       await removeItem(cartId, productId);
-      setIsClicked(true);
-      await setCart((prev) =>
-        prev.filter((cartedItems) => cartedItems.productId !== productId)
-      );
     } catch (e) {
       setError(e);
     }
@@ -82,16 +90,13 @@ export default function CartPage() {
               <CartItem product={product} />
               <Col className="prices">
                 <Col className="amount">${product.price}</Col>
-
-                {!isClicked && (
-                  <Col
-                    className="remove"
-                    onClick={() =>
-                      handleRemoveItem(user.customerId, product.productId)
-                    }>
-                    Remove
-                  </Col>
-                )}
+                <Col
+                  className="remove"
+                  onClick={() =>
+                    handleRemoveItem(user.customerId, product.productId)
+                  }>
+                  Remove
+                </Col>
               </Col>
             </Col>
           );
