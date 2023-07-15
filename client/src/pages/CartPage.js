@@ -25,13 +25,13 @@ export default function CartPage() {
         if (!cart) return setCart(null);
         setCart(cart);
         // loops through the cart array to calculate the customers subtotal && quantity of items
-        let total = 0;
-        let items = 0;
-        cart.map((e) => {
-          total += e.price * e.quantity;
-          items += 1 * e.quantity;
-          return total && items;
-        });
+        // let total = 0;
+        // let items = 0;
+        // cart.map((e) => {
+        //   total += e.price * e.quantity;
+        //   items += 1 * e.quantity;
+        //   return total && items;
+        // });
       } catch (e) {
         setError(e);
       } finally {
@@ -39,18 +39,18 @@ export default function CartPage() {
       }
     }
     loadCart();
-  }, [cartId, cart]);
+  }, [cartId, cart, total]);
   if (isLoading) return <Loading />;
   if (error) {
     return <div>`Error Loading Cart: ${error.message}`</div>;
   }
   if (!cart) return null;
-  // // loops through the cart array to calculate the customers subtotal && quantity of items
-  // cart.map((e) => {
-  //   total += e.price * e.quantity;
-  //   items += 1 * e.quantity;
-  //   return total && items;
-  // });
+  // loops through the cart array to calculate the customers subtotal && quantity of items
+  cart.map((e) => {
+    total += e.price * e.quantity;
+    items += 1 * e.quantity;
+    return total && items;
+  });
   async function handleRemoveAllItems(cartId) {
     try {
       await removeAllItems(user.customerId);
