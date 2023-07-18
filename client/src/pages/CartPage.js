@@ -6,24 +6,26 @@ import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import AppContext from '../components/AppContext';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchCartItems } from '../lib/api';
 import { useEffect, useState } from 'react';
 import Loading from './LoadingPage';
 import { removeAllItems, removeItem } from '../lib/api';
-import CenteredModal from '../components/Modal';
+// import CenteredModal from '../components/Modal';
 
 export default function CartPage() {
   const { user } = useContext(AppContext);
   const [cart, setCart] = useState();
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState();
-  const cartId = user.customerId;
+  const cartId = user?.customerId;
   let total = 0;
   let items = 0;
+  const navigate = useNavigate();
   useEffect(() => {
     async function loadCart() {
       try {
+        if (!user) navigate('../sign-in');
         const cart = await fetchCartItems(cartId);
         setCart(cart);
       } catch (e) {
@@ -33,7 +35,7 @@ export default function CartPage() {
       }
     }
     loadCart();
-  }, [cartId, cart, total]);
+  }, [cartId, cart, total, user, navigate]);
   if (isLoading) return <Loading />;
   if (error) {
     return <div>`Error Loading Cart: ${error.message}`</div>;
@@ -88,11 +90,6 @@ export default function CartPage() {
             </Col>
           );
         })}
-        {!user && (
-          <Link to="../sign-up">
-            <CenteredModal />
-          </Link>
-        )}
         {/* checks if cart is empty, displays a message with the option to take user back to shop */}
         {!cart[0] && (
           <>
