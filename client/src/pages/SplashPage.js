@@ -10,7 +10,7 @@ import './SplashPage.css';
 export default function SplashPage() {
   return (
     <Container className="splash-container" fluid>
-      <h2 className="val-font splash-header">vALORANT SKIN MARKET</h2>
+      <h2 className="val-font splash-header">vALORANT MArketplace</h2>
       <div className="banner-container">
         <Image
           className="img-banner"
