@@ -88,9 +88,11 @@ export default function CartPage() {
         {!cart[0] && (
           <div className="empty-cart-msg">
             <h1>Your cart is empty</h1>
-            <Link to="../catalog">
-              <Button>Go to shop</Button>
-            </Link>
+            <span className="empty-cart-btn">
+              <Link to="../catalog">
+                <Button>Go to shop</Button>
+              </Link>
+            </span>
           </div>
         )}
         {/*   Checks if there's any items in the cart and conditionally renders the checkout section      */}

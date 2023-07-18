@@ -1,7 +1,9 @@
 .body {
+  background-image: url('https://www.ggrecon.com/media/tl1nixi0/valorant-banner-art-cropped.jpg');
   margin: 0;
   padding: 0;
-  background: linear-gradient(to bottom right, #e3f0ff, #fafcff);
+
+  /* background: linear-gradient(to bottom right, #e3f0ff, #fafcff); */
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -136,4 +138,14 @@
   font-weight: 600;
   color: #e44c4c;
   cursor: pointer;
+}
+
+.empty-cart-msg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-cart-btn {
+  display: block;
 }
