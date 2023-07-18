@@ -3,11 +3,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { fetchProduct, addToCart, addItemQuantity } from '../lib/api';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import AppContext from '../components/AppContext';
-import { useContext } from 'react';
 import './ProductDetails.css';
 import Loading from './LoadingPage';
 
@@ -19,7 +18,7 @@ export default function ProductDetails() {
   const [disabled, setDisabled] = useState(false);
   let [count, setCount] = useState(1);
   const { cart, user } = useContext(AppContext);
-
+  const navigate = useNavigate();
   useEffect(() => {
     async function loadProduct(productId) {
       try {
@@ -111,11 +110,12 @@ export default function ProductDetails() {
             </Button>
           )}
           {disabled && (
-            <Link to="/cart">
-              <Button className="btn" variant="success">
-                Go to cart
-              </Button>
-            </Link>
+            <Button
+              className="btn"
+              variant="success"
+              onClick={() => navigate('../cart')}>
+              Go to cart
+            </Button>
           )}
         </Row>
       </div>
