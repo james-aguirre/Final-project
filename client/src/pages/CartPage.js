@@ -11,6 +11,7 @@ import { fetchCartItems } from '../lib/api';
 import { useEffect, useState } from 'react';
 import Loading from './LoadingPage';
 import { removeAllItems, removeItem } from '../lib/api';
+import CenteredModal from '../components/Modal';
 
 export default function CartPage() {
   const { user } = useContext(AppContext);
@@ -58,6 +59,7 @@ export default function CartPage() {
       setError(e);
     }
   }
+
   return (
     <Container className="body" fluid>
       <Container className="cart-container" fluid>
@@ -86,6 +88,11 @@ export default function CartPage() {
             </Col>
           );
         })}
+        {!user && (
+          <Link to="../sign-up">
+            <CenteredModal />
+          </Link>
+        )}
         {/* checks if cart is empty, displays a message with the option to take user back to shop */}
         {!cart[0] && (
           <>
