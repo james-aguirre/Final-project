@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import AppContext from '../components/AppContext';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchCartItems } from '../lib/api';
 import { useEffect, useState } from 'react';
 import Loading from './LoadingPage';
@@ -84,6 +85,14 @@ export default function CartPage() {
             </Col>
           );
         })}
+        {!cart[0] && (
+          <div className="empty-cart-msg">
+            <h1>Your cart is empty</h1>
+            <Link to="../catalog">
+              <Button>Go to shop</Button>
+            </Link>
+          </div>
+        )}
         {/*   Checks if there's any items in the cart and conditionally renders the checkout section      */}
         {cart[0] && (
           <div className="hr">
