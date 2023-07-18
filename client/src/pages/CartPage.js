@@ -32,7 +32,7 @@ export default function CartPage() {
       }
     }
     loadCart();
-  }, [cartId, cart, total, user, navigate]);
+  }, [cartId, user, navigate]);
   if (isLoading) return <Loading />;
   if (error) {
     return <div>`Error Loading Cart: ${error.message}`</div>;
