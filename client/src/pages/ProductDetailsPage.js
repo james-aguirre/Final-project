@@ -51,8 +51,8 @@ export default function ProductDetails() {
   if (!product) return null;
   const { productName, price, imageUrl, description } = product;
 
-  // check the users cart in case they already have the same productId in their cart
-  // so we adjust the item quantity instead of trying to duplicate a unique key
+  // check the users cart in case they already have the same product in their cart
+  // so we adjust the item quantity instead
   const cartHasProduct = cart?.find(
     (product) => product.productId === Number(productId)
   );
