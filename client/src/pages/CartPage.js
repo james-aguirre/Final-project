@@ -5,13 +5,10 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import AppContext from '../components/AppContext';
-import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { fetchCartItems } from '../lib/api';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Loading from './LoadingPage';
-import { removeAllItems, removeItem } from '../lib/api';
-// import CenteredModal from '../components/Modal';
+import { fetchCartItems, removeAllItems, removeItem } from '../lib/api';
 
 export default function CartPage() {
   const { user } = useContext(AppContext);
@@ -90,7 +87,7 @@ export default function CartPage() {
             </Col>
           );
         })}
-        {/* checks if cart is empty, displays a message with the option to take user back to shop */}
+        {/* Checks if cart is empty, displays a message with the option to take user back to shop */}
         {!cart[0] && (
           <>
             <Row>
