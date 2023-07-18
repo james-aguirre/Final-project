@@ -2,6 +2,7 @@ import './CartPage.css';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import AppContext from '../components/AppContext';
 import { useContext } from 'react';
@@ -85,15 +86,24 @@ export default function CartPage() {
             </Col>
           );
         })}
+        {/* checks if cart is empty, displays a message with the option to take user back to shop */}
         {!cart[0] && (
-          <div className="empty-cart-msg">
-            <h1>Your cart is empty</h1>
-            <span className="empty-cart-btn">
-              <Link to="../catalog">
-                <Button>Go to shop</Button>
-              </Link>
-            </span>
-          </div>
+          <>
+            <Row>
+              <Col>
+                <div className="empty-cart-msg">
+                  <h3>Your cart is empty</h3>
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <span className="empty-cart-msg">
+                <Link to="../catalog">
+                  <Button className="back-to-shop-btn">Back to Shop</Button>
+                </Link>
+              </span>
+            </Row>
+          </>
         )}
         {/*   Checks if there's any items in the cart and conditionally renders the checkout section      */}
         {cart[0] && (
