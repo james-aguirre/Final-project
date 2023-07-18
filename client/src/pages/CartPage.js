@@ -22,7 +22,6 @@ export default function CartPage() {
     async function loadCart() {
       try {
         const cart = await fetchCartItems(cartId);
-        if (!cart) return setCart(null);
         setCart(cart);
       } catch (e) {
         setError(e);
