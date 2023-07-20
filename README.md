@@ -41,7 +41,7 @@ Try the application live at jamesaguirre.azurewebsites.net/sign-in
 
 - Node.js
 - NPM
-- PostgreSql
+- PostgreSQL
 
 ### Getting Started
 
@@ -57,26 +57,24 @@ Try the application live at jamesaguirre.azurewebsites.net/sign-in
    npm install
    ```
 
-1. Create a .env file in /src/server with these values
-   ```shell
-    PORT=8080
-    DB=8081
-    DATABASE_URL=postgres://dev:dev@localhost/val-project
-    TOKEN_SECRET=111395
-  ```
-1. Import the example database to pgweb.
 
-   ```shell
-   npm run db:import
-   ```
+1. Set up your database.
 
-1. Start the database. Once started you can view the application by opening http://localhost:8081 in your browser
-
-   ```shell
+  ```shell
    sudo service postgresql start
    ```
 
-1. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser
+1. While you are editing server/.env, also change the value of TOKEN_SECRET to a custom value, without spaces.
+
+1. Create database (replace name-of-database with a name of your choosing), once created, it can be viewed by opening http://localhost:8081 in your browser
+   
+   ```shell
+   createdb name-of-database
+   ```
+
+1. In the server/.env file, in the DATABASE_URL value, replace changeMe with the name of your database, from the last step
+
+1. Start your app. Once started you can view the application by opening http://localhost:3000 in your browser
 
    ```shell
    npm run dev
