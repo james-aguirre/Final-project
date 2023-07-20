@@ -18,9 +18,9 @@ To test my ability in building a full stack e-commerce application.
 - CSS3
 - Azure
 
-<!-- ## Live Demo
+ ## Live Demo
 
-Try the application live at [https://student-grade-table.lfz.com](https://student-grade-table.lfz.com) -->
+Try the application live at jamesaguirre.azurewebsites.net/sign-in 
 
 ## Features
 
