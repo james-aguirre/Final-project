@@ -56,16 +56,26 @@ Try the application live at [https://student-grade-table.lfz.com](https://studen
    npm install
    ```
 
+1. Create a .env file in /src/server with these values
+PORT=8080
+DB=8081
+DATABASE_URL=postgres://dev:dev@localhost/val-project
+TOKEN_SECRET=111395
+
 1. Import the example database to pgweb.
 
    ```shell
    npm run db:import
    ```
 
-1. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
+1. Start the database. Once started you can view the application by opening http://localhost:8081 in your browser
+
+   ```shell
+   sudo service postgresql start
+   ```
+
+1. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser
 
    ```shell
    npm run dev
    ```
-
-1. View database at localhost:8081
