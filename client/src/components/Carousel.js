@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-// import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import './Carousel.css';
 
 export default function Carousel() {

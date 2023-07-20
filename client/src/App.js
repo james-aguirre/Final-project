@@ -61,9 +61,9 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="catalog" element={<CatalogPage />} />
-          <Route path="/" element={<SplashPage />} />
+          <Route path="/" element={<Auth action="sign-in" />} />
           <Route path="/:productId" element={<ProductDetails />} />
-          <Route path="sign-in" element={<Auth action="sign-in" />} />
+          <Route path="/splash" element={<SplashPage />} />
           <Route path="sign-up" element={<Auth action="sign-up" />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="*" element={<NotFound />} />

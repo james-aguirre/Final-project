@@ -28,21 +28,8 @@ export default function AuthForm({ action, onSignIn }) {
       setError(e);
     }
   }
-  // const handleSetDemo = (event) => {
-  //   const { name, value } = event.target;
-  //   setInputValue({ [name]: value });
-  //   return [name, value];
-  // };
-  //  function handleSetDemo(e) {
-  //   let demo = {
-  //     user: e.target.value,
-  //     pass: e.target.value,
-  //   };
-  //   inputValue.username = demo.user;
-  //   inputValue.password = demo.pass;
-  // }
   const demoAccount = ['demo'];
-  function handleSetDemo(e) {
+  function handleSetDemo() {
     setInputValue({
       user: demoAccount[0],
       pass: demoAccount[0],
