@@ -72,8 +72,8 @@ function Product({ product }) {
 function Filter({ filter, onChange }) {
   return (
     <form>
-      <Row className="row">
-        <Col>
+      <Row>
+        <Col className="justify-flex-end 1rem-l">
           <select
             aria-label="small"
             className="mb-3"
@@ -87,9 +87,6 @@ function Filter({ filter, onChange }) {
             <option value="sidearm">SIDEARM</option>
             <option value="shotgun">SHOTGUN</option>
           </select>
-        </Col>
-        <Col xs={4}>
-          <h1 className="catalog-header">SKINS CATaLOG</h1>
         </Col>
         <Col>
           <input

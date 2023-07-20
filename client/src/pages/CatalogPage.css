@@ -51,7 +51,7 @@ select {
 }
 
 .search-filter {
-  width: 60%;
+  width: 50%;
   font-family: VALORANT, sans-serif;
   border-radius: 0.4rem;
 }
@@ -66,8 +66,17 @@ a {
   text-decoration: none;
 }
 
-@media only screen {
-  /* .catalog-header {
+/* @media screen and (width <= 576px) {
+  .catalog-header {
     display: none;
-  } */
+  }
+} */
+
+.justify-flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pdright-l {
+  padding-right: 1rem;
 }
