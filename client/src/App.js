@@ -60,10 +60,10 @@ function App() {
       <AppContext.Provider value={contextValue}>
         <NavBar />
         <Routes>
-          <Route path="catalog" element={<CatalogPage />} />
-          <Route path="/" element={<Auth action="sign-in" />} />
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/" element={<SplashPage />} />
           <Route path="/:productId" element={<ProductDetails />} />
-          <Route path="/splash" element={<SplashPage />} />
+          <Route path="/sign-in" element={<Auth action="sign-in" />} />
           <Route path="sign-up" element={<Auth action="sign-up" />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="*" element={<NotFound />} />

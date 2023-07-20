@@ -21,7 +21,7 @@ export default function AuthForm({ action, onSignIn }) {
         navigate('/sign-in');
       } else if (result.user && result.token) {
         onSignIn(result);
-        navigate('catalog');
+        navigate('/');
         formData.reset();
       }
     } catch (e) {
