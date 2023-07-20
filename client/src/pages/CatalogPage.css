@@ -51,6 +51,8 @@ select {
 }
 
 .search-filter {
+  display: flex;
+  justify-content: center;
   width: 50%;
   font-family: VALORANT, sans-serif;
   border-radius: 0.4rem;
@@ -72,11 +74,7 @@ a {
   }
 } */
 
-.justify-flex-end {
+.justify-flex-center {
   display: flex;
-  justify-content: flex-end;
-}
-
-.pdright-l {
-  padding-right: 1rem;
+  justify-content: center;
 }

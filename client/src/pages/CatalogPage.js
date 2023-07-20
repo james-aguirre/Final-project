@@ -73,7 +73,7 @@ function Filter({ filter, onChange }) {
   return (
     <form>
       <Row>
-        <Col className="justify-flex-end 1rem-l">
+        <Col className="justify-flex-center">
           <select
             aria-label="small"
             className="mb-3"
