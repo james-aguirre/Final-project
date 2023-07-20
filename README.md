@@ -58,11 +58,12 @@ Try the application live at jamesaguirre.azurewebsites.net/sign-in
    ```
 
 1. Create a .env file in /src/server with these values
-PORT=8080
-DB=8081
-DATABASE_URL=postgres://dev:dev@localhost/val-project
-TOKEN_SECRET=111395
-
+   ```shell
+    PORT=8080
+    DB=8081
+    DATABASE_URL=postgres://dev:dev@localhost/val-project
+    TOKEN_SECRET=111395
+  ```
 1. Import the example database to pgweb.
 
    ```shell
