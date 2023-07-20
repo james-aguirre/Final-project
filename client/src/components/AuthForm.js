@@ -6,8 +6,10 @@ import Button from 'react-bootstrap/Button';
 export default function AuthForm({ action, onSignIn }) {
   const navigate = useNavigate();
   const [error, setError] = useState();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [inputValue, setInputValue] = useState({
+    username: '',
+    password: '',
+  });
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -26,7 +28,26 @@ export default function AuthForm({ action, onSignIn }) {
       setError(e);
     }
   }
-
+  // const handleSetDemo = (event) => {
+  //   const { name, value } = event.target;
+  //   setInputValue({ [name]: value });
+  //   return [name, value];
+  // };
+  //  function handleSetDemo(e) {
+  //   let demo = {
+  //     user: e.target.value,
+  //     pass: e.target.value,
+  //   };
+  //   inputValue.username = demo.user;
+  //   inputValue.password = demo.pass;
+  // }
+  const demoAccount = ['demo'];
+  function handleSetDemo(e) {
+    setInputValue({
+      user: demoAccount[0],
+      pass: demoAccount[0],
+    });
+  }
   const alternateActionTo = action === 'sign-up' ? '/sign-in' : '/sign-up';
   const alternateActionText =
     action === 'sign-up' ? 'Sign in instead' : 'Register now';
@@ -42,7 +63,7 @@ export default function AuthForm({ action, onSignIn }) {
             type="text"
             name="username"
             className="form-control bg-light"
-          />
+            value={inputValue.user}></input>
         </label>
       </div>
       <div>
@@ -53,7 +74,7 @@ export default function AuthForm({ action, onSignIn }) {
             type="password"
             name="password"
             className="form-control bg-light"
-          />
+            value={inputValue.pass}></input>
         </label>
       </div>
       <div className="d-flex justify-content-between align-items-center">
@@ -62,7 +83,7 @@ export default function AuthForm({ action, onSignIn }) {
             {alternateActionText}
           </Link>
         </small>
-        <Button>Demo Account</Button>
+        <Button onClick={handleSetDemo}>Demo Account</Button>
         <button type="submit" className="btn btn-primary">
           {submitButtonText}
         </button>
