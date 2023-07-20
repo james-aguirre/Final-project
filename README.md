@@ -14,6 +14,7 @@ To test my ability in building a full stack e-commerce application.
 - Express.js
 - PostgreSql
 - Webpack
+- Babel
 - HTML5
 - CSS3
 - Azure
