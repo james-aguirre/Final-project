@@ -72,6 +72,11 @@
 
 .qty-limit-txt {
   color: red;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  margin-bottom: 0.4rem;
+  margin-right: 0.8rem;
 }
 
 .count {

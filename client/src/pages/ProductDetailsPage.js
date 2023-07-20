@@ -91,6 +91,9 @@ export default function ProductDetails() {
         <Row>
           <Col className="justify-end">
             <div className="space-between">
+              {quantity === 3 && (
+                <div className="qty-limit-txt">limit: 3 per customer</div>
+              )}
               <Button className="counter-btn" onClick={decrementCount}>
                 -
               </Button>
