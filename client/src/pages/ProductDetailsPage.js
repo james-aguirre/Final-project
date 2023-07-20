@@ -16,7 +16,7 @@ export default function ProductDetails() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   const [disabled, setDisabled] = useState(false);
-  let [count, setCount] = useState(1);
+  let [quantity, setQuantity] = useState(1);
   const { cart, user } = useContext(AppContext);
   const navigate = useNavigate();
   useEffect(() => {
@@ -38,14 +38,14 @@ export default function ProductDetails() {
     return <div>`Error Loading Cart: ${error.message}`</div>;
   }
   function incrementCount() {
-    count = count + 1;
-    if (count > 3) setCount((count = 3));
-    setCount(count);
+    quantity = quantity + 1;
+    if (quantity > 3) setQuantity((quantity = 3));
+    setQuantity(quantity);
   }
   function decrementCount() {
-    count = count - 1;
-    if (count < 1) setCount((count = 1));
-    setCount(count);
+    quantity = quantity - 1;
+    if (quantity < 1) setQuantity((quantity = 1));
+    setQuantity(quantity);
   }
   if (isLoading) return <Loading />;
   if (!product) return null;
@@ -61,9 +61,9 @@ export default function ProductDetails() {
       setDisabled(true);
       if (!user) return navigate('../sign-in');
       if (!cartHasProduct) {
-        return await addToCart(productId, count, user.customerId);
+        return await addToCart(productId, quantity, user.customerId);
       }
-      await addItemQuantity(user.customerId, productId, count);
+      await addItemQuantity(user.customerId, productId, quantity);
     } catch (e) {
       setError(e);
     }
@@ -90,15 +90,16 @@ export default function ProductDetails() {
         </div>
         <Row>
           <Col className="justify-end">
-            <Button className="counter-btn" onClick={decrementCount}>
-              -
-            </Button>
-
-            <div className="count">{count}</div>
-            <div>
-              <Button className="counter-btn" onClick={incrementCount}>
-                +
+            <div className="space-between">
+              <Button className="counter-btn" onClick={decrementCount}>
+                -
               </Button>
+              <div className="count">{quantity}</div>
+              <div>
+                <Button className="counter-btn" onClick={incrementCount}>
+                  +
+                </Button>
+              </div>
             </div>
           </Col>
           {!disabled && (
