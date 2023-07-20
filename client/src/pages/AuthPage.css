@@ -84,6 +84,13 @@
   font-family: VALORANT, sans-serif;
 }
 
+.demo-btn {
+  margin-left: 4rem;
+  padding-right: 1rem;
+  font-size: 0.73rem;
+  height: 2.5rem;
+}
+
 @media screen and (min-width: 576px) .mobile {
   display: none;
 }

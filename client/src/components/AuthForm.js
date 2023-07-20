@@ -70,7 +70,9 @@ export default function AuthForm({ action, onSignIn }) {
             {alternateActionText}
           </Link>
         </small>
-        <Button onClick={handleSetDemo}>Demo Account</Button>
+        <Button onClick={handleSetDemo} className="demo-btn btn-success">
+          Demo Account
+        </Button>
         <button type="submit" className="btn btn-primary">
           {submitButtonText}
         </button>
