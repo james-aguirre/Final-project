@@ -57,11 +57,10 @@ Try the application live at jamesaguirre.azurewebsites.net/sign-in
    npm install
    ```
 
-
 1. Set up your database.
 
-  ```shell
-   sudo service postgresql start
+   ```shell
+     sudo service postgresql start
    ```
 
 1. While you are editing server/.env, also change the value of TOKEN_SECRET to a custom value, without spaces.
