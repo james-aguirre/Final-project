@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUpOrIn } from '../lib/api';
+import Button from 'react-bootstrap/Button';
 
 export default function AuthForm({ action, onSignIn }) {
   const navigate = useNavigate();
   const [error, setError] = useState();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -59,6 +62,7 @@ export default function AuthForm({ action, onSignIn }) {
             {alternateActionText}
           </Link>
         </small>
+        <Button>Demo Account</Button>
         <button type="submit" className="btn btn-primary">
           {submitButtonText}
         </button>
