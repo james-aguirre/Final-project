@@ -63,7 +63,7 @@ export default function ProductDetails() {
       if (!cartHasProduct) {
         return await addToCart(productId, quantity, user.customerId);
       }
-      await addItemQuantity(user.customerId, productId, quantity);
+      return await addItemQuantity(user.customerId, productId, quantity);
     } catch (e) {
       setError(e);
     }
