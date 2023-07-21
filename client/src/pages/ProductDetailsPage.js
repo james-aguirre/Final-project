@@ -32,11 +32,11 @@ export default function ProductDetails() {
     }
     setIsLoading(true);
     loadProduct(productId);
-  }, [productId, setProduct, cart]);
+  }, [productId, setProduct]);
 
-  if (error) {
-    return <div>`Error Loading Cart: ${error.message}`</div>;
-  }
+  // if (error) {
+  //   return <div>`Error Loading Cart: ${error.message}`</div>;
+  // }
   function incrementCount() {
     quantity = quantity + 1;
     if (quantity > 3) setQuantity((quantity = 3));
@@ -63,7 +63,7 @@ export default function ProductDetails() {
       if (!cartHasProduct) {
         return await addToCart(productId, quantity, user.customerId);
       }
-      return await addItemQuantity(user.customerId, productId, quantity);
+      await addItemQuantity(user.customerId, productId, quantity);
     } catch (e) {
       setError(e);
     }

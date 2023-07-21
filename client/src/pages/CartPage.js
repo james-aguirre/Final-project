@@ -39,11 +39,12 @@ export default function CartPage() {
   }
   if (!cart) return null;
   // loops through the cart array to calculate the customers subtotal && quantity of items
-  cart?.map((e) => {
-    total += e.price * e.quantity;
-    items += 1 * e.quantity;
-    return total && items;
-  });
+  cart[0] &&
+    cart?.map((e) => {
+      total += e.price * e.quantity;
+      items += 1 * e.quantity;
+      return total && items;
+    });
   async function handleRemoveAllItems(cartId) {
     try {
       await removeAllItems(user.customerId);
@@ -70,23 +71,24 @@ export default function CartPage() {
             </p>
           )}
         </Col>
-        {cart?.map((product) => {
-          return (
-            <Col className="cart-items" key={product.productId}>
-              <CartItem product={product} />
-              <Col className="prices">
-                <Col className="amount">${product.price}</Col>
-                <Col
-                  className="remove"
-                  onClick={() =>
-                    handleRemoveItem(user.customerId, product.productId)
-                  }>
-                  Remove
+        {cart[0] &&
+          cart?.map((product) => {
+            return (
+              <Col className="cart-items" key={product.productId}>
+                <CartItem product={product} />
+                <Col className="prices">
+                  <Col className="amount">${product.price}</Col>
+                  <Col
+                    className="remove"
+                    onClick={() =>
+                      handleRemoveItem(user.customerId, product.productId)
+                    }>
+                    Remove
+                  </Col>
                 </Col>
               </Col>
-            </Col>
-          );
-        })}
+            );
+          })}
         {/* Checks if cart is empty, displays a message with the option to take user back to shop */}
         {!cart[0] && (
           <>
