@@ -32,11 +32,11 @@ export default function ProductDetails() {
     }
     setIsLoading(true);
     loadProduct(productId);
-  }, [productId, setProduct]);
+  }, [productId, setProduct, cart]);
 
-  // if (error) {
-  //   return <div>`Error Loading Cart: ${error.message}`</div>;
-  // }
+  if (error) {
+    return <div>`Error Loading Product: ${error.message}`</div>;
+  }
   function incrementCount() {
     quantity = quantity + 1;
     if (quantity > 3) setQuantity((quantity = 3));

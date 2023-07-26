@@ -65,7 +65,7 @@ export async function fetchUser(username) {
 
 export async function fetchCartItems(cartId) {
   const res = await fetch(`/api/shoppingCartItems/${cartId}`);
-  // if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
 
