@@ -95,6 +95,12 @@ export async function addToCart(productId, quantity, cartId) {
   return await res.json();
 }
 
+/**
+ *
+ * @param {Number} productId
+ * @param {Number} quantity
+ * @param {Number} cartId
+ */
 export async function addItemQuantity(productId, quantity, cartId) {
   const req = {
     method: 'PATCH',
