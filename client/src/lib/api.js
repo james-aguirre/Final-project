@@ -112,6 +112,11 @@ export async function addItemQuantity(productId, quantity, cartId) {
   return await res.json();
 }
 
+/**
+ *
+ * @param {Number} cartId
+ * @returns
+ */
 export async function removeAllItems(cartId) {
   const req = {
     method: 'DELETE',
