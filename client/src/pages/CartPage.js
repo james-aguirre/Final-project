@@ -40,9 +40,9 @@ export default function CartPage() {
   if (!cart) return null;
   // loops through the cart array to calculate the customers subtotal && quantity of items
   cart[0] &&
-    cart?.map((e) => {
-      total += e.price * e.quantity;
-      items += 1 * e.quantity;
+    cart?.map((item) => {
+      total += item.price * item.quantity;
+      items += 1 * item.quantity;
       return total && items;
     });
   async function handleRemoveAllItems(cartId) {
