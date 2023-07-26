@@ -57,12 +57,22 @@ export async function fetchProduct(productId) {
   return await res.json();
 }
 
+/**
+ *
+ * @param {string} username
+ * @returns Promise that resolves to the users username
+ */
 export async function fetchUser(username) {
   const res = await fetch(`/api/customers/${username}`);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
 
+/**
+ *
+ * @param {number} cartId
+ * @returns a join of every col from products + every col from shoppingCartItems table
+ */
 export async function fetchCartItems(cartId) {
   const res = await fetch(`/api/shoppingCartItems/${cartId}`);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
