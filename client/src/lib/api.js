@@ -128,6 +128,12 @@ export async function removeAllItems(cartId) {
   return await res.json();
 }
 
+/**
+ *
+ * @param {Number} cartId
+ * @param {Number} productId
+ * @returns
+ */
 export async function removeItem(cartId, productId) {
   const req = {
     method: 'DELETE',
