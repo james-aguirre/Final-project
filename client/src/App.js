@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import AppContext from './components/AppContext';
 import Auth from './pages/AuthPage';
@@ -9,7 +9,6 @@ import ProductDetails from './pages/ProductDetailsPage';
 import SplashPage from './pages/SplashPage';
 import CartPage from './pages/CartPage';
 import { fetchUser, fetchCartItems } from './lib/api';
-
 const tokenKey = 'react-context-jwt';
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
   const [token, setToken] = useState();
   const [isAuthorizing, setIsAuthorizing] = useState(true);
   const [cart, setCart] = useState();
-  const navigate = useNavigate();
+
   //authorize if previously logged in.
   useEffect(() => {
     async function setCustomer() {
@@ -40,11 +39,10 @@ function App() {
     setUser(auth.user);
     setToken(auth.token);
   }
-  async function handleSignOut() {
-    await localStorage.removeItem(tokenKey);
-    await setUser(undefined);
-    await setToken(undefined);
-    navigate('/sign-in');
+  function handleSignOut() {
+    localStorage.removeItem(tokenKey);
+    setUser(undefined);
+    setToken(undefined);
   }
 
   const contextValue = {
