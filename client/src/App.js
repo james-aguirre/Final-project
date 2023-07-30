@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import AppContext from './components/AppContext';
 import Auth from './pages/AuthPage';
@@ -17,7 +17,7 @@ function App() {
   const [token, setToken] = useState();
   const [isAuthorizing, setIsAuthorizing] = useState(true);
   const [cart, setCart] = useState();
-
+  const navigate = useNavigate();
   //authorize if previously logged in.
   useEffect(() => {
     async function setCustomer() {
@@ -40,10 +40,11 @@ function App() {
     setUser(auth.user);
     setToken(auth.token);
   }
-  function handleSignOut() {
-    localStorage.removeItem(tokenKey);
-    setUser(undefined);
-    setToken(undefined);
+  async function handleSignOut() {
+    await localStorage.removeItem(tokenKey);
+    await setUser(undefined);
+    await setToken(undefined);
+    navigate('/sign-in');
   }
 
   const contextValue = {

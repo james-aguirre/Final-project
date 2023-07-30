@@ -14,7 +14,7 @@ export default function NavBar({ onNavigate }) {
           <Nav className="me-auto">
             <Nav.Link href="catalog">CAtalog</Nav.Link>
             {user && (
-              <Nav.Link href="sign-out" onClick={handleSignOut}>
+              <Nav.Link href="/sign-in" onClick={handleSignOut}>
                 Sign out
               </Nav.Link>
             )}
