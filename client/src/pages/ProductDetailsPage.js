@@ -37,12 +37,12 @@ export default function ProductDetails() {
   if (error) {
     return <div>`Error Loading Product: ${error.message}`</div>;
   }
-  function incrementCount() {
+  function incrementQuantity() {
     quantity = quantity + 1;
     if (quantity > 3) setQuantity((quantity = 3));
     setQuantity(quantity);
   }
-  function decrementCount() {
+  function decrementQuantity() {
     quantity = quantity - 1;
     if (quantity < 1) setQuantity((quantity = 1));
     setQuantity(quantity);
@@ -94,12 +94,12 @@ export default function ProductDetails() {
               {quantity === 3 && (
                 <div className="qty-limit-txt">limit: 3 per customer</div>
               )}
-              <Button className="counter-btn" onClick={decrementCount}>
+              <Button className="counter-btn" onClick={decrementQuantity}>
                 -
               </Button>
               <div className="count">{quantity}</div>
               <div>
-                <Button className="counter-btn" onClick={incrementCount}>
+                <Button className="counter-btn" onClick={incrementQuantity}>
                   +
                 </Button>
               </div>
