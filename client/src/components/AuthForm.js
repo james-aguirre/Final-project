@@ -70,10 +70,16 @@ export default function AuthForm({ action, onSignIn }) {
             {alternateActionText}
           </Link>
         </small>
-        <Button onClick={handleSetDemo} className="demo-btn btn-success">
+        <Button
+          onClick={handleSetDemo}
+          className="demo-btn btn-success"
+          style={{ marginRight: 0 }}>
           Demo Account
         </Button>
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn-primary"
+          style={{ marginRight: 0 }}>
           {submitButtonText}
         </button>
       </div>
