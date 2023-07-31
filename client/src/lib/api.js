@@ -71,7 +71,7 @@ export async function fetchUser(username) {
 /**
  *
  * @param {number} cartId
- * @returns a join of every col from products + every col from shoppingCartItems table
+ * @returns a join of products & shoppingCartItems table
  */
 export async function fetchCartItems(cartId) {
   const res = await fetch(`/api/shoppingCartItems/${cartId}`);
