@@ -68,12 +68,6 @@ a {
   text-decoration: none;
 }
 
-/* @media screen and (width <= 576px) {
-  .catalog-header {
-    display: none;
-  }
-} */
-
 .justify-flex-center {
   display: flex;
   justify-content: center;
