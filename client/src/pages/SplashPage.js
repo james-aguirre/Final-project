@@ -21,7 +21,7 @@ export default function SplashPage() {
       </div>
       <Row>
         <Col className="justify-center">
-          <Link to="catalog">
+          <Link to="/catalog">
             <Button className="shop-now-btn val-font">Shop Now</Button>
           </Link>
         </Col>
