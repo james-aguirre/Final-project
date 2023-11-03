@@ -18,9 +18,11 @@ export default function SplashPage() {
           alt="phoenix jett valorant banner"
           fluid
         />
+        <div className="w-60 h-60 bg-white color-white"></div>
       </div>
       <Row>
         <Col className="justify-center">
+          <h1 className="text-black p-20">sdfsdfsfsdfFW@EE</h1>
           <Link to="/catalog">
             <Button className="shop-now-btn val-font">Shop Now</Button>
           </Link>
