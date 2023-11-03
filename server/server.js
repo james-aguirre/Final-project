@@ -59,7 +59,6 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
   try {
     const { username, password } = req.body;
     if (!username || !password) throw new ClientError(401, 'invalid login');
-
     const sql = `
       select "customerId",
             "hashedPassword"
@@ -69,14 +68,10 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     const params = [username];
     const result = await db.query(sql, params);
     const [user] = result.rows;
-    if (!user) {
-      throw new ClientError(401, 'invalid login');
-    }
+    if (!user) throw new ClientError(401, 'invalid login');
     const { customerId, hashedPassword } = user;
     const isMatching = await argon2.verify(hashedPassword, password);
-    if (!isMatching) {
-      throw new ClientError(401, 'invalid login');
-    }
+    if (!isMatching) throw new ClientError(401, 'invalid login');
     const payload = { customerId, username };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);
     res.status(201).json({ token, user: payload });
