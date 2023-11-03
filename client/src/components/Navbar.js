@@ -19,9 +19,25 @@ export default function NavBar({ onNavigate }) {
             </Link>
           </div>
           <div className="ml-auto flex items-center gap-x-4">
+            {user ? (
+              <Link
+                to="/sign-in"
+                onClick={handleSignOut}
+                className="text-bold font-xl ">
+                <h1 className="font-semibold text-large mr-2">Sign out</h1>
+              </Link>
+            ) : (
+              <Link to="/sign-in" className="text-bold font-xl ">
+                <h1 className="font-semibold text-large">Sign in</h1>
+              </Link>
+            )}
             <Link to="/cart" className="text-bold font-xl ">
-              <ShoppingCart color="white" size={32} className="h-4 w-4" />
-              <span className="text-sm text-white absolute right-5 -top-0 h-6 w-6 justify-center rounded-full p-2.5">
+              <ShoppingCart
+                color="white"
+                size={32}
+                className="w-6 h-6 font-lg"
+              />
+              <span className="text-sm text-white absolute right-5 top-0 h-6 w-6 justify-center rounded-full p-2.5">
                 0
               </span>
             </Link>
@@ -31,6 +47,15 @@ export default function NavBar({ onNavigate }) {
     </div>
   );
 }
+
+// <Nav.Link href="catalog">CAtalog</Nav.Link>
+//             {user && (
+//               <Nav.Link href="/sign-in" onClick={handleSignOut}>
+//                 Sign out
+//               </Nav.Link>
+//             )}
+//             {!user && <Nav.Link href="sign-in">Sign in</Nav.Link>}
+//             <Nav.Link className='ml-10' href="cart">CArt</Nav.Link>
 // export default function NavBar({ onNavigate }) {
 //   const { user, handleSignOut } = useContext(AppContext);
 //   return (
