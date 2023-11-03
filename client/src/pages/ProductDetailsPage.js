@@ -9,6 +9,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import AppContext from '../components/AppContext';
 import './ProductDetails.css';
 import Loading from './LoadingPage';
+import { fetchCartItems } from '../lib/api';
 
 export default function ProductDetails() {
   const { productId } = useParams();
@@ -19,11 +20,13 @@ export default function ProductDetails() {
   let [quantity, setQuantity] = useState(1);
   const { cart, user } = useContext(AppContext);
   const navigate = useNavigate();
+  console.log(user, cart);
   useEffect(() => {
     async function loadProduct(productId) {
       try {
         const product = await fetchProduct(productId);
         setProduct(product);
+        if (user) await fetchCartItems(user.customerId);
       } catch (e) {
         setError(e);
       } finally {
@@ -32,10 +35,14 @@ export default function ProductDetails() {
     }
     setIsLoading(true);
     loadProduct(productId);
-  }, [productId, setProduct, cart]);
-
+  }, [productId, setProduct, cart, user]);
+  const btnText = disabled ? 'Go to cart' : 'Add to cart';
   if (error) {
-    return <div>`Error Loading Product: ${error.message}`</div>;
+    return (
+      <div>
+        `Error Loading Product: ${error.message}, ${Error.message}`
+      </div>
+    );
   }
   function incrementQuantity() {
     quantity = quantity + 1;
@@ -61,7 +68,7 @@ export default function ProductDetails() {
       setDisabled(true);
       if (!user) return navigate('../sign-in');
       if (!cartHasProduct) {
-        return await addToCart(productId, quantity, user.customerId);
+        await addToCart(productId, quantity, user.customerId);
       }
       await addItemQuantity(user.customerId, productId, quantity);
     } catch (e) {
@@ -110,7 +117,7 @@ export default function ProductDetails() {
               className="btn"
               onClick={handleAddToCart}
               disabled={disabled}>
-              Add to cart
+              {btnText}
             </Button>
           )}
           {disabled && (
@@ -118,7 +125,7 @@ export default function ProductDetails() {
               className="btn"
               variant="success"
               onClick={() => navigate('../cart')}>
-              Go to cart
+              {btnText}
             </Button>
           )}
         </Row>

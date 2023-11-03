@@ -72,12 +72,12 @@ app.post('/api/auth/sign-in', async (req, res, next) => {
     if (!user) {
       throw new ClientError(401, 'invalid login');
     }
-    const { userId, hashedPassword } = user;
+    const { customerId, hashedPassword } = user;
     const isMatching = await argon2.verify(hashedPassword, password);
     if (!isMatching) {
       throw new ClientError(401, 'invalid login');
     }
-    const payload = { userId, username };
+    const payload = { customerId, username };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);
     res.status(201).json({ token, user: payload });
   } catch (e) {
@@ -104,7 +104,7 @@ app.post('/api/cart/:cartId', async (req, res, next) => {
 });
 
 // relates to addItemQuantity server call
-app.patch('/api/cart/:cartId', async (req, res, next) => {
+app.patch('/api/cart/addquantity/:customerId', async (req, res, next) => {
   try {
     const { cartId, productId, quantity } = req.body;
     if (!quantity)

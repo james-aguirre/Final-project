@@ -53,7 +53,10 @@ export async function fetchCatalog() {
  */
 export async function fetchProduct(productId) {
   const res = await fetch(`/api/products/${productId}`);
-  if (!res.ok) throw new Error(`fetch Error ${res.status}`);
+  if (!res.ok)
+    throw new Error(
+      `fetch Error ${res.status} error msg${Error.message} ${Error.stack}}`
+    );
   return await res.json();
 }
 
@@ -70,11 +73,11 @@ export async function fetchUser(username) {
 
 /**
  *
- * @param {number} cartId
+ * @param {number} customerId
  * @returns a join of products & shoppingCartItems table
  */
-export async function fetchCartItems(cartId) {
-  const res = await fetch(`/api/shoppingCartItems/${cartId}`);
+export async function fetchCartItems(customerId) {
+  const res = await fetch(`/api/shoppingCartItems/${customerId}`);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }
@@ -107,7 +110,7 @@ export async function addItemQuantity(productId, quantity, cartId) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ productId, quantity, cartId }),
   };
-  const res = await fetch(`/api/cart/${cartId}`, req);
+  const res = await fetch(`/api/cart/addquantity/${cartId}`, req);
   if (!res.ok) throw new Error(`fetch Error ${res.status}`);
   return await res.json();
 }

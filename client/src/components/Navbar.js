@@ -10,7 +10,7 @@ export default function NavBar({ onNavigate }) {
     <div className="border-b bg-[#1B1F20] text-white">
       <Container>
         <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center text-sm">
-          <Link to="/" className="text-bold font-xl">
+          <Link to="/" className="text-bold font-xl font">
             <h1 className="font-bold text-xl">ValTrade</h1>
           </Link>
           <div className="mx-6 flex items-center space-x-4 lg:space-x-6">
@@ -47,34 +47,3 @@ export default function NavBar({ onNavigate }) {
     </div>
   );
 }
-
-// <Nav.Link href="catalog">CAtalog</Nav.Link>
-//             {user && (
-//               <Nav.Link href="/sign-in" onClick={handleSignOut}>
-//                 Sign out
-//               </Nav.Link>
-//             )}
-//             {!user && <Nav.Link href="sign-in">Sign in</Nav.Link>}
-//             <Nav.Link className='ml-10' href="cart">CArt</Nav.Link>
-// export default function NavBar({ onNavigate }) {
-//   const { user, handleSignOut } = useContext(AppContext);
-//   return (
-//     <>
-//       <Navbar bg="dark" variant="dark" className="val-font navbar">
-//         <Container>
-//           <Navbar.Brand href="/">VAlTrade</Navbar.Brand>
-//           <Nav className="me-auto">
-//             <Nav.Link href="catalog">CAtalog</Nav.Link>
-//             {user && (
-//               <Nav.Link href="/sign-in" onClick={handleSignOut}>
-//                 Sign out
-//               </Nav.Link>
-//             )}
-//             {!user && <Nav.Link href="sign-in">Sign in</Nav.Link>}
-//             <Nav.Link className='ml-10' href="cart">CArt</Nav.Link>
-//           </Nav>
-//         </Container>
-//       </Navbar>
-//     </>
-//   );
-// }
