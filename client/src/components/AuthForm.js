@@ -72,13 +72,13 @@ export default function AuthForm({ action, onSignIn }) {
         </small>
         <Button
           onClick={handleSetDemo}
-          className="demo-btn btn-success"
+          className="demo-btn btn-success bg-inherit"
           style={{ marginRight: 0 }}>
           Demo Account
         </Button>
         <button
           type="submit"
-          className="btn btn-primary"
+          className="btn btn-primary bg-[#0d6efd]"
           style={{ marginRight: 0 }}>
           {submitButtonText}
         </button>

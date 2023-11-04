@@ -9,6 +9,7 @@ import ProductDetails from './pages/ProductDetailsPage';
 import SplashPage from './pages/SplashPage';
 import CartPage from './pages/CartPage';
 import { fetchUser, fetchCartItems } from './lib/api';
+import Footer from './components/Footer';
 const tokenKey = 'react-context-jwt';
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
           <Route path="cart" element={<CartPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </AppContext.Provider>
     </>
   );

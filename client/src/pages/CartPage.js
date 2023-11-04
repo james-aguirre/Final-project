@@ -102,7 +102,9 @@ export default function CartPage() {
             <Row>
               <span className="empty-cart-msg">
                 <Link to="../catalog">
-                  <Button className="back-to-shop-btn">Back to Shop</Button>
+                  <Button className="back-to-shop-btn bg-[#0d6efd]">
+                    Back to Shop
+                  </Button>
                 </Link>
               </span>
             </Row>

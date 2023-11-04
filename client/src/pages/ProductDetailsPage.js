@@ -13,14 +13,15 @@ import { fetchCartItems } from '../lib/api';
 
 export default function ProductDetails() {
   const { productId } = useParams();
+  const { cart, user } = useContext(AppContext);
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   const [disabled, setDisabled] = useState(false);
   let [quantity, setQuantity] = useState(1);
-  const { cart, user } = useContext(AppContext);
+  // let cartItems = cart?.length;
+  // let [cartCount, setCartCount] = useState(cartItems); // cartCount is the number displayed on the cart icon in the navbar
   const navigate = useNavigate();
-  console.log(user, cart);
   useEffect(() => {
     async function loadProduct(productId) {
       try {
@@ -68,8 +69,10 @@ export default function ProductDetails() {
       setDisabled(true);
       if (!user) return navigate('../sign-in');
       if (!cartHasProduct) {
+        // setCartCount(quantity += cartItems);
         await addToCart(productId, quantity, user.customerId);
       }
+      // setCartCount(quantity += cartItems);
       await addItemQuantity(user.customerId, productId, quantity);
     } catch (e) {
       setError(e);
@@ -114,7 +117,7 @@ export default function ProductDetails() {
           </Col>
           {!disabled && (
             <Button
-              className="btn"
+              className="btn bg-[##0d6efd]"
               onClick={handleAddToCart}
               disabled={disabled}>
               {btnText}
@@ -122,7 +125,7 @@ export default function ProductDetails() {
           )}
           {disabled && (
             <Button
-              className="btn"
+              className="btn bg-green-700"
               variant="success"
               onClick={() => navigate('../cart')}>
               {btnText}

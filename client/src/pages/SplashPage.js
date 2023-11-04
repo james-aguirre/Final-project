@@ -22,7 +22,9 @@ export default function SplashPage() {
       <Row>
         <Col className="justify-center">
           <Link to="/catalog">
-            <Button className="shop-now-btn val-font">Shop Now</Button>
+            <Button className="shop-now-btn val-font bg-[#0d6efd]">
+              Shop Now
+            </Button>
           </Link>
         </Col>
       </Row>

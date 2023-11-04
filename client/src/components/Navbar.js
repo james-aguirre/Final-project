@@ -3,15 +3,19 @@ import AppContext from '../components/AppContext';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
+import { useEffect } from 'react';
 
 export default function NavBar({ onNavigate }) {
-  const { user, handleSignOut } = useContext(AppContext);
+  const { user, handleSignOut, cart } = useContext(AppContext);
+  let cartCount = (cart && cart.length) || 0;
+  useEffect(() => {}, [cart]);
+
   return (
-    <div className="border-b bg-[#1B1F20] text-white">
+    <div className=" bg-[#1B1F20] text-white">
       <Container>
         <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center text-sm">
           <Link to="/" className="text-bold font-xl font">
-            <h1 className="font-bold text-xl">ValTrade</h1>
+            <h1 className="font-bold text-xl text-red-400">ValTrade</h1>
           </Link>
           <div className="mx-6 flex items-center space-x-4 lg:space-x-6">
             <Link to="/catalog" className="text-bold font-xl ">
@@ -31,16 +35,16 @@ export default function NavBar({ onNavigate }) {
                 <h1 className="font-semibold text-large">Sign in</h1>
               </Link>
             )}
-            <Link to="/cart" className="text-bold font-xl ">
+            {/* <Link to="/cart" className="text-bold font-xl ">
               <ShoppingCart
                 color="white"
                 size={32}
-                className="w-6 h-6 font-lg"
+                className="w-6 h-6"
               />
-              <span className="text-sm text-white absolute right-5 top-0 h-6 w-6 justify-center rounded-full p-2.5">
-                0
+              <span className="text-sm text-white absolute right-3 top-0 h-6 w-6 justify-center rounded-full p-2.5">
+                {cartCount}
               </span>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </Container>
