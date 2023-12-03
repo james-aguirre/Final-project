@@ -82,7 +82,10 @@ export default function ProductDetails() {
     <Container fluid className="details-container">
       <div className="details-card-wrapper">
         <Link to="/catalog">
-          <Button className="back-to-catalog-btn"> Back To Shop</Button>
+          <Button className="back-to-catalog-btn bg-[#0d6efd]">
+            {' '}
+            Back To Shop
+          </Button>
         </Link>
         <Row className="row">
           <Col xs={12} className="column-full">
@@ -117,7 +120,7 @@ export default function ProductDetails() {
           </Col>
           {!disabled && (
             <Button
-              className="btn bg-[##0d6efd]"
+              className="btn bg-[#0d6efd]"
               onClick={handleAddToCart}
               disabled={disabled}>
               {btnText}
