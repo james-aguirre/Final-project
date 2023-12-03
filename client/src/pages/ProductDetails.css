@@ -1,5 +1,6 @@
 .details-container {
-  background-image: url('https://www.ggrecon.com/media/tl1nixi0/valorant-banner-art-cropped.jpg');
+  background-image: url('https://images5.alphacoders.com/108/1081931.jpg');
+  background-size: contain;
   display: flex;
   width: 100vw;
   justify-content: space-around;

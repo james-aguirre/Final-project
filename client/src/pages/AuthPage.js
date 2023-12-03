@@ -19,12 +19,12 @@ export default function AuthPage({ action }) {
       : 'Create an account to get started!';
   return (
     <div className="auth-container">
-      <div className="row pt-5 align-items-center">
+      <div className="row pt-20 align-items-center">
         <div className="col-xl-4">
           <header className="text-center">
             <p className="text-muted mb-4 welcome-msg">{welcomeMessage}</p>
           </header>
-          <div className="card p-3 ">
+          <div className="card p-3">
             <AuthForm key={action} action={action} onSignIn={handleSignIn} />
           </div>
         </div>

@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-image: url('https://www.ggrecon.com/media/tl1nixi0/valorant-banner-art-cropped.jpg');
+  background-image: url('https://images4.alphacoders.com/109/1091960.jpg');
+  background-size: contain;
   width: 100vw;
   height: 100vh;
 }
