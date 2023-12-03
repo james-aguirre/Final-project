@@ -35,12 +35,14 @@ export default function NavBar({ onNavigate }) {
                 <h1 className="font-semibold text-large">Sign in</h1>
               </Link>
             )}
-            <Link to="/cart" className="text-bold font-xl ">
-              <ShoppingCart color="white" size={32} className="w-6 h-6" />
-              {/* <span className="text-sm text-white absolute right-3 top-0 h-6 w-6 justify-center rounded-full p-2.5">
+            {user && (
+              <Link to="/cart" className="text-bold font-xl ">
+                <ShoppingCart color="white" size={32} className="w-6 h-6" />
+                {/* <span className="text-sm text-white absolute right-3 top-0 h-6 w-6 justify-center rounded-full p-2.5">
                 {cartCount}
               </span> */}
-            </Link>
+              </Link>
+            )}
           </div>
         </div>
       </Container>
