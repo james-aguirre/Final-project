@@ -22,7 +22,6 @@ export default function CartPage() {
   useEffect(() => {
     async function loadCart() {
       try {
-        if (!user) navigate('../sign-in');
         const cart = await fetchCartItems(cartId);
         setCart(cart);
       } catch (e) {
