@@ -1,5 +1,5 @@
 .details-container {
-  background-image: url('https://images5.alphacoders.com/108/1081931.jpg');
+  background-image: url('../../../static/phoenix.jpg');
   background-size: contain;
   display: flex;
   width: 100vw;

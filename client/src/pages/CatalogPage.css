@@ -8,7 +8,7 @@
 }
 
 .catalog-container {
-  background-image: url('https://images7.alphacoders.com/109/1091959.jpg');
+  background-image: url('../../../static/omen.jpg');
   background-size: contain;
   min-height: 150vh;
   min-width: 100vw;
