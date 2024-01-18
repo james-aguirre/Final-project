@@ -72,7 +72,7 @@
 .auth-container {
   height: 100vh;
   width: 100vw;
-  background-image: url('https://images7.alphacoders.com/108/1081933.jpg');
+  background-image: url('../../../static/jett.jpg');
   background-size: contain;
 }
 

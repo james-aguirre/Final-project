@@ -2,16 +2,11 @@
 
 insert into "products" ( "productName", "price", "category", "imageUrl", "description")
 values
-( 'BlastX Knife', 19.99, 'melee', 'https://cx.valorbuff.com/blob/BRcfB9CUanCZK+h7l1pOKnsblVHqBtxJKVvShXlN56sbl+c0hVCZ5axNhX-Gva0E?w=900', 'base level variant'),
-( 'Radiant Crisis Bat', 19.99, 'melee', 'https://cx.valorbuff.com/blob/BRcfB9CUanCY5aprKahVKIsOKNp2BtcOKVvShXKVlIsVKtpOh+lqhV-b5tvGva0E?w=900', 'base level variant'),
-( 'Glitchpop Knife', 19.99, 'melee', 'https://cx.valorbuff.com/blob/BRcfB9CUanC2l1JOKN-rlnbqitDXBtxJ5+USh+pVK2sr51DXlVp7l1-YitpGva0E?w=900', 'base level variant'),
+( 'BlastX Knife', 19.99, 'melee', 'https://static.wikia.nocookie.net/valorant/images/3/3f/Radiant_Crisis_001_Baseball_Bat.png/revision/latest?cb=20230711203029', 'base level variant'),
+( 'Radiant Crisis Bat', 19.99, 'melee', 'https://static.wikia.nocookie.net/valorant/images/3/3f/Radiant_Crisis_001_Baseball_Bat.png/revision/latest?cb=20230711203029', 'base level variant'),
+( 'Glitchpop Knife', 19.99, 'melee', 'https://static.wikia.nocookie.net/valorant/images/5/55/Glitchpop_Dagger.png/revision/latest?cb=20230711194820', 'base level variant'),
 ( 'G.U.N. Baton', 19.99, 'melee', 'https://cx.valorbuff.com/blob/BRcfB9CUan3XitDXhVD3insshNcZBtx3lXKS5tc7h2sOhNlnlV3qlVWqlNpGva0E?w=900', 'base level variant'),
-( 'Ruination Knife', 19.99, 'melee', 'https://cx.valorbuff.com/blob/BRcfB9CUanCYiac7lXDNKIs2Kt3nBtcYi+hS5aini6sbKahOiacVhVU0KNUGva0E?w=900', 'level 6 variant'),
-( 'Winterwunderland Knife', 9.99, 'melee', 'https://cx.valorbuff.com/blob/BRcfB9CUanCsKXWn5tDqinbXlViJBtxNK19S5+lJh6bNhVKshtcrlrKYlr-Gva0E?w=900', 'level 4 variant'),
-( 'Recon Knife', 19.99, 'melee','https://cx.valorbuff.com/blob/BRcfB9CUanC0lXKOKNUY56bq519OBtcVhVKShtW3lIssht3Jl1Jri+-0lVKGva0E?w=900', 'level 5 variant'),
-( 'Kingdom Knife', 19.99, 'melee','https://cx.valorbuff.com/blob/BRcfB9CUanCsl1csitUVKns0K1HXBtxN51US5tiNK2b3iah0lahriXQX5thGva0E?w=900', 'base level variant'),
-( 'Forsaken Knife', 19.99, 'melee','https://cx.valorbuff.com/blob/BRcfB9CUanCb5t-ZlXhYKnbqKr-sBtcrl1KShtcYinbnlt-ZhXC0lrLJltpGva0E?w=900', 'base level variant'),
-( 'Snowfall Wand', 24.99, 'melee','https://cx.valorbuff.com/blob/BRcfB9CUanCO5ahZhtqNlIssKtKOBtcshNUSh+x356bJhNc2K1v0KVhriaKGva0E?w=900', 'Limited edition'),
+( 'Snowfall Wand', 24.99, 'melee','https://static.wikia.nocookie.net/valorant/images/e/e1/Snowfall_Wand.png/revision/latest?cb=20230711204841', 'Limited edition'),
 ( 'Ego Knife', 24.99, 'melee','https://cx.valorbuff.com/blob/BRcfB9CUanCs5aLXKahOl2s0i1Q3BtcrKVCShX-bK2s2hXh2lX3XKtDXhNhGva0E?w=900', 'level 4 variant'),
 ( 'Champions Vandal', 19.99, 'rifle', 'https://cx.valorbuff.com/blob/BRcfB9CUanC2i1Q3Ka-7insr51pZBtcriXJShNQNKnsVlaK2hrcZiXHqi1hGva0E?w=900', 'base level variant'),
 ( 'Prime Vandal', 29.99, 'rifle', 'https://cx.valorbuff.com/blob/BRcfB9CUanC2KrL3i1C7h6s75tDJBtxXitJShX-2lIsriXLNi1-rl+hr51CGva0E?w=900', 'level 7 variant'),
